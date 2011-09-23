@@ -1,0 +1,20 @@
+[%-meta.title   = 'PDB ' _ type _ ': ' _ list_this%]
+
+	[%PROCESS pdb_news.tt2-%]
+
+	[%INCLUDE pdb_widgets.tt2 -%] [%-# root/lib/js/pdb_widgets.tt2-%]
+
+	[%#INCLUDE pdb_comp_widget.tt2 -%] [%-# root/lib/js/pdb_comp_widget.tt2-%]
+	[%#INCLUDE pdb_motm_widget.tt2 -%] [%-# root/lib/js/pdb_motm_widget.tt2-%]
+	[%#INCLUDE psi_widget.tt2 -%] [%-# root/lib/js/psi_widget.tt2-%]
+
+	[%PROCESS pager.tt2 -%]
+
+	[%-# tooltip contents%]
+	<div class="plain_tooltip_small">&nbsp</div>
+
+	<div id='pdb_list'>
+		[%PROCESS metapdb_table.tt2 -%]
+	</div><!-- end of pdb_list -->
+
+	[%PROCESS pager.tt2 -%]

@@ -1,0 +1,41 @@
+[% # Use the TT Dumper plugin to Data::Dumper variables to the browser   -%]
+[%- # Not a good idea for production use, though. :-)  'Indent=1' is      -%]
+[%- # optional, but prevents "massive indenting" of deeply nested objects -%]
+[%- #USE Dumper(Indent=1) -%]
+
+[%- # Set the page title.  META can 'go back' and set values in templates -%]
+[%- # that have been processed 'before' this template (here it's for      -%]
+[%- # root/lib/site/html and root/lib/site/header).  Note that META on    -%]
+[%- # simple strings (e.g., no variable interpolation).   				 -%] 
+[%- META
+   title   = 'Search Result of '
+   author  = 'Sung Gong'
+   version = 0.01 
+-%]
+
+<!-- frameset only works without body tags -->
+<frameset cols="65%, 35%">
+	[%-IF hl-%]
+		[%-IF label%]
+			[%args1=BLOCK%]?hl=[%hl%]&label=[%label%][%END%]
+		[%-ELSE-%]
+			[%args1=BLOCK%]?hl=[%hl%][%END%]
+		[%-END-%]
+	[%-ELSE-%]
+		[%args1=BLOCK%]?[%END-%]
+	[%-END-%]
+
+	[%-IF bgcolor-%]
+			[%args2=BLOCK%][%args1%]&bgcolor=[%bgcolor%][%END-%]
+		[%-ELSE-%]
+			[%args2=args1-%]
+	[%-END-%]
+
+	[%uri_molecule=BLOCK%][%c.uri_for('/jmol/pdb/')%][%id%][%args2%][%END%]
+	[%uri_pannel=BLOCK%][%c.uri_for('/jmol/jmol_pannel/')%][%id%][%END%]
+	<frame src="[%uri_molecule%]" name="[%id%]" scrolling="auto">
+	<frame src="[%uri_pannel%]" name="pannel" scrolling="auto">
+	<noframes>If you are reading this you do not have a browser that is frames-capable. 
+		We invite you get Netscape Navigator v.4.7 and return to this exhibit. 
+	</noframes>
+</frameset>

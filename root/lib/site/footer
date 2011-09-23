@@ -1,0 +1,6 @@
+<!-- BEGIN site/footer -->
+	<a href="http://www.catalystframework.org" title="link to catalyst framework website" target="_BLINK"><img src="[%c.uri_for('/static/images/btn_88x31_powered.png')%]" alt="powered by catalyst" /></a>
+<p>
+	&copy; [%site.year%] <a title="Sung's homepage" href="http://sung.bio.cc">[%site.author%]</a>, [% site.group%], [%site.dept%], [%site.univ%]
+</p>
+<!-- END site/footer -->

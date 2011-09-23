@@ -1,0 +1,33 @@
+[% # This is a TT comment.  The '-' at the end "chomps" the newline.  You won't -%]
+[% # see this "chomping" in your browser because HTML ignores blank lines, but  -%]
+[% # it WILL eliminate a blank line if you view the HTML source.  It's purely   -%]
+[%- # optional, but both the beginning and the ending TT tags support chomping. -%]
+
+[% # Provide a title to root/lib/site/header -%]
+[% meta.title = 'HGNC Lists' -%]
+
+<table>
+	<tr>
+		<th>Gene symbol
+		<th>Locus
+		<th>SwissProt
+		<th>Entrez ID
+		<th>Pubmed
+		<th>refseq ID
+		<th>Omim
+		<th>Desciption
+	</tr>
+[% # Display each search in a table row %]
+[% FOREACH hgnc IN Hgncs-%]
+	<tr>
+		<td>[% hgnc.symbol %]</td>
+		<td>[% hgnc.chrom%]</td>
+		<td>[% hgnc.uniprot%]</td>
+		<td>[% hgnc.entrez%]</td>
+		<td>[% hgnc.pubmed%]</td>
+		<td>[% hgnc.refseq%]</td>
+		<td>[% hgnc.omim%]</td>
+		<td>[% hgnc.name%]</td>
+	</tr>
+[% END -%]
+</table>

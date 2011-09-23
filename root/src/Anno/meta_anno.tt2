@@ -1,0 +1,11 @@
+[%- meta.title   = 'annotation' -%]
+
+		[% PROCESS samul_news.tt2 -%] [%-# root/src/Messenger/samul_news.tt2%]
+		[% PROCESS anno_tooltips_js.tt2 -%] [%-# root/lib/js/anno_tooltips_js.tt2%]
+
+		<div id='meta_anno'>
+			[%PROCESS meta_anno_table.tt2-%]
+		</div><!-- end of meta_anno -->
+
+		[%-# make tooltip elelemnts for every annotation code %]
+		[%PROCESS anno_tooltips_div.tt2-%] [%# root/src/anno_tooltips_div.tt2%]

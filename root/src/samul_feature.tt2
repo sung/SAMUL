@@ -1,0 +1,29 @@
+		<h2 class="main_title">What SAMUL Provides</h2>
+		<p class="desc">
+			<strong>Sequence-Structure Mapping: </strong>
+			We developed a method, <a class="external" title="read the method" href="[%ref.doublemap%]#s3">double-map</a>, which aligns a <a class="external" title="visit UniProt home"  href="[%link.uniprot%]">UniProt</a> sequence to its corresponding <a class="external" title="visit PDB home" href="[%link.pdb%]">PDB</a> structure at residue level. Also, within a PDB file, sequence from SEQRES record and that of ATOM record has been aligned and presented. This enables to see which residues has been modified or failed to crystalized from the original sequence studied.
+			[<a title="A double-map example with 1DAN" href="[%c.uri_for('/pdb')%]/1dan/L/resmap">example</a>]
+		</p>
+		<p class="desc">
+			<strong>Rich Annotations: </strong>
+			By using <a class="external" title="read the method" href="[%ref.doublemap%]#s3">double-map</a>, UniProt annotations, especially feature (<a class="external" title="what are the UniProt features?" href="[%link.uniprot_ft%]">FT</a>) records, can be harnessed and interpreted in 3D structures of proteins.
+			In addition, nsSNPs that occur at protein coding regions could be mapped onto their corresponding amino acids in the context of 3D structure.
+			[<a title="browse all the annotations we provide" href="[%c.uri_for('/annotation')%]">browse</a>]	
+		</p>
+		<p class="desc">
+			<strong>Gbrowse: </strong>
+			Structure/function annotations are graphically visualized and highlighted at the reisude level of UniProt (or Ensembl) protein sequence
+			by using <a class="external" title="Visit GBrowse home" href="[%link.gbrowse%]">Generic Genome Browser</a>.
+			[<a title="GBrowse example with P24941" href="[%gbrowse.link%]P24941">example</a>]
+		</p>
+		<p class="desc">
+			<strong>Jmol: </strong>
+			You can browse three-dimensional structure of a protein featuring structural/functional annotations within <a class="external" title="Visit Jmol home" href="[%link.jmol%]">Jmol molecular viewer</a>.
+			[<a title="An example of Jmol with 1A25" href="[%c.uri_for('/pdb')%]/1a25/jmol">example</a>]
+		</p>
+		<p class="desc">
+			<strong>DAS: </strong>
+			SAMUL is a DAS (<a class="external" title="Read more about DAS" href="[%link.das%]">Distrubuted Annotation System</a>) server, which provides a XML-based web service to distribute annotations through the web.
+			[<a title="You might see an empty page, but it's alright" href="[%gbrowse.das%]/types/dsn">Database Source Name(DSN) of SAMUL</a>]
+			[<a title="DAS exmaple with P24941" href="[%gbrowse.das%]/samul|Region/features?segment=P24941">example</a>]
+		</p>

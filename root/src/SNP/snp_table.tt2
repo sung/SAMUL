@@ -1,0 +1,53 @@
+	<table class='general_list_table'>
+		<tr>
+			<th title="Click to see the SNP information in detail" class='bottom'>SNP ID</th>
+			<th class='bottom'>[%onto%]</th>
+			[%-IF onto == 'ensg'%]
+			<th title="Click to see all SNPs of this chromosome" class='bottom'>Chr</th>
+			[%-END%]
+			[%-IF onto.match('ens')%]
+			<th class='bottom'>Strand</th>
+			[%-END%]
+			<th class='bottom'>Position</th>
+			<th class='bottom'>Allele</th>
+			[%-IF onto == 'ensg'%]
+			<th class='bottom'>Genotyped?</th>
+			<th class='bottom'>Validation</th>
+			[%-END%]
+			[% UNLESS template.name.match('type')-%]
+			<th class='bottom'>Type</th>
+			[%END%]
+		</tr>
+		[%-FOREACH entry IN metasnps%]
+		<tr>
+			<td class='wide'><a title="Click to see [%entry.rs_id%] in detail" href='[%c.uri_for('/snp')%]/[%entry.rs_id%]'>[%entry.rs_id%]</a></td>
+			[%-IF onto == 'uniprot'%]
+			<td class='wide'><a title="Click to see [%entry.$onto%] in detail" href='[%c.uri_for('/uniprot')%]/[%entry.$onto%]'>[%entry.$onto%]</td>
+			[%-ELSE%]
+			<td class='wide'>[%entry.$onto%]</td>
+			[%-END%]
+			[%-IF onto == 'ensg'%]
+			<td class='wide'><a title="Click to see all SNPs of chromosome [%entry.coord_name%]" href="[%c.uri_for('/snp/chr')%]/[%entry.coord_name%]">[%entry.coord_name%]<a></td>
+			[%-END%]
+			[%-IF onto.match('ens')%]
+			<td class='wide'>[%entry.strand%]</td>
+				[%-IF onto.match('ensp')%]
+					<td class='wide'><a title="Click to see [%entry.end%] of [%entry.$onto%] in Gbrowse" href="[%gbrowse.link%][%entry.$onto%];h_feat=[%entry.rs_id%]@yellow;h_region=[%entry.$onto%]:[%entry.end%]..[%entry.end+1%]@red'>">[%entry.end%]</a></td>
+				[%-ELSE%]
+					<td class='wide'>[%entry.end%]</td>
+				[%-END%]
+			[%-END%]
+			[%-IF onto == 'uniprot'%]
+			<td class='wide'><a title="Click to see [%entry.uniprot_res_num%] of [%entry.$onto%] in Gbrowse" href='[%gbrowse.link%][%entry.$onto%];h_feat=[%entry.rs_id%]@yellow;h_region=[%entry.$onto%]:[%entry.uniprot_res_num%]..[%entry.uniprot_res_num+1%]@red'>[%entry.uniprot_res_num%]</a></td>
+			[%-END%]
+			<td class='wide'>[%entry.allele%]</td>
+			[%-IF onto == 'ensg'%]
+			<td class='wide'>[%entry.genotyped%]</td>
+			<td class='wide'>[%entry.validation%]</td>
+			[%-END%]
+			[% UNLESS template.name.match('type')-%]
+			<td class='wide'><a href='[%c.uri_for('/snp/type')%]/[%entry.type%]'>[%entry.type%]</a></td>
+			[%-END%]
+		</tr>
+		[%-END%]
+	</table>

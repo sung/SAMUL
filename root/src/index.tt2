@@ -1,0 +1,15 @@
+[%-meta.title = 'SAMUL intro'-%]
+
+	[%-#load google feeds control (float right) %]
+	[%-SET div_tag="google_feed_control"-%] [%-# this tag is used in samul.css%]
+	[%-# root/lib/js/google_feeds.tt2%]
+	[% PROCESS google_feeds.tt2 dom="$div_tag" title="News" stacked="true" horizontal="false" is_samul="1" is_pdb="1" is_uniprot="1" is_ensembl="1" is_ebi="1" is_credo="1"-%] 
+	<div id="[%div_tag%]">Loading...</div>
+	
+	<div id="welcome" class="samul_panel">
+		[%INCLUDE welcome_samul.tt2 -%]
+	</div>
+
+	<div id="functionality" class="samul_panel">
+		[%INCLUDE samul_feature.tt2 -%]
+	</div>

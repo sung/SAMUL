@@ -1,0 +1,63 @@
+[% # Set the page title.  META can 'go back' and set values in templates -%]
+[% # that have been processed 'before' this template (here it's for      -%]
+[% # root/lib/site/html and root/lib/site/header).  Note that META on    -%]
+[% # simple strings (e.g., no variable interpolation).   				 -%] 
+[%meta.title = id%]
+
+	[%PROCESS uniprot_entry_news.tt2-%]
+
+	[%-SET slider_id="uniprot_info"%]
+	[%-SET dynamicArrows=1%]
+	[%-SET dynamicTabs=1%]
+	[%INCLUDE no_js_warning.tt2 -%] [%-# root/lib/js/no_js_warning.tt2%]
+	[%PROCESS coda_slider.tt2 slider_id="$slider_id" dynamicArrows="$dynamicArrows" dynamicTabs="$dynamicTabs"%] [%# root/lib/js/coda_slider.tt2%]
+
+	[%-# tooltip contents%]
+	<div class="plain_tooltip_small">&nbsp</div>
+
+	<div class="coda-slider-wrapper">
+		[%-UNLESS dynamicTabs%]
+		[%-# todo template for tabs? %]
+		[%-# don't forget 'dynamicTabs: false' %]
+		<div id="uniprot_nav_left" class="coda-nav-left"><a href="#" title="Slide left">&#171;</a></div>
+		<div id="uniprot_nav" class="coda-nav">
+			<ul>
+				<li class="tab1"><a href="#1">General info</a></li>
+				<li class="tab2"><a href="#2">X-ref</a></li>
+				<li class="tab3"><a href="#3">SNPs([%num_variants%])</a></li>
+				<li class="tab4"><a href="#4">Features</a></li>
+			</ul>
+		</div>
+		<div id="uniprot_nav_right" class="coda-nav-right"><a href="#" title="Slide right">&#187;</a></div>
+		[%-END%]
+		<div class="coda-slider preload" id="[%slider_id%]">
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">General info</h2>
+					[% INCLUDE uni_seq.tt2 -%]
+				</div>
+			</div><!-- panel 1 -->
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">X-ref</h2>
+					[% INCLUDE uni_xref.tt2 -%]
+				</div>
+			</div><!-- panel 2 -->
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">SNPs([%num_variants%])</h2>
+					[% IF num_variants %]
+						[% INCLUDE uni_variants.tt2 -%]
+					[%ELSE%]
+						<p>No variants found</p>
+					[% END%]
+				</div>
+			</div><!-- panel 3 -->
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">Features</h2> 
+					[%  INCLUDE uni_ft.tt2 -%]
+				</div>
+			</div><!-- panel 4 -->
+		</div><!-- end of preload -->
+	</div><!-- end of wrapper -->

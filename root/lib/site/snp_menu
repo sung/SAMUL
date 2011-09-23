@@ -1,0 +1,26 @@
+    <div id="navi-menu">
+        <ul id="nav" class="dropdown dropdown-horizontal">
+            <li class="dir">SNPs
+                <ul>
+                    <li class="dir"><a href="#">By chromosome</a>
+                        <ul>
+                            <li><a href="[%c.uri_for('/snp/chr')%]/all">All</a></li>
+                            [%-FOREACH chr IN [1 .. 22]%]
+                            <li><a href="[%c.uri_for('/snp/chr')%]/[%chr%]">[%chr%]</a></li>
+                            [%-END%]
+                            <li><a href="[%c.uri_for('/snp/chr')%]/X">X</a></li>
+                            <li><a href="[%c.uri_for('/snp/chr')%]/Y">Y</a></li>
+                            <li><a href="[%c.uri_for('/snp/chr')%]/MT">MT</a></li>
+                        </ul>
+                    </li>
+            		<li class="dir"><a href="#">Test1</a>
+						<ul>
+							<li><a href="#">Test 1-1</a></li>
+							<li><a href="#">Test 1-2</a></li>
+						</ul>
+					</li>
+                </ul>
+            </li>
+            <li>Test</li>
+        </ul>
+    </div>

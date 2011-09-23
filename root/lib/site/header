@@ -1,0 +1,7 @@
+	<img src="[%c.uri_for('/static/images/garland_logo.png')%]" alt="the TLB group logo" /> 
+				<p class="dept">
+					Crystallography and Bioinformatics<br/>
+					Department of Biochemistry<br/>
+					University of Cambridge<br/>
+				</p>
+				<p class="title">SAMUL</p>

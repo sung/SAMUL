@@ -1,0 +1,361 @@
+package Samul::Web::Controller::Jmol;
+
+use strict;
+use warnings;
+use parent 'Catalyst::Controller';
+
+=head1 NAME
+
+Samul::Web::Controller::Jmol - Catalyst Controller
+
+=head1 DESCRIPTION
+
+Catalyst Controller.
+
+=head1 METHODS
+
+=cut
+
+
+=head2 index
+
+=cut
+
+sub index :Path :Args(0) {
+    my ( $self, $c ) = @_;
+
+    #$c->response->body('Matched Samul::Web::Controller::Jmol in Jmol.');
+    $c->stash->{template} = 'Search/form.tt2';
+}
+
+# /jmol/pdb/xx
+sub pdb: Local{
+    my ($self, $c, $id) = @_;
+	unless(defined $id){
+	    $c->stash->{template} = 'Search/form.tt2';
+	}else{
+	    $c->stash->{id} = $id; 
+   		$c->stash->{template} = 'Jmol/jmol_pdb.tt2';
+	}
+
+}
+
+# /jmol/jmol_pannel
+sub jmol_pannel: Local{
+    my ($self, $c, $id) = @_;
+    $c->stash->{id} = $id; 
+
+	my $user=$c->config->{user};
+	my $passwd=$c->config->{password};
+	my $host=$c->config->{db_host};
+
+
+	# working
+	system("mysql -u $user --password=$passwd -h $host -e 'set global group_concat_max_len=1000000'");
+
+	# 0. UniProt
+	# I. SCOP
+	$c->forward('_get_uniprot'); # same as &_get_uniprot($self,$c,$id);
+
+	#&_load_scop_sql($self, $c, $id);
+	$c->forward('_load_scop'); # &_load_scop($self, $c, $id);
+
+	# II. Surface/Interior
+	$c->forward('_load_surface'); # &_load_surface($self, $c, $id);
+
+	# III. Interface 
+	$c->forward('_load_interface'); # &_load_interface($self,$c,$id);
+
+	# IV. Variation
+	$c->forward('_load_variation'); # &_load_variation($self,$c,$id);
+
+	# V. Functional Residues
+	$c->forward('_load_ft'); # &_load_ft($self,$c,$id);
+
+	## Render all
+   	$c->stash->{template} = 'Jmol/jmol_pannel.tt2';
+
+}
+
+sub _get_uniprot: Private{
+    my ($self, $c) = @_;
+
+	my $c_ResMap=$c->config->{c_resmap};
+	# select distinct(uniprot)
+	# from ResMap
+	# where pdb=? and uniprot is not null
+    $c->stash->{uniprots} = [$c->model("GLORIA::$c_ResMap")->search(
+        {
+            pdb=>$c->stash->{id},
+			uniprot=> { '!=' => undef }
+        },
+        {
+			select=>[{distinct=>'uniprot'}],
+			as=>['uniprot']	
+        }
+    )];
+
+
+}
+sub _load_scop_sql: Private{
+    my ($self, $c) = @_;
+	## Make a new ResultSource based on the Scopmap class
+	my $sql=qq~
+		(select px, group_concat(concat_ws(':', concat_ws('-', pdb_res_start, pdb_res_end), chain) separator ' or ') as region
+		from FACEVIEW.SCOPMap
+		where pdb=?
+		group by px)
+		~;
+
+	# Tables in FACEVIEW
+	# my @models=$c->models;
+
+	# $rs=101321 (The number of entries in FACEVIEW.Scopmap)
+	# my $rs=$c->model('FACEVIEW::Scopmap');	# ResultSet?
+
+	# $class=FaceView_cat::Schema::Scopmap
+	# my $class = $schema->class('Scopmap');
+
+	# $source=DBIx::Class::ResultSource::Table=HASH(0x1d79c4c0);
+	# my $source=$schema->source('Scopmap');
+
+	# 
+	my $rs=$c->model('FACEVIEW');	# ResultSource ?
+	my $schema=$rs->schema;
+
+	my $source=$schema->class('Scopmap')->result_source_instance();
+	my $new_source = $source->new( $source );
+
+	# source_name is a method of 'ResultSource'
+	$new_source->source_name('getSCOPfromPDB');
+	$new_source->name(\$sql);
+
+	# Finally, register your new ResultSource with your hema
+	$schema->register_source('getSCOPfromPDB' => $new_source );
+
+    $c->stash->{domains}=[$schema->resultset('getSCOPfromPDB')->search(
+		undef,
+		{
+			columns=>[qw/px region/],	
+      		bind  => [$c->stash->{id}],
+		},
+	)];
+
+=debug
+    my $result_set= $schema->resultset('getSCOPfromPDB')->search_rs(
+		undef,
+		{
+			columns=>[qw/px region/],	
+      		bind  => [$c->stash->{id}],
+		},
+	);
+    # $ref is a ref of 'Scopmap' class.
+	my $result='';
+    while(my $ref=$result_set->next){
+        my $px=$ref->px;
+        my $region=$ref->get_column('region');
+		my $tmp="$px: $region<br>";
+		$result.=$tmp;
+    } 
+    $c->response->body("$result");
+=cut
+}#end of _load_scop_sql
+	
+sub _load_scop: Private{
+    my ($self, $c) = @_;
+
+    # select sid, group_concat(concat_ws(':', concat_ws('-', pdb_res_start, pdb_res_end), chain) separator ' or ') as region
+    # from FACEVIEW.SCOPMap
+    # where pdb=?
+    # group by sid 
+    $c->stash->{domains} = [$c->model('FACEVIEW::Scopmap')->search(
+        {
+            'pdb'=>$c->stash->{id},
+        },
+        {
+            # select=>[ qw/px/, {group_concat=>[{concat_ws=>['\':\'', {concat_ws=>['\'-\'', 'pdb_res_start', 'pdb_res_end']}, 'chain']}]} ],
+			# or
+            select=>[ qw/px sid/, \'group_concat(concat_ws(\':\', concat_ws(\'-\', pdb_res_start, pdb_res_end), chain) separator \' or \') as region' ],
+            as=>[qw/px sid region/],
+            group_by=>[qw/px/],
+        }
+    )];
+}
+
+sub _load_surface: Private{
+    my ($self, $c) = @_;
+
+	my $c_ResMap=$c->config->{c_resmap};
+	my $ResMap=$c->config->{d_resmap};
+
+=sql
+	select ra.solv_acc, group_concat(concat_ws(':', concat_ws('', rm.pdb_res_num, rm.ins_code), rm.pdb_chain_id) ORDER BY rm.res_id separator ', ') as region
+	from GLORIA.ResAnno ra
+	join GLORIA.ResMap rm
+	on rm.res_id=ra.res_id
+	where rm.pdb='1dan'
+	group by ra.solv_acc
+=cut
+
+=rel_gloria1
+	my $rs=$c->model('GLORIA');	# ResultSource ?
+	my $schema=$rs->schema;
+	$schema->class('Resanno')->has_one($ResMap=>"$schema->class($c_ResMap)", {'foreign.res_id'=>'self.res_id'});
+=cut
+
+    $c->stash->{crusts} = [$c->model('GLORIA::Resanno')->search(
+        {
+            'me.pdb'=>$c->stash->{id},
+        },
+        {
+            # select=>[ qw/me.solv_acc/, {group_concat=>[{concat_ws=>['\':\'', {concat_ws=>['\'-\'', 'ResMap.pdb_res_num', 'ResMap.ins_code']}, 'ResMap.pdb_chain_id']}]} ],
+			# or
+            select=>[ qw/me.solv_acc/, \"group_concat(concat_ws(\':\', concat_ws(\'\', $ResMap.pdb_res_num, $ResMap.ins_code), $ResMap.pdb_chain_id) order by $ResMap.res_id separator \', \') as region" ],
+            as=>[qw/solv_acc region/],
+			join=>[$ResMap],
+            group_by=>[qw/me.solv_acc/],
+        }
+    )];
+}#end of _load_surface
+
+sub _load_interface: Private{
+    my ($self, $c) = @_;
+
+	my $psimap_dir=$c->config->{psimap_dir};
+	return $c->res->output('No psimap_dir') unless $psimap_dir;
+
+	my $pdb=$c->stash->{id};
+	return $c->res->output('no pdb') unless $pdb;
+
+	my $files=`ls $psimap_dir/Interface | grep $pdb`;
+	$c->stash->{is_inf}=0 unless $files;
+	my @files=split(/\n/,$files);
+
+	# array of hash referecnes
+	my @interfaces;
+	my $cnt=-1;
+	foreach my $file(@files){
+		$cnt++;
+		$file=~/((\S+)_(\S+)-(\S+))\.int/;
+		my $name=$1;
+		my $sid1="d$2$3";
+		my $sid2="d$2$4";
+
+		my @atom_num;
+		open(INF, "$psimap_dir/Interface/$file") or $c->request->body($!);
+		while(<INF>){
+			if(/^ATOM\s+(\d+)\s*/){
+				chomp;
+				my $atom_num=$1;
+				push @atom_num, $atom_num;
+			}
+		}
+		close INF;
+		my $interface_atom="atomno=".join(",atomno=", @atom_num);
+
+		$interfaces[$cnt]={
+			title=>"Interface regions between $sid1 and $sid2",
+			name=>$name,
+			region=>$interface_atom,
+			num=>$cnt,
+		}
+	}
+	$c->stash->{interfaces}=\@interfaces;;
+}#end of _load_interface
+
+sub _load_variation: Private{
+    my ($self, $c) = @_;
+
+	my $c_ResMap=$c->config->{c_resmap};
+	my $ResMap=$c->config->{d_resmap};
+=sql
+	select fr.ext_id, group_concat(concat_ws(':', concat_ws('', rm.pdb_res_num, rm.ins_code), rm.pdb_chain_id) separator ', ')
+	from GLORIA.FuncRes fr
+	join GLORIA.ResMap rm
+	on fr.res_id=rm.res_id
+	where rm.pdb=? and fr.type='SAP' -- and (rm.type='SAP' or rm.type='VARIANT')
+	group by fr.ext_id		
+=cut
+
+=rel_gloria2
+	my $rs=$c->model('GLORIA');	# ResultSource ?
+	my $schema=$rs->schema;
+	$schema->class('Funcres')->belongs_to($ResMap=>"$schema->class($c_ResMap)", {'foreign.res_id'=>'self.res_id'});
+=cut
+
+	# SNP@Ensembl (dbSNP)
+    $c->stash->{dbsnps} = [$c->model('GLORIA::Funcres')->search(
+        {
+			'me.type'=>'SAP',
+            "$ResMap.pdb"=>$c->stash->{id},
+        },
+        {
+            select=>[ qw/me.ext_id me.des/, \"group_concat(concat_ws(\':\', concat_ws(\'\', $ResMap.pdb_res_num, $ResMap.ins_code), $ResMap.pdb_chain_id) order by $ResMap.res_id separator \', \') as region" ],
+            as=>[qw/ext_id des region/],
+			join=>[$ResMap],
+            group_by=>[qw/me.ext_id/],
+        }
+    )];
+
+	# SwissVariants
+    $c->stash->{svs} = [$c->model('GLORIA::Funcres')->search(
+        {
+			'me.type'=>'VARIANT',
+            "$ResMap.pdb"=>$c->stash->{id},
+        },
+        {
+            select=>[ qw/me.ext_id me.des/, \"group_concat(concat_ws(\':\', concat_ws(\'\', $ResMap.pdb_res_num, $ResMap.ins_code), $ResMap.pdb_chain_id) order by $ResMap.res_id separator \', \') as region" ],
+            as=>[qw/ext_id des region/],
+			join=>[$ResMap],
+            group_by=>[qw/me.ext_id/],
+        }
+    )];
+
+}#end of _load_variation
+
+
+sub _load_ft: Private{
+    my ($self, $c) = @_;
+
+	my $c_ResMap=$c->config->{c_resmap};
+	my $ResMap=$c->config->{d_resmap};
+
+=rel+gloria3
+	#SQL is same as above
+	my $rs=$c->model('GLORIA');	# ResultSource ?
+	my $schema=$rs->schema;
+	$schema->class('Funcres')->belongs_to($ResMap=>"$schema->class($c_ResMap)", {'foreign.res_id'=>'self.res_id'});
+=cut
+
+	# FuncRes 
+    $c->stash->{fts} = [$c->model('GLORIA::Funcres')->search(
+		{
+            -and =>[
+                    'me.type'=>{'!=', 'INTERPARE'},
+                    'me.type'=>{'!=', 'CREDO'},
+                    'me.type'=>{'!=', 'PICCOLO'},
+                    'me.type'=>{'!=', 'BIPA'},
+                    ],
+            "$ResMap.pdb"=>$c->stash->{id},
+		},
+        {
+            select=>[ qw/me.type/, \"group_concat(concat_ws(\':\', concat_ws(\'\', $ResMap.pdb_res_num, $ResMap.ins_code), $ResMap.pdb_chain_id) order by $ResMap.res_id separator \', \') as region" ],
+            as=>[qw/type region/],
+			join=>[$ResMap],
+            group_by=>[qw/me.type/],
+        }
+    )];
+}#end of _load_variation
+
+=head1 AUTHOR
+
+Sung Gong
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
+1;

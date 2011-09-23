@@ -1,0 +1,8 @@
+[%-meta.title='Feedback'%]
+
+I got feedbacks from [%sender%].
+Re:[%subject%]
+----
+[%comment%]
+----
+EOF

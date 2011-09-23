@@ -1,0 +1,371 @@
+a{ /*color : #1F527B;*/ color: #33e; text-decoration: none;}
+a:hover { color: #FF7F00; }
+a.download { font-size: 9px; text-align: right; }
+a.external {background: url(../images/external.png) center right no-repeat;padding-right: 10px;}
+
+html, body{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	/*font-family: "Baskerville", "Didot", "Cochin", "Georgia", serif;*/
+}
+
+.hidden{
+	display:none;
+}
+
+#wrapper{
+	width: 900px;
+	margin: 5px auto;
+	border: 1px solid #aaa;
+}
+
+#header {
+	background-color: #F3D550;	/*yellow*/
+	padding-top: 5px; padding-bottom: 5px;
+}
+
+#header img{
+	float: right;
+	margin: -5px 0 2px 0;
+	border: 0;
+}
+#header p{
+	text-align: right ;
+	margin: 2px;
+}
+
+#header p.dept{
+	/*font-size: 15px ;*/
+	color: white ; 
+}
+
+#header p.title{
+	color: #788993 ; 
+	/*font-size: 20px;*/
+	font-size: 120%;
+}
+
+#indicator{
+    background-color: #ccc; /* a bit of dark gray*/
+    border-bottom: 1px solid #f08900; /*orange*/
+	color: #B26B00; 
+	padding: 5px 3px;
+}
+
+#indicator p.navi{
+	/*font-size: 15px;*/
+	margin: 2px;
+}
+
+#content {
+    padding: 10px;
+	background-color: #e3e6ea; /* gray */
+	/*background-color: #fff; /* white*/
+	overflow:hidden; /* to cope with google search api*/
+	z-index:0;
+	/*font-size:15px;*/ /* tables within '#content' are all relative size(%), be careful!*/
+	/*position: relative; */ /*don't do this. it makes tooltip crash*/
+}
+
+#footer {
+	clear: both; /* to prevent crash against 'float'*/
+	/*font-size: 11px ;*/
+	font-size: 70%;
+	color: #788993 ; 
+	background-color: #F3D550;	/*yellow*/
+    border-top: 1px solid #f08900; /*orange*/
+	padding-top: 5px; padding-bottom: 5px;
+}
+
+#footer img {
+	float: right;
+	margin: -4px 5px 0 0;
+}
+#footer p{
+	text-align: center;
+	margin: 5px;
+}
+
+#search_form{
+	margin: 30px auto;
+	padding: 10px;
+}
+
+.pager {
+	text-align: center;
+}
+
+div#resmap{
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+div#snp_by_chr{
+	width: 800px;
+	margin: 10px auto;
+	text-align: center;
+}
+
+#home_reference{
+	width: 700px; height: 500px; padding: 20px; 
+	color: #12127D;
+	font-size: 13px;
+	line-height: 140%;
+}
+#welcome, #functionality, #under_the_hood, #about_samul_left, #about_samul_map, #headline_news{
+	/*float:left;*/
+	width: 530px;
+	padding-right: 10px;
+}
+
+#about_samul_from_google, #google_feed_control, #samul_news{
+	float:right;
+	width: 300px;
+	padding:5px;
+	margin-right: 5px;
+}
+
+#pdb_comp_widget {
+	float:left;
+	width: 450px;
+	margin-left:10px;
+	padding:10px;
+}
+
+#pdb_motm_widget {
+	float:right;
+	width: 450px;
+	margin-left:10px;
+	padding:10px;
+}
+
+#psi_widget{
+	float:right;
+	margin:0px auto;
+	padding:10px;
+	margin-right:10px
+}
+
+.samul_panel {
+	background: #fff;
+	border: 1px dotted #aaa;
+	margin: 7px;
+	padding: 5px;
+}
+.samul_panel h2{
+	background: #ccc;
+	padding-left: 5px;
+    border-bottom: 1px solid #f08900; /*orange*/
+}
+
+.google_search {
+	font-size: 85%;
+}
+
+.main_title {
+	margin-bottom:5px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.desc{
+	font-size: 85%;
+	text-indent:10pt;
+	text-align: justify;
+	margin-bottom:10px;
+}
+
+
+table.general_list_table{
+	/*font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;*/
+	width: 800px;
+	/*font-size: 12px;*/
+	font-size: 73%;
+	margin: 15px auto;
+	background: #fff;
+	border-collapse: collapse;
+	text-align: center;
+	border: 1px dotted #aaa;
+}
+table.general_list_table caption{
+	text-align: right;
+	/*font-size: 14px;*/
+	font-size: 100%;
+	font-weight: bold;
+	color: #12127D;
+	padding: 5px;
+}
+
+table.general_list_table th{
+	/*font-size: 12px;*/
+	font-weight: bold;
+	color: #039;
+	padding: 8px 6px;
+}
+table.general_list_table th.bottom{
+ 	text-align: center;
+	border-bottom: 1px solid #6678b1;
+}
+table.general_list_table th.dotted{
+ 	text-align: center;
+	border: 1px dotted #ccc;
+}
+table.general_list_table th.left{
+	text-align: center;
+ 	border-left: 1px solid #6678b1;
+}
+table.general_list_table th.right{
+	width: 80px;
+	text-align: left;
+	border-right: 1px solid #6678b1;
+}
+table.general_list_table td{
+ 	color: #669;
+}
+table.general_list_table td.left{
+	text-align: left;
+	border-bottom: 1px solid #ccc;
+	padding: 6px 6px;
+}
+table.general_list_table td.left_last{
+ 	text-align: left;
+	padding: 6px 6px;
+}
+table.general_list_table td.narrow{
+ 	border-bottom: 1px solid #ccc;
+	padding: 2px 2px;
+}
+table.general_list_table td.wide{
+	border-bottom: 1px solid #ccc;
+ 	padding: 6px 2px;
+}
+table.general_list_table tbody tr:hover td{
+ 	color: #009;
+}
+
+table.pdb_info {
+	width: 500px;
+	margin: 10px auto;
+	background: #fff;
+	border-collapse: collapse;
+	text-align: left;
+	/*font-size: 75%;*/ /* this is a table in a table (general_list_table), so 75% of 73%*/
+}
+table.pdb_info th{
+	width: 80px;
+	font-weight: normal;
+	color: #039;
+	padding: 8px 6px;
+	border-right: 1px solid #6678b1;
+	text-align: left;
+}
+table.pdb_info td{
+	width: 420px;
+	/*font-size: 10px;*/
+	font-size: 85%; /* this is a table in a table (general_list_table), so 85% of 73%*/
+	color: #669;
+	padding: 2px 4px;
+}
+table.pdb_info td.dotted{
+  border-bottom: 1px dotted #ccc;
+}
+
+
+p {
+	background: transparent; 
+}
+
+
+p.list {
+	margin-left: 2em; 
+	text-align: left;
+}
+
+p.download {
+	/*font-size: 9px;*/
+	font-size: 70%;
+	text-align: right;
+}
+
+pre {
+	line-height: 110%;
+}
+
+/* ENV tooltip styling */ 
+.env_html_tooltip{ 
+	display:none; 
+	background:url(../images/64_env_new.gif); 
+	width:895px;
+	height:445px;
+	/*z-index: 700;*/
+} 
+
+.env_html_tooltip p{ 
+    color:#000;
+	padding-top: 5px;
+	padding-left:10px;
+}
+
+/* tooltip styling */ 
+.html_tooltip{ 
+	display:none; 
+	background:url(../images/tooltip/black_arrow_big.png); 
+	height:163px; 
+	padding:20px 30px 10px 30px; 
+	/*padding: 20px 25px;*/
+	width:310px; 
+	/*font-size:11px;*/
+	font-size: 70%;
+	color:#fff;  /* white */
+	z-index: 700;
+} 
+							 
+/* a .label element inside tooltip */ 
+.html_tooltip .label { 
+	color:yellow; 
+	width:45px; 
+} 
+.html_tooltip .desc { 
+	color:yellow; 
+	/*width:250px; */
+} 
+									 
+.html_tooltip a, .html_tooltip_small a { 
+	color:#ad4; 
+	font-weight:bold; 
+}
+
+.html_tooltip p, .html_tooltip_small p { 
+    color:#f08900; /*orange*/
+	padding-top:8px;
+}
+
+.plain_tooltip_small, .html_tooltip_small { 
+    /*font-size:12px; */
+	font-size: 70%;
+	display:none; 
+	/*background:transparent url(http://static.flowplayer.org/tools/img/tooltip/black_arrow.png); */
+	background:transparent url(../images/tooltip/black_arrow.png); 
+	height:70px; 
+	width:160px; 
+	padding:20px;
+	color:#fff;     
+	z-index: 100;
+}
+
+.plain_tooltip_big { 
+    /*font-size:12px; */
+	font-size:70%;
+	display:none; 
+	/*background:transparent url(http://static.flowplayer.org/tools/img/tooltip/black_arrow_big.png); */
+	background:transparent url(../imgages/tooltip/black_arrow_big.png); 
+	height:163px; 
+	height:163px; 
+	width:310px; 
+	padding:40px 30px 10px 30px; 
+	color:#fff;     
+	/*z-index: 700;*/
+}

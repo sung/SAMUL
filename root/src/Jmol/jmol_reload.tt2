@@ -1,0 +1,18 @@
+[% # Reload %]
+<div>
+		<b><a name="reload">0. Reload</a></b>
+</div>
+
+<div>
+<p>
+		[%-uri_pdb=BLOCK%]http://www.rcsb.org/pdb/files/[%id%].pdb.gz[%END%]
+		[%-default=BLOCK%]load '[%uri_pdb%]'; wireframe off; spacefill off; cartoon; color cpk[%END%]
+		[%-move=BLOCK%]move 0 45 0 0 0 0 0 0 5[%END%]
+		<script language="javascript" type="text/javascript">
+			jmolButton("zap; load [%default%]; [%move%]", "Reload", "[%id%]");	
+			jmolBr();
+		</script>
+</p>
+</div>
+<hr>
+

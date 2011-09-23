@@ -1,0 +1,16 @@
+[%-meta.title   = 'SNP >> level:' _ level _ ' >> Type: ' _ snp_type%]
+
+		[%PROCESS ensembl_news.tt2-%]
+		[%PROCESS pager.tt2 -%]
+
+		<!-- tooltip content -->
+		<div class="plain_tooltip_small">&nbsp;</div>
+
+		<div id='snp_list'>
+			[%-IF level == 'pdb'%]
+				[%PROCESS snp2pdb.tt2 onto="$level"-%]
+			[%-ELSE%]
+				[%PROCESS snp_table.tt2 onto="$level"-%]
+			[%-END%]
+		</div>
+		[%PROCESS pager.tt2 -%]

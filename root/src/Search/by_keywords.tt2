@@ -1,0 +1,38 @@
+[%- # This is a TT comment.  The '-' at the end "chomps" the newline.  You won't -%]
+[%- # see this "chomping" in your browser because HTML ignores blank lines, but  -%]
+[%- # it WILL eliminate a blank line if you view the HTML source.  It's purely   -%]
+[%- # optional, but both the beginning and the ending TT tags support chomping. -%]
+
+[%- # Provide a title to root/lib/site/header -%]
+[%-meta.title   = 'Keywords: ' _ keyword-%]
+
+<p>Your keyword: [% keyword %]</p>
+<table>
+	<tr>
+		<th>Gene symbol
+		<th>Locus
+		<th>SwissProt
+		<th>Ensembl
+		<th>PDB
+		<th>Entrez ID
+		<th>Pubmed
+		<th>refseq ID
+		<th>Omim
+		<th>Desciption
+	</tr>
+[% # Display each keyword in a table row %]
+[%-FOREACH keyword IN keywords%]
+  <tr>
+    <td>[% keyword.symbol %]</td>
+    <td>[% keyword.chrom%]</td>
+    <td>[% keyword.uniprot%]</td>
+    <td>[% keyword.ensp%]</td>
+    <td>[% keyword.pdb%]</td>
+    <td>[% keyword.entrez%]</td>
+    <td>[% keyword.pubmed%]</td>
+    <td>[% keyword.refseq%]</td>
+    <td>[% keyword.omim%]</td>
+    <td>[% keyword.name%]</td>
+  </tr>
+[% END -%]
+</table>

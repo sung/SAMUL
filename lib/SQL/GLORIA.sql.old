@@ -1,0 +1,544 @@
+-- MySQL dump 10.10
+--
+-- Host: spunky.bioc.cam.ac.uk    Database: GLORIA
+-- ------------------------------------------------------
+-- Server version	5.0.26
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `2ndStructure`
+--
+
+--DROP TABLE IF EXISTS `2ndStructure`;
+CREATE TABLE IF NOT EXISTS `2ndStructure` (
+  `ss_code` char(1) NOT NULL,
+  `ss_name` varchar(20) NOT NULL,
+  PRIMARY KEY  (`ss_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `Rem2ndStructure`
+--
+
+--DROP TABLE IF EXISTS `Rem2ndStructure`;
+CREATE TABLE IF NOT EXISTS `Rem2ndStructure` (
+  `ss_code` char(1) NOT NULL,
+  `ss_name` varchar(20) NOT NULL,
+  PRIMARY KEY  (`ss_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+--
+-- Table structure for table `AtomicDefinitions`
+--
+
+--DROP TABLE IF EXISTS `AtomicDefinitions`;
+CREATE TABLE IF NOT EXISTS `AtomicDefinitions` (
+  `residue_name` char(3) NOT NULL,
+  `atom_name` char(4) NOT NULL,
+  `atom_type` char(8) default NULL,
+  PRIMARY KEY  (`residue_name`,`atom_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `AtomicRadii`
+--
+
+--DROP TABLE IF EXISTS `AtomicRadii`;
+CREATE TABLE IF NOT EXISTS `AtomicRadii` (
+  `atom_type` char(8) NOT NULL,
+  `non_covalent_radius` float default NULL,
+  `covalent_radius` float default NULL,
+  PRIMARY KEY  (`atom_type`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `CSA`
+--
+
+--DROP TABLE IF EXISTS `CSA`;
+CREATE TABLE IF NOT EXISTS `CSA` (
+  `csa_id` int(10) NOT NULL auto_increment,
+  `pdb` char(4) NOT NULL,
+  `site_number` int(5) NOT NULL,
+  `res_3code` char(3) default NULL,
+  `pdb_chain_id` char(1) default NULL,
+  `pdb_res_num` int(5) NOT NULL,
+  `chem_function` varchar(10) default NULL,
+  `evidence` enum('LIT','PSIBLAST') NOT NULL,
+  `lit_entry` char(4) NOT NULL,
+  `lit_chain` char(1) default NULL,
+  PRIMARY KEY  (`csa_id`),
+  KEY `pdb` (`pdb`,`pdb_chain_id`,`pdb_res_num`,`res_3code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `ChainView`
+--
+
+--DROP TABLE IF EXISTS `ChainView`;
+CREATE TABLE IF NOT EXISTS `ChainView` (
+  `pdb` char(4) default NULL,
+  `pdb_chain_id` char(2) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `FuncRes`
+--
+
+--DROP TABLE IF EXISTS `FuncRes`;
+CREATE TABLE IF NOT EXISTS `FuncRes` (
+  `func_res_id` int(11) NOT NULL auto_increment,
+  `type` varchar(100) NOT NULL,
+  `res_id` int(11) NOT NULL,
+  `ext_id` int(11) NOT NULL,
+  PRIMARY KEY  (`func_res_id`),
+  KEY `type` (`type`),
+  KEY `res_id` (`res_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDB2CATH`
+--
+
+--DROP TABLE IF EXISTS `PDB2CATH`;
+CREATE TABLE IF NOT EXISTS `PDB2CATH` (
+  `pdb` char(4) NOT NULL,
+  `chain` char(2) NOT NULL,
+  `uniprot` char(6) NOT NULL,
+  `cath` char(6) NOT NULL,
+  PRIMARY KEY  (`pdb`,`chain`,`cath`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDB2Enzyme`
+--
+
+--DROP TABLE IF EXISTS `PDB2Enzyme`;
+CREATE TABLE IF NOT EXISTS `PDB2Enzyme` (
+  `pdb` char(4) NOT NULL,
+  `chain` char(2) NOT NULL,
+  `uniprot` char(6) NOT NULL,
+  `ec_num` varchar(10) NOT NULL,
+  KEY `enzyme` (`pdb`,`chain`,`ec_num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDB2GO`
+--
+
+--DROP TABLE IF EXISTS `PDB2GO`;
+CREATE TABLE IF NOT EXISTS `PDB2GO` (
+  `pdb` char(4) NOT NULL,
+  `chain` char(2) NOT NULL,
+  `uniprot` char(6) NOT NULL,
+  `go` varchar(15) NOT NULL,
+  KEY `GO` (`pdb`,`chain`,`go`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDB2InterPro`
+--
+
+--DROP TABLE IF EXISTS `PDB2InterPro`;
+CREATE TABLE IF NOT EXISTS `PDB2InterPro` (
+  `pdb` char(4) NOT NULL,
+  `chain` char(2) NOT NULL,
+  `interpro` char(9) NOT NULL,
+  KEY `interpro` (`pdb`,`chain`,`interpro`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDB2Pfam`
+--
+
+--DROP TABLE IF EXISTS `PDB2Pfam`;
+CREATE TABLE IF NOT EXISTS `PDB2Pfam` (
+  `pdb` char(4) NOT NULL,
+  `chain` char(2) NOT NULL,
+  `uniprot` char(6) NOT NULL,
+  `pfam` char(7) NOT NULL,
+  PRIMARY KEY  (`pdb`,`chain`,`pfam`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDB2PubMed`
+--
+
+--DROP TABLE IF EXISTS `PDB2PubMed`;
+CREATE TABLE IF NOT EXISTS `PDB2PubMed` (
+  `pdb` char(4) NOT NULL,
+  `ordinal` int(2) NOT NULL,
+  `pubmed_id` int(10) NOT NULL,
+  PRIMARY KEY  (`pdb`,`ordinal`,`pubmed_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDB2SCOP`
+--
+
+--DROP TABLE IF EXISTS `PDB2SCOP`;
+CREATE TABLE IF NOT EXISTS `PDB2SCOP` (
+  `pdb` char(4) NOT NULL,
+  `chain` char(2) NOT NULL,
+  `uniprot` char(6) NOT NULL,
+  `sun_id` int(6) NOT NULL,
+  `sid` char(7) NOT NULL,
+  PRIMARY KEY  (`pdb`,`chain`,`sid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDB2Taxonomy`
+--
+
+--DROP TABLE IF EXISTS `PDB2Taxonomy`;
+CREATE TABLE IF NOT EXISTS `PDB2Taxonomy` (
+  `pdb` char(4) NOT NULL,
+  `chain` char(2) NOT NULL,
+  `tax_id` int(8) NOT NULL,
+  `mol_type` enum('PROTEIN','NUCLEIC') NOT NULL,
+  `tax_name` tinytext NOT NULL,
+  KEY `pdb` (`pdb`,`chain`),
+  KEY `reference` (`pdb`,`chain`,`tax_id`,`tax_name`(50))
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDB2UniProt`
+--
+
+--DROP TABLE IF EXISTS `PDB2UniProt`;
+CREATE TABLE IF NOT EXISTS `PDB2UniProt` (
+  `pdb` char(4) NOT NULL,
+  `chain` char(2) NOT NULL,
+  `uniprot` char(6) NOT NULL,
+  `seqres_begin` int(6) NOT NULL,
+  `seqres_end` int(6) NOT NULL,
+  `pdb_begin` varchar(6) NOT NULL,
+  `pdb_end` varchar(6) NOT NULL,
+  `uniprot_begin` int(6) NOT NULL,
+  `uniprot_end` int(6) NOT NULL,
+  KEY `pdb` (`pdb`,`chain`,`seqres_begin`,`seqres_end`,`pdb_begin`,`pdb_end`),
+  KEY `reference` (`uniprot`,`uniprot_begin`,`uniprot_end`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDBChainEndResSerial`
+--
+
+--DROP TABLE IF EXISTS `PDBChainEndResSerial`;
+CREATE TABLE IF NOT EXISTS `PDBChainEndResSerial` (
+  `pdb` char(4) default NULL,
+  `pdb_chain_id` char(2) default NULL,
+  `first_res_serial` int(5) default NULL,
+  `last_res_serial` int(5) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `PDBChainEndResidues`
+--
+
+--DROP TABLE IF EXISTS `PDBChainEndResidues`;
+CREATE TABLE IF NOT EXISTS `PDBChainEndResidues` (
+  `pdb` char(4) default NULL,
+  `pdb_chain_id` char(2) default NULL,
+  `first_res_serial` int(5) default NULL,
+  `last_res_serial` int(5) default NULL,
+  `first_resID` char(5) default NULL,
+  `last_resID` char(5) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `PDBnotInResidueMap`
+--
+
+--DROP TABLE IF EXISTS `PDBnotInResidueMap`;
+CREATE TABLE IF NOT EXISTS `PDBnotInResidueMap` (
+  `res_id` int(10) NOT NULL auto_increment,
+  `entry` char(4) NOT NULL,
+  `seg_name` varchar(15) character set utf8 collate utf8_bin NOT NULL default '',
+  `seg_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `res_num` int(5) NOT NULL,
+  `res_3code` char(3) NOT NULL,
+  `res_1code` char(1) default NULL,
+  `ss_code` char(1) default NULL,
+  `pdb` char(4) default NULL,
+  `pdb_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `pdb_local_res_num` int(5) default NULL,
+  `pdb_res_num` char(5) default NULL,
+  `scop` int(6) default NULL,
+  `scop_res_num` char(5) default NULL,
+  `cath` char(6) default NULL,
+  `cath_res_num` char(5) default NULL,
+  `uniprot` char(6) default NULL,
+  `uniprot_res_num` int(5) default NULL,
+  `uniprot_res_code` char(1) default NULL,
+  PRIMARY KEY  (`res_id`),
+  KEY `position` (`entry`,`seg_name`,`res_num`),
+  KEY `pdb_chain_id` (`pdb_chain_id`,`pdb`),
+  KEY `scop` (`scop`,`scop_res_num`),
+  KEY `uniprot` (`uniprot`,`uniprot_res_num`)
+) ENGINE=MyISAM AUTO_INCREMENT=7331 DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PDBnotInSegment`
+--
+
+--DROP TABLE IF EXISTS `PDBnotInSegment`;
+CREATE TABLE IF NOT EXISTS `PDBnotInSegment` (
+  `entry` char(4) NOT NULL,
+  `seg_name` varchar(15) character set utf8 collate utf8_bin default NULL,
+  `chain` char(2) character set utf8 collate utf8_bin NOT NULL,
+  `start` int(6) NOT NULL,
+  `end` int(6) NOT NULL,
+  KEY `region` (`entry`,`chain`,`start`,`end`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+--DROP TABLE IF EXISTS `RemPDBnotInResidueMap`;
+CREATE TABLE IF NOT EXISTS `RemPDBnotInResidueMap` (
+  `res_id` int(10) NOT NULL auto_increment,
+  `entry` char(4) NOT NULL,
+  `seg_name` varchar(15) character set utf8 collate utf8_bin NOT NULL default '',
+  `seg_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `res_num` int(5) NOT NULL,
+  `res_3code` char(3) NOT NULL,
+  `res_1code` char(1) default NULL,
+  `ss_code` char(1) default NULL,
+  `pdb` char(4) default NULL,
+  `pdb_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `pdb_local_res_num` int(5) default NULL,
+  `pdb_res_num` char(5) default NULL,
+  `scop` int(6) default NULL,
+  `scop_res_num` char(5) default NULL,
+  `cath` char(6) default NULL,
+  `cath_res_num` char(5) default NULL,
+  `uniprot` char(6) default NULL,
+  `uniprot_res_num` int(5) default NULL,
+  `uniprot_res_code` char(1) default NULL,
+  PRIMARY KEY  (`res_id`),
+  KEY `position` (`entry`,`seg_name`,`res_num`),
+  KEY `pdb_chain_id` (`pdb_chain_id`,`pdb`),
+  KEY `scop` (`scop`,`scop_res_num`),
+  KEY `uniprot` (`uniprot`,`uniprot_res_num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `RemPDBnotInSegment`
+--
+
+--DROP TABLE IF EXISTS `RemPDBnotInSegment`;
+CREATE TABLE IF NOT EXISTS `RemPDBnotInSegment` (
+  `entry` char(4) NOT NULL,
+  `seg_name` varchar(15) character set utf8 collate utf8_bin default NULL,
+  `chain` char(2) character set utf8 collate utf8_bin NOT NULL,
+  `start` int(6) NOT NULL,
+  `end` int(6) NOT NULL,
+  KEY `region` (`entry`,`chain`,`start`,`end`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `PeriodicTable`
+--
+
+--DROP TABLE IF EXISTS `PeriodicTable`;
+CREATE TABLE IF NOT EXISTS `PeriodicTable` (
+  `element` varchar(20) NOT NULL,
+  `symbol` char(2) NOT NULL,
+  `period` int(11) default NULL,
+  `group` int(11) default NULL,
+  `block` char(1) default NULL,
+  `atomic_number` int(11) default NULL,
+  `atomic_weight` float default NULL,
+  `covalent_radius` float default NULL,
+  `vdw_radius` float default NULL,
+  PRIMARY KEY  (`element`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `ResidueMap`
+--
+
+--DROP TABLE IF EXISTS `ResidueMap`;
+CREATE TABLE IF NOT EXISTS `ResidueMap` (
+  `res_id` int(10) NOT NULL auto_increment,
+  `entry` char(4) NOT NULL,
+  `seg_name` varchar(15) character set utf8 collate utf8_bin NOT NULL default '',
+  `seg_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `res_num` int(5) NOT NULL,
+  `res_3code` char(3) NOT NULL,
+  `res_1code` char(1) default NULL,
+  `ss_code` char(1) default NULL,
+  `pdb` char(4) default NULL,
+  `pdb_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `pdb_local_res_num` int(5) default NULL,
+  `pdb_res_num` char(5) default NULL,
+  `scop` int(6) default NULL,
+  `scop_res_num` char(5) default NULL,
+  `cath` char(6) default NULL,
+  `cath_res_num` char(5) default NULL,
+  `uniprot` char(6) default NULL,
+  `uniprot_res_num` int(5) default NULL,
+  `uniprot_res_code` char(1) default NULL,
+  PRIMARY KEY  (`res_id`),
+  UNIQUE KEY `pdb_chain_local_resnum` (`pdb`,`pdb_chain_id`,`pdb_local_res_num`),
+  UNIQUE KEY `position` (`entry`,`seg_chain_id`,`res_num`),
+  KEY `pdb` (`pdb`,`pdb_chain_id`,`pdb_res_num`),
+  KEY `scop` (`scop`,`scop_res_num`),
+  KEY `uniprot` (`uniprot`,`uniprot_res_num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `Segment`
+--
+
+--DROP TABLE IF EXISTS `Segment`;
+CREATE TABLE IF NOT EXISTS `Segment` (
+  `entry` char(4) NOT NULL,
+  `seg_name` varchar(15) character set utf8 collate utf8_bin default NULL,
+  `chain` char(2) character set utf8 collate utf8_bin NOT NULL,
+  `start` int(6) NOT NULL,
+  `end` int(6) NOT NULL,
+  PRIMARY KEY  (`entry`,`chain`,`start`,`end`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+--DROP TABLE IF EXISTS `RemMResidueMap`;
+CREATE TABLE IF NOT EXISTS `RemResidueMap` (
+  `res_id` int(10) NOT NULL auto_increment,
+  `entry` char(4) NOT NULL,
+  `seg_name` varchar(15) character set utf8 collate utf8_bin NOT NULL default '',
+  `seg_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `res_num` int(5) NOT NULL,
+  `res_3code` char(3) NOT NULL,
+  `res_1code` char(1) default NULL,
+  `ss_code` char(1) default NULL,
+  `pdb` char(4) default NULL,
+  `pdb_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `pdb_local_res_num` int(5) default NULL,
+  `pdb_res_num` char(5) default NULL,
+  `scop` int(6) default NULL,
+  `scop_res_num` char(5) default NULL,
+  `cath` char(6) default NULL,
+  `cath_res_num` char(5) default NULL,
+  `uniprot` char(6) default NULL,
+  `uniprot_res_num` int(5) default NULL,
+  `uniprot_res_code` char(1) default NULL,
+  PRIMARY KEY  (`res_id`),
+  UNIQUE KEY `pdb_chain_local_resnum` (`pdb`,`pdb_chain_id`,`pdb_local_res_num`),
+  UNIQUE KEY `position` (`entry`,`seg_chain_id`,`res_num`),
+  KEY `pdb` (`pdb`,`pdb_chain_id`,`pdb_res_num`),
+  KEY `scop` (`scop`,`scop_res_num`),
+  KEY `uniprot` (`uniprot`,`uniprot_res_num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `ResMap`;
+CREATE TABLE IF NOT EXISTS `ResMap` (
+  `res_id` int(10) NOT NULL auto_increment,
+
+  `pdb` char(4) default NULL,
+  `pdb_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `res_num` int(5) NOT NULL,
+  `res_3code` char(3) NOT NULL,
+  `res_1code` char(1) default NULL,
+
+  `pdb_local_res_num` int(5) default NULL,
+  `pdb_res_num` char(5) default NULL,
+
+  `uniprot` char(6) default NULL,
+  `uniprot_res_num` int(5) default NULL,
+  `uniprot_res_code` char(1) default NULL,
+
+  PRIMARY KEY  (`res_id`),
+  UNIQUE KEY `pdb_chain_local_resnum` (`pdb`,`pdb_chain_id`,`pdb_local_res_num`, `pdb_res_num`),
+  KEY `uniprot` (`uniprot`,`uniprot_res_num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `Segment`
+--
+
+--DROP TABLE IF EXISTS `RemSegment`;
+CREATE TABLE IF NOT EXISTS `RemSegment` (
+  `entry` char(4) NOT NULL,
+  `seg_name` varchar(15) character set utf8 collate utf8_bin default NULL,
+  `chain` char(2) character set utf8 collate utf8_bin NOT NULL,
+  `start` int(6) NOT NULL,
+  `end` int(6) NOT NULL,
+  PRIMARY KEY  (`entry`,`chain`,`start`,`end`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+--
+-- Table structure for table `tmp_ctermini_info`
+--
+
+--DROP TABLE IF EXISTS `tmp_ctermini_info`;
+CREATE TABLE IF NOT EXISTS `tmp_ctermini_info` (
+  `res_id` int(10) NOT NULL default '0',
+  `entry` char(4) character set utf8 NOT NULL,
+  `seg_name` varchar(15) character set utf8 collate utf8_bin NOT NULL default '',
+  `seg_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `res_num` int(5) NOT NULL,
+  `res_3code` char(3) character set utf8 NOT NULL,
+  `res_1code` char(1) character set utf8 default NULL,
+  `ss_code` char(1) character set utf8 default NULL,
+  `pdb` char(4) character set utf8 default NULL,
+  `pdb_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `pdb_local_res_num` int(5) default NULL,
+  `pdb_res_num` char(5) character set utf8 default NULL,
+  `scop` int(6) default NULL,
+  `scop_res_num` char(5) character set utf8 default NULL,
+  `cath` char(6) character set utf8 default NULL,
+  `cath_res_num` char(5) character set utf8 default NULL,
+  `uniprot` char(6) character set utf8 default NULL,
+  `uniprot_res_num` int(5) default NULL,
+  `uniprot_res_code` char(1) character set utf8 default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `tmp_ntermini_info`
+--
+
+--DROP TABLE IF EXISTS `tmp_ntermini_info`;
+CREATE TABLE IF NOT EXISTS `tmp_ntermini_info` (
+  `res_id` int(10) NOT NULL default '0',
+  `entry` char(4) character set utf8 NOT NULL,
+  `seg_name` varchar(15) character set utf8 collate utf8_bin NOT NULL default '',
+  `res_num` int(5) NOT NULL,
+  `res_3code` char(3) character set utf8 NOT NULL,
+  `res_1code` char(1) character set utf8 default NULL,
+  `ss_code` char(1) character set utf8 default NULL,
+  `ref_chain_id` char(2) character set utf8 collate utf8_bin default NULL,
+  `pdb` char(4) character set utf8 default NULL,
+  `local_res_id` int(5) default NULL,
+  `pdb_res_num` char(5) character set utf8 default NULL,
+  `scop` int(6) default NULL,
+  `scop_res_num` char(5) character set utf8 default NULL,
+  `cath` char(6) character set utf8 default NULL,
+  `cath_res_num` char(5) character set utf8 default NULL,
+  `uniprot` char(6) character set utf8 default NULL,
+  `uniprot_res_num` int(5) default NULL,
+  `uniprot_res_code` char(1) character set utf8 default NULL,
+  UNIQUE KEY `res_id` (`res_id`),
+  KEY `res_1code` (`res_1code`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+

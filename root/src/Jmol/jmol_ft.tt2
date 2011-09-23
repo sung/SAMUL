@@ -1,0 +1,23 @@
+[% # FEATURE-%]
+<div>
+	<b><a name="func">VI. Functional Residues</a></b><br>
+	<font color="#9999FF" face="Arial, Helvetica, sans-serif" size="2">
+		Functionnl residues from UNIPROT or CSA<br>
+	</font>
+
+</div>
+
+[% # Feature-%]
+<div id="bullet">
+		<script language="javascript" type="text/javascript"> 
+		[%-FOREACH ft IN fts-%]
+			[%-region=ft.get_column('region')-%]
+			[%-checked=BLOCK%]define [%ft.type%] [%region%]; select [%ft.type%]; spacefill; color cpk; select [%ft.type%] and *.ca; set labelOffset 10 10; set fontSize 13; color label white; label [% ft.type%];[% END%]
+			[%-unchecked=BLOCK%]select [%ft.type%]; label off; spacefill off; wireframe;[%END%]
+			jmolCheckbox("[%checked%]", "[%unchecked%]", "[%ft.type%]", 0, "[%id%]");
+			jmolBr();
+		[%-END%]
+		</script>
+</div>
+
+<hr>

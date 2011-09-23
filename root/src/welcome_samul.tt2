@@ -1,0 +1,9 @@
+		<h2 class="main_title">Welcome to SAMUL <a href="[%c.uri_for('/messenger/news')%]" title="SAMUL news"><img src="[%c.uri_for('/static/images/rss/feed-icon-14x14.png')%]" alt="RSS logo"/></a></h2>
+		<p class="desc">
+			SAMUL is a web-based database system which enables users to browse structural/functional annotations of amino acid residues of proteins as macromolecules.
+			The local structural environment (by the scheme of <a class="hidden" href='#' onclick='Boxy.load("[%c.uri_for('/static/images/64_env_new.gif')%]", {title:"64 structural envrionments", modal:false});'>64 environments</a><a title="A schematic diagram of 64 structural envrionments" class='boxy' href="[%c.uri_for('/static/images/64_env_new.gif')%]", title="64 structural envrionments">64 environments</a>) of amino acid residues could be determined by <a class="external" title="link to JOY" href="[%link.joy%]">JOY</a> and presented with a molecular viewer such as Jmol.
+			For functional annotations, UniProt feature annotations</a> are utilized and the information is transferred onto their corresponding positions in terms of three-dimensional structures if available. 
+		</p>
+		<p class="desc">
+			SAMUL also accommodates amino acid variations and mutations information so that users could browse and interprete them by looking their structural and functional environments at the same time.
+		</p>

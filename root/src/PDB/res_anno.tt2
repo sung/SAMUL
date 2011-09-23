@@ -1,0 +1,24 @@
+	<table class='general_list_table'>
+		<tr>
+			<th class='bottom'>Position</th>
+			<th class='bottom'>Residue</th>
+			<th class='bottom'>Annotation</th>
+			<th class='bottom'>Description</th>
+		</tr>
+	[%-FOREACH f IN funcres%]
+		[%-IF f.get_column('type')%]
+			[%-res_num=f.get_column('res_num')%]
+			[%-type=f.get_column('type')%]
+			<tr>
+				<td class='narrow'><a title="Click to see [%res_num%]:[%chain%] of [%id%] in Jmol" href="[%c.uri_for('/pdb')%]/[%id%]/jmol?hl=[%res_num%]:[%chain%]&label=[%type%]">[%res_num%]</a></td>
+				<td class='narrow'>[%f.res_3code%]</td>
+				<td class='narrow'><a class="[%type%]" href="[%c.uri_for('/annotation')%]/[%type%]">[%type%]</a></td>
+				[%-IF type == 'PICCOLO'%]
+				<td class='narrow'>Interacting with Chain [%f.get_column('des')%]</td>
+				[%-ELSE%]
+				<td class='narrow'>[%f.get_column('des')%]</td>
+				[%-END%]
+			</tr>
+		[%-END%]
+	[%-END%]
+	</table>

@@ -1,0 +1,9 @@
+	<div id="pdb_comp_widget"> 
+		<script type="text/javascript">
+			var wb_width = '200px';
+			var wb_height= '250px';
+			var wb_headerColor = '#6493c2';  
+			var wb_bodyColor = '#eaf2f8';
+		</script>
+		<script type="text/javascript" src="http://www.rcsb.org/pdb/widgets/workbench.js"></script>
+	</div>

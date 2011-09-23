@@ -1,0 +1,44 @@
+		[%-# google map API %]
+		<script type="text/javascript">
+
+			function initialize() {
+				// street view
+				var myPano = new GStreetviewPanorama(document.getElementById("[%dom1%]"));
+				myAddress = new GLatLng([%lat%],[%lon%]);
+				myPOV = {yaw:190,pitch:-10};
+				myPano.setLocationAndPOV(myAddress, myPOV);
+				GEvent.addListener(myPano, "error", handleNoFlash);
+
+				// plain map 
+				if (GBrowserIsCompatible()) {
+					var map = new GMap2(document.getElementById("[%dom2%]"));
+					map.setCenter(new GLatLng([%lat%], [%lon%]), 15);
+					[%-IF zoom %]
+					map.addControl(new GSmallMapControl());
+					[%END%]
+
+					[%-IF type_control%]
+    				map.addControl(new GMapTypeControl());
+					[%END-%]
+
+					[%-IF address%]
+					var addressString="[%address_html%]";
+					var point=new GLatLng([%lat%],[%lon%]);
+					var marker=new GMarker(point);
+					GEvent.addListener(marker, "click", function() {
+						marker.openInfoWindowHtml(addressString);
+					});
+
+					map.addOverlay(marker);
+					map.openInfoWindowHtml(point, addressString);
+					[%END-%]
+				}
+			}
+
+			function handleNoFlash(errorCode) {
+			  if (errorCode == 603) {
+				alert("Error: Flash doesn't appear to be supported by your browser");
+				return;
+			  }
+			}  
+		</script>

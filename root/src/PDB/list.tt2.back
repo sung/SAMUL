@@ -1,0 +1,26 @@
+[%- # Use the TT Dumper plugin to Data::Dumper variables to the browser   -%]
+[%- # Not a good idea for production use, though. :-)  'Indent=1' is      -%]
+[%- # optional, but prevents "massive indenting" of deeply nested objects -%]
+[%- # Set the page title.  META can 'go back' and set values in templates -%]
+[%- # that have been processed 'before' this template (here it's for      -%]
+[%- # root/lib/site/html and root/lib/site/header).  Note that META on    -%]
+[%- # simple strings (e.g., no variable interpolation).   				 -%] 
+[%-meta.title   = 'PDB ' _ type _ ' ' _ list_this%]
+
+[%-PROCESS pager.tt2 %]
+<div id='pdb_list'>
+[%-FOREACH mp IN metapdbs%]
+	[ID: <a href='[%c.uri_for('/pdb')%]/[%mp.pdb%]'>[%mp.pdb%]</a>]<br>
+	[Class: <a href='[%c.uri_for('/pdb/class')%]/[%mp.header%]'>[%mp.header%]</a>]<br>
+	[Release: [%mp.release%]]<br>
+	[Title: [%mp.title%]]<br>
+	[Source: [%mp.source%]]<br>
+	[Author: [%mp.author%]]<br>
+	[Resolution: [%mp.resolution%]]<br>
+	[Method: [%mp.method%]]<br>
+	<img src='http://www.rcsb.org/pdb/images/[%mp.pdb%]_bio_r_250.jpg' border=0><br>
+	[%-jmol_ref=BLOCK%]<a href='[%c.uri_for('/pdb/')%][%mp.pdb%]/jmol'>Jmol</a>[%END%]
+	Molecular viewer for [%pdb.pdb%]: [%jmol_ref%]<br><br>	
+[%-END%]
+</div>
+[%-PROCESS pager.tt2 %]

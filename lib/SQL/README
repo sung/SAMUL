@@ -1,0 +1,24 @@
+1. CSA.sql
+	: CSA table in GLORIA 
+	mysqldump -u sung -p -h spunky.bioc.cam.ac.uk --no-data GLORIA CSA
+2. FuncRes.sql
+	: FuncRes table in GLORIA
+3. Copying data from a machine to another
+	:  mysqldump --opt -u sung -ppassword -h malory UNIPROT [table] | mysql -h 192.168.1.1 -u sung -ppassword -C -e 'create database if not exists UNIPROT' UNIPROT
+
+
+Migrating data from Spunky to Rhombic
+
+1. GLORIA
+        [malory]$mysqldump --opt -u sung -psnrnsk -h 192.168.1.1 GLORIA ResMap FuncRes ResAnno PDBDat | mysql -h rhombic -u sung -psnrnsk -C GLORIA
+
+2. UNIPROT
+        [malory]$mysqldump --opt -u sung -psnrnsk -h 192.168.1.1 UNIPROT | mysql -h rhombic -u sung -psnrnsk -C UNIPROT
+        or
+        [malory UniProt]$perl dump_uniprot_infiles_to_db.pl all
+
+3. FACEVIEW
+        [malory]$mysqldump --opt -u sung -psnrnsk -h 192.168.1.1 FACEVIEW SNP2ENSG SNP2UNIPROT SCOPMap config | mysql -h rhombic -u sung -psnrnsk -C FACEVIEW 
+4. FACEVIEW (Gbrowse)
+        [malory]$perl load_gff_into_db.pl --mode create
+

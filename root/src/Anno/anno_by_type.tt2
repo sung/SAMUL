@@ -1,0 +1,47 @@
+[%-meta.title   = 'Annotation: ' _ type-%]
+
+	[%-IF source == 'UNIPROT'%]
+	[% PROCESS uniprot_news.tt2 -%]
+	[%-ELSIF source == 'ENSEMBL'%]
+	[% PROCESS ensembl_news.tt2 -%]
+	[%-ELSIF source == 'PDB'%]
+	[% PROCESS pdb_news.tt2 -%]
+	[%-ELSIF source == 'COSMIC'%]
+	[% PROCESS cosmic_news.tt2 -%]
+	[%-ELSIF source == 'CSA'%]
+	[% PROCESS ebi_news.tt2 -%]
+	[%-ELSIF source == 'TLB'%]
+		[%-IF type == 'CREDO'%]
+		[% PROCESS credo_news.tt2 -%]
+		[%-ELSE%]
+		[% PROCESS samul_news.tt2 -%]
+		[%-END%]
+	[%-END%]
+
+	[% PROCESS pager.tt2 -%]
+
+	[%-# plain text tooltip contents%]
+	<div class="plain_tooltip_small">&nbsp</div>
+
+	[%-# annotation contents%]
+	<div id='annotation_by_type'>
+		[%PROCESS anno_by_type_table.tt2 -%]
+	</div><!-- end of annotation_by_type -->
+
+	[%-# html tooltip small %]
+	[% PROCESS ext_link_tooltip_js.tt2 list_this=pdb_ids.unique-%] [%# root/lib/js/ext_link_tooltip_js.tt2%]
+
+	[%-# set outter link url%]
+	[%-IF type =='BIPA'%]
+		[%SET ext_link=link.bipa _ '/structures/'%]
+	[%-ELSIF type == 'PICCOLO'%]
+		[%SET ext_link=link.piccolo _ '?PDB='%]
+	[%-END%]
+
+	[%-FOREACH pdb_id IN pdb_ids.unique%] [%# 'pdb_ids' defined in anno_by_type_table.tt2 %]
+		[%-SET samul_link=c.uri_for('/pdb') _ '/' _ pdb_id%]
+		[%-SET ext_link = ext_link  _ pdb_id%]
+		[%PROCESS html_tooltip_link.tt2 -%]
+	[%-END%]
+
+	[%PROCESS pager.tt2 -%]

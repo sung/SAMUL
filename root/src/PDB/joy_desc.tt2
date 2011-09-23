@@ -1,0 +1,48 @@
+	<DIV class="joy_html_tooltip html_tooltip">
+		<TABLE>
+			<TR>
+				<TD class="desc">alpha helix</TD>
+				<TD><font color="red">red</font></TD>
+				<TD><font color="red">x</font></TD></TR>
+			<TR>
+				<TD class="desc">beta strand</TD>
+				<TD><font color="blue">blue</font></TD>
+				<TD><font color="blue">x</font></TD>
+			</TR>
+			<TR>
+				<TD class="desc">3<sub>10</sub> helix</TD>
+				<TD><font color="maroon">maroon</font></TD>
+				<TD><font color="maroon">x</font></TD>
+			</TR>
+			<TR>
+				<TD class="desc">solvent accessible</TD>
+				<TD>lower case</TD>
+				<TD>x</TD>
+			</TR>
+			<TR>
+				<TD class="desc">solvent inaccessible</TD>
+				<TD>UPPER CASE</TD>
+				<TD>X</TD>
+			</TR>
+			<TR>
+				<TD class="desc">hydrogen bond to main-chain amide</TD>
+				<TD><b>bold</b></TD>
+				<TD><b>x</b></TD>
+			</TR>
+			<TR>
+				<TD class="desc">hydrogen bond to main-chain carbonyl</TD>
+				<TD><u>underline</u></TD>
+				<TD><u>x</u></TD>
+			</TR>
+			<TR>
+				<TD class="desc">disulfide bond</TD>
+				<TD>cedilla</TD>
+				<TD>ç</TD>
+			</TR>
+			<TR>
+				<TD class="desc">positive phi torsion angle</TD>
+				<TD><i>italic</i></TD>
+				<TD><i>x</i></TD>
+			</TR>
+		</TABLE>
+	</DIV>

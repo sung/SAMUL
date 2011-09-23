@@ -1,0 +1,42 @@
+	<ul class="menu">
+		<li><a href="[%c.uri_for('/')%]" class="parent"><span>Home</span></a></li>
+		<li><a href="#"><span>Browse</span></a>
+			<ul>
+				<li><a href="[%c.uri_for('/pdb')%]"><span>PDB</span></a></li>
+				<li><a href="[%c.uri_for('/uniprot')%]"><span>UniProt</span></a></li>
+				<li><a href="[%c.uri_for('/snp')%]"><span>SNPs</span></a>
+					<ul>
+						<li><a href="#">by chromosome</a>
+							<ul>
+								<li><a href="[%c.uri_for('/snp/chr')%]/all">All</a></li>
+								[%-FOREACH chr IN [1 .. 22]%]
+								<li><a href="[%c.uri_for('/snp/chr')%]/[%chr%]">[%chr%]</a></li>
+								[%-END%]
+								<li><a href="[%c.uri_for('/snp/chr')%]/X">X</a></li>
+								<li><a href="[%c.uri_for('/snp/chr')%]/Y">Y</a></li>
+								<li><a href="[%c.uri_for('/snp/chr')%]/MT">MT</a></li>
+							</ul>
+						</li><!-- browse snp by chromosome -->
+						<li><a href="#">by level</a>
+							<ul>
+								<li><a href="[%c.uri_for('/snp')%]">SNP2ENSG</a></li>
+								<li><a href="[%c.uri_for('/snp')%]">SNP2ENST</a></li>
+								<li><a href="[%c.uri_for('/snp')%]">SNP2ENSP</a></li>
+							</ul>
+						</li><!-- browse snp by level-->
+					</ul><!-- snp -->
+				</li><!-- snp -->
+			</ul><!-- browse -->
+		</li><!-- browse -->
+		<li><a href="#"><span>Search</span></a>
+			<div><ul>
+				<li><a href="#" class="search_pdb"><span>PDB</span></a></li>
+				<li><a href="#" class="search_uniprot"><span>UniProt</span></a></li>
+				<li><a href="#" class="search_snp"><span>SNP</span></a></li>
+				<li><a href="#" class="search_keyword"><span>Keywords</span></a></li>
+			</ul></div>
+		</li>
+		<li><a href="[%c.uri_for('/')%]"><span>News</span></a></li>
+		<li><a href="[%c.uri_for('/')%]"><span>Help</span></a></li>
+		<li class="last"><a href="#" class="contact_us"><span>Contacts</span></a></li>
+	</ul>

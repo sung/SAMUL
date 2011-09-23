@@ -1,0 +1,7 @@
+	<table>
+		<tr>
+			<td>
+				<a title="Click to see in the Gbrowse mode" href="[%gbrowse.link%][%id%]"><img src="[%gbrowse.img%][%id%]" border=0></a>
+			</td>
+		</tr>
+	</table>

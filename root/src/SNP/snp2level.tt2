@@ -1,0 +1,11 @@
+[%-meta.title   = 'SNP2: ' _ level%]
+
+	[%PROCESS ensembl_news.tt2-%]
+
+	[%uri=BLOCK%][%c.uri_for('/snp/to')%]/[%level%]/type[%END-%]
+	<!-- tooltip contents -->
+	<div class="plain_tooltip_small">&nbsp;</div>
+
+	<div class='snp2level'>
+		[%PROCESS snp_by_type_table.tt2 ref="$uri" title="Click to see all SNPs of this category at SNP2$level"-%]
+	</div>

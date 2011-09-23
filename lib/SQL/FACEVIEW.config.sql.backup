@@ -1,0 +1,48 @@
+-- MySQL dump 10.10
+--
+-- Host: spunky.bioc.cam.ac.uk    Database: FACEVIEW
+-- ------------------------------------------------------
+-- Server version	5.0.45
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `config`
+--
+
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE `config` (
+  `id` varchar(50) NOT NULL,
+  `val` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `config`
+--
+
+
+/*!40000 ALTER TABLE `config` DISABLE KEYS */;
+LOCK TABLES `config` WRITE;
+INSERT INTO `config` VALUES ('omim_url','ftp://ftp.ncbi.nih.gov/repository/OMIM/'),('hgnc_dir','/BiO/Store/Database/HGNC'),('ucsc_proteindb_dir','/BiO/Store/Database/UCSC/ProteinDB'),('db_en_web','ensembl_web_user_db'),('ensp_fasta_log','/BiO/Develop/Workspace/Gloria/Ensembl/wget_ensembl_fasta.log'),('db','GLORIA'),('sp_scop','swissprot_scop.gff'),('ensp_fasta_url','ftp://ftp.ensembl.org/pub/current_fasta/homo_sapiens/pep/Homo_sapiens.NCBI36.49.pep.all.fa.gz'),('ensp_scop','ensp_scop.gff'),('pdb_rem_dir','/merlin/Mirror/PDB_REM'),('local_js','http://malory.bioc.cam.ac.uk/gloria.js'),('ensp_variant','ensp_sp_variant.gff'),('db_core','ENSEMBLCORE'),('cosmic_url','ftp://ftp.sanger.ac.uk/pub/CGP/cosmic'),('gbrowse_dir','/BiO/Store/Database/Gbrowse'),('ucsc_proteindb_url','ftp://hgdownload.cse.ucsc.edu/goldenPath/proteinDB/proteins060115/database'),('psimap_dir','/BiO/Store/Database/PSIMAP/Current'),('sifts_log','/BiO/Develop/Workspace/Gloria/SIFTS/wget_sifts.log'),('db_credo','CREDO'),('en_variation_log','/BiO/Develop/Workspace/Gloria/Ensembl/wget_ensembl_variation.log'),('tlb_link','http://mordred.bioc.cam.ac.uk'),('csa_dir','/BiO/Store/Database/CSA'),('hgvbase_log','/BiO/Develop/Workspace/Gloria/HGVbase/wget_hgvbase.log'),('omim_link','http://www.ncbi.nlm.nih.gov/entrez/dispomim.cgi?id='),('uniprot_log','/BiO/Develop/Workspace/Gloria/UniProt/wget_uniprot.log'),('dbpasswd','snrnsk'),('uniprot_dir','/merlin/Mirror/UniProt'),('pdb_res','/merlin/Mirror/PDB/derived_data/index/resolu.idx'),('scop_ver','1.73'),('smtp_port','25'),('db_rqm','REQUIEM'),('ensembl_ver','49'),('db_faceview','FACEVIEW'),('css','http://mordred.bioc.cam.ac.uk/style/bioinfo.css'),('en_core_url','ftp://ftp.ensembl.org/pub/current_mysql/homo_sapiens_core_49_36k'),('omim_log','/BiO/Develop/Workspace/Gloria/OMIM/wget_omim.log'),('ensembl_db_ver','49_36k'),('ensp_pfam','ensp_pfam.gff'),('en_core_dir','/merlin/Mirror/Ensembl/Core'),('hgvbase_dir','/BiO/Store/Database/HGVbase'),('dbuser','sung'),('scop_dir','/BiO/Store/Database/SCOP'),('smtp_user','blast'),('ucsc_proteindb_log','/BiO/Develop/Workspace/Gloria/UCSC/wget_ucsc_proteindb.log'),('en_web_db_dir','/BiO/Store/Database/Ensembl/WebDb'),('sp_snp','swissprot_snp.gff'),('sp_pfam','swissprot_pfam.gff'),('jmol_js','../Jmol/Jmol.js'),('db_scop','SCOP'),('smtp_host','localhost'),('ncbi_ver','36'),('http_local','http://faceview.bio.cc'),('omim_dir','/BiO/Store/Database/OMIM'),('all_pdb_rem_dir','/merlin/Store/PDB_REM/Uncompressed'),('sifts_dir','/merlin/Mirror/MSD/SIFTS'),('smtp_to','gloria@cryst.bioc.cam.ac.uk'),('db_toccata','TOCCATA'),('db_psimap','PSIMAP'),('gloria_root','/BiO/Develop/Workspace/Gloria'),('smtp_sender','ssgong@bio.cc'),('db_uniprot','UNIPROT'),('db_vari','ENSEMBLVARIATION'),('csa_ver','2.2.8'),('en_variation_url','ftp://ftp.ensembl.org/pub/current_mysql/homo_sapiens_variation_49_36k'),('en_web_db_log','/BiO/Develop/Workspace/Gloria/Ensembl/wget_ensembl_web_db.log'),('csa_url','http://www.ebi.ac.uk/thornton-srv/databases/CSA'),('db_pdb','MMCIF'),('uniprot_url','ftp://ftp.ebi.ac.uk/pub/databases/uniprot/current_release'),('pdb_link','http://www.rcsb.org/pdb/explore/explore.do?structureId='),('scop_pdb_url','http://astral.berkeley.edu/pdbstyle-1.73-3.tgz'),('ensp_contig','ensp_contig.gff'),('sp_variant','swissprot_variant.gff'),('db_mut','MUTATIONS'),('pdb_dir','/merlin/Mirror/PDB'),('blast_db_dir','/merlin/Store/Blastore/BlastDB'),('ensp_snp','ensp_snp.gff'),('ucsc_uniprot_dir','/BiO/Store/Database/UCSC/UniProt'),('smtp_pass','qmffktmxm'),('blast_top_dir','/merlin/Store/Blastore'),('sifts_url','ftp://ftp.ebi.ac.uk/pub/databases/msd/sifts'),('ucsc_uniprot_url','ftp://hgdownload.cse.ucsc.edu/goldenPath/uniProt/database'),('pdb_entry','/merlin/Mirror/PDB/derived_data/index/entries.idx'),('en_core_log','/BiO/Develop/Workspace/Gloria/Ensembl/wget_ensembl_core.log'),('cd_hit','/BiO/Run/cd-hit-plus'),('scop_link','http://scop.mrc-lmb.cam.ac.uk/scop/search.cgi?key='),('ssh_user','blast'),('cosmic_log','/BiO/Develop/Workspace/Gloria/COSMIC/wget_cosmic.log'),('astral_gd_url','http://astral.berkeley.edu/scopseq-1.73/astral-scopdom-seqres-gd-all-1.73.fa'),('en_variation_dir','/merlin/Mirror/Ensembl/Variation'),('scop_des_url','http://scop.mrc-lmb.cam.ac.uk/scop/parse/dir.des.scop.txt_1.73'),('ucsc_uniprot_log','/BiO/Develop/Workspace/Gloria/UCSC/wget_ucsc_uniprot.log'),('sp_contig','swissprot_contig.gff'),('db_cosmic','COSMIC'),('jmol_dir','../Jmol'),('en_web_db_url','ftp://ftp.ensembl.org/pub/current_multi_species/data/mysql/ensembl_web_user_db_47/ensembl_web_user_db_47.sql.gz'),('all_pdb_dir','/merlin/Store/PDB/Uncompressed'),('ssh_passwd','qmffktmxm'),('host','192.168.1.1'),('hgvbase_url','ftp://ftp.ebi.ac.uk/pub/databases/variantdbs/hgbase'),('smtp_cc','catherine@cryst.bioc.cam.ac.uk, tammy@cryst.bioc.cam.ac.uk'),('cosmic_dir','/BiO/Store/Database/COSMIC'),('link_pdb','../link_pdb'),('link_scop','../link_scop'),('pqs_dir','/merlin/Mirror/MSD/PQS'),('en_go_dir','/merlin/Mirror/Ensembl/GO'),('en_go_url','ftp://ftp.ensembl.org/pub/current_mysql/ensembl_go_49'),('en_go_log','/BiO/Develop/Workspace/Gloria/Ensembl/wget_ensembl_go.log'),('db_go','ENSEMBLGO'),('sp_ft','swissprot_feature.gff');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `config` ENABLE KEYS */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+

@@ -1,0 +1,25 @@
+[% meta.title = 'Search SAMUL' -%]
+	[%-IF comment%]
+		[%comment%]
+	[%END-%]
+	<div id="search_form">
+            <form id="get_id" method="get" action="[% c.uri_for('/search/by_ids') -%]">
+			<fieldset>
+				<legend>Search form</legend>
+              	<select size="1" id="id_type" name="id_type">
+              		<option selected value="pdb">PDB ID</option>
+              		<option value="uniprot">UniProt accession</option>
+              		<option value="snp">SNP ID</option>
+              		<option value="gene">Gene Name</option>
+              		<option value="smiles">SMILES string</option>
+              		<option value="keyword">Keywords</option>
+              	</select>
+
+            	<input type="text" id="id" name="id" size="50">
+            	<input type="submit" value="Submit"><input type="reset" value="Reset">
+			</fieldset>
+            </form>
+	</div>
+
+	<span>Using Google Custome Search Engine - it's an experimental stage, but give it a go!</span>
+	[%INCLUDE google_cse.tt2%]

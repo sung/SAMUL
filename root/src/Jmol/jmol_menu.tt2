@@ -1,0 +1,32 @@
+[% # table of contents -%]
+<p class="small">
+		<b><a href="[%c.uri_for('/search')%]" target="_BLINK">Back to Search</a> </b>
+</p>
+
+<div>
+		<b>Molecular Structure of 
+		<a href="http://www.rcsb.org/pdb/explore/explore.do?structureId=[%id%]" target="_BLINK">[%id%]</a></b>
+</div>
+
+<!-- delete?
+		<b>Sungsam Gong<br>
+		The <font color='green'>B</font><font color='red'><i>i</i></font><font color='blue'>O</font> Foundation<br>
+-->
+<hr>
+
+<div>
+	<ul>
+		<li>[%id%] corresponds to 
+			[%FOREACH uniprot IN uniprots-%]
+	 			<!-- ><a href="[%gbrowse.link%][%uniprot.uniprot%]" target='_BLINK'>[%uniprot.uniprot%]</a>< -->
+	 			<a href="[%c.uri_for('/uniprot/')%][%uniprot.uniprot%]" target='_BLINK'>[%uniprot.uniprot%]</a>
+			[%END-%]
+		<li><a href="#reload">Reload</a>
+		<li><a href="#scop">Scop domain</a>
+		<li><a href="#surface">Surface/Interior</a>
+		<li><a href="#interface">Interface</a>
+		<li><a href="#snp">Variation</a>
+		<li><a href="#func">Functional residues</a>
+	</ul>
+</div>
+<hr>

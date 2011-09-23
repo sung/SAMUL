@@ -1,0 +1,106 @@
+
+#header {
+	background-color: #F3D550;	/*yellow*/
+	padding-top: 5px; padding-bottom: 5px;
+}
+
+#header img{
+	float: right;
+	margin: -5px 0 2px 0;
+	border: 0;
+}
+#header p{
+	text-align: right ;
+	margin: 2px;
+}
+
+#header p.dept{
+	/*font-size: 15px ;*/
+	color: white ; 
+}
+
+#header p.title{
+	color: #788993 ; 
+	/*font-size: 20px;*/
+	font-size: 120%;
+}
+
+#footer {
+	clear: both; /* to prevent crash against 'float'*/
+	/*font-size: 11px ;*/
+	font-size: 70%;
+	color: #788993 ; 
+	background-color: #F3D550;	/*yellow*/
+    border-top: 1px solid #f08900; /*orange*/
+	padding-top: 5px; padding-bottom: 5px;
+}
+
+#footer img {
+	float: right;
+	margin: -4px 5px 0 0;
+}
+#footer p{
+	text-align: center;
+	margin: 5px;
+}
+BODY 		{background-color:#ffffff; font-family:Arial, Helvetica, sans-serif;font-size:14px }
+
+A:link 		{color: #003399}
+
+A:visited 	{color: #900000}
+
+A:active 	{color: #ff0000}
+
+H1.title 	{color: #788993; font-size:28px ;font-family:Arial, Helvetica, sans-serif;}
+
+H1	 	{color: #788993; font-size:28px ;font-family:Arial, Helvetica, sans-serif; 
+		font-weight:normal}
+
+H2 		{color: #788993 ; font-size:24px;}
+
+H2.title 	{color: #788993 ; font-weight:normal ;font-size:24px; 
+		line-height:70%}
+
+H4 		{font-weight: bold ; color: #788993; font-size:16px;}
+
+P 		{background: transparent; text-align: left }
+
+P.list 		{margin-left: 2em; text-align: left}
+
+TD 		{background-color: white ; font-family:Arial, Helvetica, sans-serif;font-size:16px }
+}
+
+TD.white 	{background-color: white ; font-family:Arial, Helvetica, sans-serif; 
+		vertical-align:top; text-align:left}
+
+
+TD.text 	{background-color: white ; font-family:Arial, Helvetica, sans-serif}
+
+TD.subtitle	{background-color: #FFFFFF ; font-family:Arial, Helvetica, sans-serif; 
+		text-align:center ; }
+
+TD.title 	{background-color: #F6C600 ; color: white ; 
+		vertical-align:top; font-family:Arial, Helvetica, sans-serif ;  
+		text-align:right ;}
+
+TD.midtitle 	{background-color: #F6C600 ; color: white ; 
+		vertical-align:middle; font-family:Arial, Helvetica, sans-serif ;  
+		text-align:left ; padding:10}
+
+TD.lightgray 	{background-color: #99aebd }
+
+
+TD.sidebar 	{ background-color: #F6C600 ; font-size:15px;
+		vertical-align:top; font-family:Arial, Helvetica, sans-serif ;
+		text-align:middle; }
+
+TD.navi 	{background-color: #F6C600; height:24px ;
+		vertical-align:middle ;  border:0px ;text-align:left;
+		color: #003399; }
+
+LI 		{color: #F6C600}
+
+LI.abel         {font-weight:normal;color: #000000}
+
+
+

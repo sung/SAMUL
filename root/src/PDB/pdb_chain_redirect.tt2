@@ -1,0 +1,15 @@
+[% # Use the TT Dumper plugin to Data::Dumper variables to the browser   -%]
+[% # Not a good idea for production use, though. :-)  'Indent=1' is      -%]
+[% # optional, but prevents "massive indenting" of deeply nested objects -%]
+[% meta.title = 'PDB: ' _ id ' Chain: ' _ chain -%]
+
+[% # Set the page title.  META can 'go back' and set values in templates -%]
+[% # that have been processed 'before' this template (here it's for      -%]
+[% # root/lib/site/html and root/lib/site/header).  Note that META on    -%]
+[% # simple strings (e.g., no variable interpolation).   				 -%] 
+
+[%uri=BLOCK%][%c.uri_for('/pdb/')%][%id%]/[%chain%]/resmap[%END-%]
+<meta http-equiv="refresh" content="2;url=[%uri%]">
+<div>
+Redirecting to ResMap in 2 sec...
+</div>

@@ -1,0 +1,6 @@
+
+    [%-#load google feeds control (float right) -%]
+    [%-SET div_tag="samul_news_horizontal"-%] [%-# this tag is used in samul.css%]
+    [%-# root/lib/js/google_feeds.tt2%]
+    [% PROCESS google_feeds.tt2 dom="$div_tag" title="CREDO News" stacked="false" horizontal="true" is_credo="1" numResults="10" -%]
+    <div id="[%div_tag%]">Loading...</div>

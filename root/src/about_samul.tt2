@@ -1,0 +1,21 @@
+			<h2 class="main_title">SAMUL? (aka. FaceView)</h2>
+			<p class="desc">
+				Stands for <strong>S</strong>ystematic <strong>A</strong>nnotations of <strong>M</strong>acro-molec<strong>ul</strong>es. 
+				Yes, that's what I meant for this website.
+			</p>
+			<p class="desc">
+				It is basically integration of two major protein resources - <a class="external" title="Visit PDB home" href="[%link.pdb%]">PDB</a> and <a class="external" title="Visit UniProt home" href="[%link.uniprot%]">UniProt</a> - and <a class="external" title="Visit Ensembl Human" href="[%link.ensembl_human%]">Ensembl human</a> variation database 
+				to interpret genetic variations in terms of structural and functional features of proteins.
+				In addition, SAMUL interpolates our in-house interctome database (<a class="external" title="Visit BIPA home" href="[%link.bipa%]">BIPA</a>, <a class="external" title="Visit CREDO home" href="[%link.credo%]">CREDO</a>, <a class="external" title="Visit PICCOLO home" href="[%link.piccolo%]">PICCOLO</a>) which is also known as <a title="Schematic diagram of Gloria" class="boxy" href="[%c.uri_for('/static/images/gloria.png')%]">Gloria</a> as its project name.
+			</p>
+
+			<p class="desc">
+				However, you might wonder what SAMUL really means.
+				I borrowed its name from 'samul-nori' which is Korean traditional purcussion music.
+			</p>
+			<p class="desc">
+				Samul nori has its roots in nong-ak (literally "farmers' music"), a Korean folk genre comprising music, acrobatics, folk dance, and rituals, which was traditionally performed in rice farming villages in order to ensure and to celebrate good harvests. Specifically, samul nori music derives from utdari pungmul (the gut, or shaman ceremony rhythm of the Gyeonggi-do and Chungcheong provinces of South Korea), as well as the genres of Yeongnam folk music and Honam udo gut, combined with more contemporary improvisations, elaborations, and compositions. Such nong-ak is steeped in traditional animism and shamanism, but also shows influences from Korean Buddhism. While nong-ak often features the use of wind instruments, samul nori only features the aforementioned four percussion instruments.
+				[<a class="external" title="linke to Wikipedia" href="http://en.wikipedia.org/w/index.php?title=Samul_nori">from wikipedia</a>]
+				<a class='hidden' href='#' onclick='Boxy.load("http://en.wikipedia.org/w/index.php?title=Samul_nori&printable=yes", {title:"About samul-nori from Wikipedia", filter:"body"});'>from wikipedia</a>
+				<a class='hidden' href='#' onclick='Boxy.load("[%c.uri_for('/about')%]", {title:"samul_nori from wikipeida"});'>from wikipedia</a>
+			</p>

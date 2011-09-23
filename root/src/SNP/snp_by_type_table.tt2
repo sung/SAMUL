@@ -1,0 +1,15 @@
+		<table class='general_list_table'>
+			<caption>[%num.cnt%] distinct SNPs</caption>
+			<tr>
+				<th title="[%title%]" class='bottom'>SNP types</th>	
+				<th title="number of distinct SNP by its consequence type" class='bottom'>NO. of distinct SNP</th>
+			</tr>
+			[%-FOREACH st IN snptypes%]
+			[%-IF st.des%]
+			<tr>
+				<th class='right'><a href="[%ref%]/[%st.des%]">[%st.des%]</a></th>
+				<td>[%st.cnt%] </td>
+			</tr>
+			[%END-%]
+			[%END-%]
+		</table>

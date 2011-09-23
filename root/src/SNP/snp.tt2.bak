@@ -1,0 +1,75 @@
+[% # Set the page title.  META can 'go back' and set values in templates -%]
+[% # that have been processed 'before' this template (here it's for      -%]
+[% # root/lib/site/html and root/lib/site/header).  Note that META on    -%]
+[% # simple strings (e.g., no variable interpolation).   				 -%] 
+[%meta.title = 'SNP: ' _ id-%]
+
+[%INCLUDE no_js_warning.tt2 -%] [%- #root/libjs/no_js_warning.tt2%]
+[%PROCESS coda_slider.tt2 slider_id="snp_info"-%] [%-# root/lib/js/coda_slider.tt2%]
+
+	<div class="coda-slider-wrapper">
+		<div class="coda-slider preload" id="snp_info">
+			[%-IF snp2ensgs.first-%]
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">ENSG</h2>
+					[%PROCESS snp2ensg.tt2 -%]
+				</div>
+			</div><!-- panel ensg -->
+			[%-END-%]
+			[%-IF snp2ensts.first-%]
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">ENST</h2>
+					[%PROCESS snp2enst.tt2 -%]
+				</div>
+			</div><!-- panel enst -->
+			[%-END-%]
+			[%-IF snp2ensps.first-%]
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">ENSP</h2>
+					[%PROCESS snp2ensp.tt2 -%]
+				</div>
+			</div><!-- panel ensp -->
+			[%-END-%]
+			[%-IF snp2uniprots.first-%]
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">UNIPROT</h2>
+					[%PROCESS snp2uniprot.tt2 -%]
+				</div>
+			</div><!-- panel uniprot -->
+			[%-END-%]
+			[%-IF snp2pdbs.first-%]
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">PDB</h2>
+					[%PROCESS snp2pdb.tt2 -%]
+				</div>
+			</div><!-- panel pdb -->
+			[%-END-%]
+		</div>
+	</div>
+
+<!-- unless
+	[%-UNLESS snp2ensgs.first%]
+		<p class='warning'>No mapping onto Ensembl gene</p>
+	[%-END%]
+
+	[%-UNLESS snp2ensts.first%]
+		<p class='warning'>No mapping onto Ensembl transcript</p>
+	[%-END%]
+
+	[%-UNLESS snp2ensps.first%]
+		<p class='warning'>No mapping onto Ensembl protein</p>
+	[%-END%]
+
+	[%-UNLESS snp2uniprots.first%]
+		<p class='warning'>No mapping onto UNIPROT</p>
+	[%-END%]
+
+	[%-UNLESS snp2pdbs.first%]
+		<p class='warning'>No mapping onto PDB</p>
+	[%-END%]
+-->

@@ -1,0 +1,35 @@
+	<table class='general_list_table'>
+		<tr>
+			<th class='bottom dotted' colspan=4>PDB</th>
+			<th class='left bottom dotted' colspan=3>UniProt</th>
+			<th class='left bottom' rowspan=2>Description</th>
+		</tr>
+		<tr>
+			<th class='bottom' title="Click the PDB identifier below to browse further information">ID<a href="#">?<a></th>
+			<th title="Click the PDB chain below to browse GO (Gene Ontology) and annotation information" class='bottom'>Chain<a hef="#">?</a></th>
+			<th title="Click the residue number below to see its three-dimensional structure in Jmol" class='bottom'>Position<a href="#">?</a></th>
+			<th class='bottom'>Residue</th>
+			<th title="Click the UniProt accession number below to browse in detail" class='left bottom'>Acc<a href="#">?</a></th>
+			<th title="Click the UniProt residue number below to see the position in Gbrowse" class='bottom'>Position<a href="#">?</a></th>
+			<th class='bottom'>Residue</th>
+		</tr>
+	[%-SET pdb_ids=[]%]
+	[%-FOREACH anno IN annos%]
+		<tr>
+			<td class='narrow hidden'><a href="[%c.uri_for('/pdb')%]/[%anno.pdb%]">[%anno.pdb%]</a></td>
+			<td class='narrow'><a class="[%anno.pdb%]" href="[%c.uri_for('/pdb')%]/[%anno.pdb%]">[%anno.pdb%]</a></td>
+			<td class='narrow'><a href="[%c.uri_for('/pdb')%]/[%anno.pdb%]/[%anno.pdb_chain_id%]">[%anno.pdb_chain_id%]</a></td>
+			<td class='narrow'><a href="[%c.uri_for('/pdb/')%][%anno.pdb%]/jmol?hl=[%anno.res_num%]:[%anno.pdb_chain_id%]&label=[%type%]">[%anno.res_num%]</a></td>
+			<td class='narrow'>[%anno.res_3code%]</td>
+			<td class='narrow'><a href="[%c.uri_for('/uniprot')%]/[%anno.uniprot%]">[%anno.uniprot%]</a></td>
+			<td class='narrow'><a href="[%gbrowse.link%][%anno.uniprot%];h_feat=[%type%]@yellow;h_region=[%anno.uniprot%]:[%anno.uniprot_res_num%]..[%anno.uniprot_res_num+1%]@red">[%anno.uniprot_res_num%]</a></td>
+			<td class='narrow'>[%anno.uniprot_res_code%]</td>
+			[%-IF type == 'PICCOLO'%]
+			<td class='narrow'>Interacting with Chain [%anno.get_column('des')%]</td>
+			[%-ELSE%]
+			<td class='narrow'>[%anno.get_column('des')%]</td>
+			[%-END%]
+		</tr>
+		[%-pdb_ids.push(anno.pdb)%]
+	[%END-%]
+	</table>

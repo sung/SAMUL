@@ -1,0 +1,80 @@
+[% # Provide a title to root/lib/site/header-%]
+[% meta.title   = 'ResMap of '_ id -%]
+		[%PROCESS samul_news.tt2%]
+		
+		<!-- tooltip contents -->
+		<div class="plain_tooltip_small">&nbsp;</div>
+
+		<!-- joy tooltip -->
+		<!-- env_html_tooltip -->
+		<script type="text/javascript">
+			$(document).ready(function() { 
+				$(".joy_tooltip").tooltip({
+					tip: '.joy_html_tooltip',
+					effect: 'fade',
+					fadeOutSpeed: 100,
+					}); 
+				$(".env_tooltip").tooltip({
+					tip: '.env_html_tooltip',
+					effect: 'fade',
+					fadeOutSpeed: 100,
+					position: "bottom",
+					offset: [0, -500],
+					}); 
+			});
+		</script>
+		
+		[%-chain_ref=BLOCK%]<a title="Click to see this chain in depth (You will see GO and structural/functional annotations in details)" href='[%c.uri_for('/pdb')%]/[%id%]/[%chain%]#2'>[%chain%]</a>[%END-%]
+		[%-pdb_ref=BLOCK%]<a title="Click to see this PDB" href='[%c.uri_for('/pdb')%]/[%id%]'>[%id%]</a>[%END-%]
+		[%-uniprot_ref=BLOCK%]<a title="Click to see this UniProt" href='[%c.uri_for('/uniprot/')%][%is_id%]'>[%is_id%]</a>[%END-%]
+		[%download=BLOCK%]<a title="Click to download in plain/text file" class='download' href='[%c.uri_for('/pdb/')%][%id%]/[%chain%]/resmap/download/csv'>(plain/text)</a>[%END-%]
+
+		<div id='resmap'>
+			<table class='general_list_table'>
+				<caption>Alignment between chain [%chain_ref%] of [%pdb_ref%] and [%uniprot_ref%] [%download%]</caption>
+				<tr>
+					<th class='bottom' rowspan=2>Index</th>
+					<th class='left bottom dotted' colspan=3>PDB</th>
+					<th class='left bottom dotted' colspan=2>UniProt</th>
+					<th class='left bottom env_tooltip' rowspan=2>ENV[<a href="#">?</a>]</th>
+					<th class='left bottom' rowspan=2>Annotations</th>
+				</tr>
+				<tr>
+					<th class='left bottom' title="Amino acid residue from 'REQRES' record of a PDB file">SeqRes<a href="#">?</a></th>
+					<th class='bottom' title="Amino acid residue number from 'ATOM' record of a PDB file (click the residue number below to see the molecule in Jmol)">ResNum<a href="#">?</a></th>
+					<th class='bottom joy_tooltip'>AtmRes<a href="#">?</a></th>
+					<th class='left bottom' title="UniProt residue number (click the residue number below to see in Gbrowse)">ResNum<a href="#">?</a></th>
+					<th class='bottom'>Residue</th>
+				</tr>
+			[%-FOREACH resmap IN resmaps%]
+				[%- env=resmap.get_column('env')%]
+				[%-IF resmap.uniprot_res_num == '-'%]
+					[%- SET uniprot_res_ref=resmap.uniprot_res_num%]
+				[%-ELSE%]
+					[%- SET end=resmap.uniprot_res_num+1%]
+					[%- uniprot_res_ref=BLOCK%]<a href="[%gbrowse.link%][%is_id%];h_region=[%is_id%]:[%resmap.uniprot_res_num%]..[%end%]@red">[%resmap.uniprot_res_num%]</a>[%END%]
+				[%-END%]
+				<tr>
+					<td class='narrow'>[%resmap.res_num%]</td>
+					<td class='narrow'>[%resmap.res_1code%]</td>
+				[%-IF resmap.pdb_res_num == '-'%]
+					<td class='narrow'>[%resmap.pdb_res_num%]</td>
+				[%-ELSE%]
+					<td class='narrow'><a href='[%c.uri_for('/pdb/')%][%id%]/jmol?hl=[%resmap.pdb_res_num%]:[%chain%]'>[%resmap.pdb_res_num%]</a></td>
+				[%-END%]
+					<td class='narrow'><span class="[%css.$env%]">[%resmap.res_3code%]</span></td>
+					<td class='narrow'>[%uniprot_res_ref%]</td>
+					<td class='narrow'>[%resmap.uniprot_res_code%]</td>
+					<td class='narrow'>[%env%]</td>
+					<td class='narrow'>[%resmap.get_column('type')-%]</td>
+				</tr>
+			[%END-%]
+			</table>
+		</div><!-- end of 'resmap' -->
+
+		<div class="env_html_tooltip">
+			<p>Definitions of 64 local structural envrionments</p>
+		</div>
+
+		<!-- joy tooltip -->
+		[%INCLUDE joy_desc.tt2-%]

@@ -1,0 +1,55 @@
+[% meta.title   = 'PDB: ' _ id-%]
+
+		[%PROCESS pdb_news.tt2%]
+
+		[%-SET slider_id="pdb_info"%]
+		[%-SET dynamicArrows=1%]
+		[%-SET dynamicTabs=1%]
+		[%INCLUDE no_js_warning.tt2 -%]
+		[%PROCESS coda_slider.tt2 slider_id="$slider_id" dynamicArrows="$dynamicArrows" dynamicTabs="$dynamicTabs"%] [%# root/lib/js/coda_slider.tt2%]
+		[%INCLUDE pdb_widgets.tt2 -%] [%-# root/lib/js/pdb_widgets.tt2-%]
+
+		[%-# tooltip contents%]
+		<div class="plain_tooltip_small">&nbsp</div>
+
+		<div class="coda-slider-wrapper">
+			[%-UNLESS dynamicTabs%]
+			<div id="snp_nav_left" class="coda-nav-left"><a href="#" title="Slide left">&#171;</a></div>
+			<div id="snp_nav" class="coda-nav">
+				<ul>
+					<li class="tab1"><a href="#1">General info</a></li>
+					<li class="tab2"><a href="#2">Polymers([%num_polymers%])</a></li>
+					<li class="tab2"><a href="#2">Ligands([%num_ligands%])</a></li>
+				</ul>
+			</div>
+			<div id="snp_nav_right" class="coda-nav-right"><a href="#" title="Slide right">&#187;</a></div>
+			[%-END%]
+			<div class="coda-slider preload" id="[%slider_id%]">
+				<div class="panel">
+					<div class="panel-wrapper">
+						<h2 class="title">General info</h2>
+						[%PROCESS metapdb_table.tt2  rcsb_menu_tag=1-%]
+					</div>
+				</div><!-- panel 1 -->
+				<div class="panel">
+					<div class="panel-wrapper">
+						<h2 class="title">Polymers([%num_polymers%])</h2>
+						[%-IF num_polymers%]
+						[%PROCESS polymer.tt2 -%]
+						[%-ELSE%]
+						<p class="warning">No polymer info</p>
+						[%-END%]
+					</div>
+				</div><!-- panel 2 -->
+				<div class="panel">
+					<div class="panel-wrapper">
+						<h2 class="title">Ligands([%num_ligands%])</h2>
+						[%-IF num_ligands%]
+						[%PROCESS ligand.tt2 -%]
+						[%-ELSE%]
+						<p class="warning">No ligand info</p>
+						[%-END%]
+					</div>
+				</div><!-- panel 3 -->
+			</div>
+		</div>

@@ -1,0 +1,27 @@
+[%-meta.title='Meta SNP'%]
+
+				<script type="text/javascript">
+				  google.load("visualization", "1", {packages:["piechart"]});
+				  google.setOnLoadCallback(drawChart);
+				  function drawChart() {
+					var data = new google.visualization.DataTable();
+					data.addColumn('string', 'Chromosome');
+					data.addColumn('number', 'NO. of SNP');
+					data.addRows(25);
+				[%-counter=0%]
+				[%-FOREACH chr IN chromosomes%]
+					data.setValue([%counter%], 0, '[%chr.des%]');
+					data.setValue([%counter%], 1, [%chr.cnt%]);
+					[%-counter = counter + 1%]
+				[%-END%]
+
+					var chart = new google.visualization.PieChart(document.getElementById('snp_by_chr'));
+					chart.draw(data,{ 
+						width: 700, height: 500, is3D: true, title: 'NO. of SNP by chromosome',
+						backgroundColor: {},
+						legendBackgroundColor: {}
+					});
+				  }
+				</script>
+
+			  <div id="snp_by_chr"></div>

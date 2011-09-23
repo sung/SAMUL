@@ -1,0 +1,47 @@
+[%- # PDB chain information -%] 
+[%- # [todo] alternating color by residue number?-%] 
+[% meta.title = 'PDB: ' _ id _ ' Chain: ' _ chain -%]
+
+		[%PROCESS pdb_news.tt2 %]
+		[%-SET slider_id="pdb_chain_info"%]
+		[%-SET dynamicArrows=1%]
+		[%-SET dynamicTabs=1%]
+		[%INCLUDE no_js_warning.tt2 -%]
+		[%PROCESS coda_slider.tt2 slider_id="$slider_id" dynamicArrows="$dynamicArrows" dynamicTabs="$dynamicTabs"%] [%# root/lib/js/coda_slider.tt2%]
+		[%INCLUDE pdb_widgets.tt2 -%] [%-# root/lib/js/pdb_widgets.tt2-%]
+		[% PROCESS anno_tooltips_js.tt2 %] [%-# root/lib/js/anno_tooltips_js.tt2%]
+
+		<!-- tooltip contents -->
+		<div class="plain_tooltip_small">&nbsp;</div>
+
+		<div class="coda-slider-wrapper">
+			<div class="coda-slider preload" id="pdb_chain_info">
+
+				<div class="panel">
+					<div class="panel-wrapper">
+						<h2 class="title">Gene Ontology</h2>
+						[%- IF go_terms.first%]
+							[%PROCESS go_terms.tt2 -%]
+						[%ELSE%]
+							<p class='warning'>No Gene Ontology infomration</p>
+						[%END%]
+					</div>
+				</div><!-- panel ensg -->
+
+				<div class="panel">
+					<div class="panel-wrapper">
+						<h2 class="title">Annotations</h2>
+						[%- IF funcres.first%] 
+							[%PROCESS res_anno.tt2 -%]
+						[%ELSE%]
+							<p class='warning'>No Annotation available</p>
+						[%END%]
+					</div>
+				</div><!-- panel annotations -->
+
+			</div>
+		</div>
+
+		[%-# make tooltip elelemnts for every annotation code %]
+		[%PROCESS anno_tooltips_div.tt2-%] [%# root/src/anno_tooltips_div.tt2%]
+

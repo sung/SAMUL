@@ -1,0 +1,597 @@
+html, body { 
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  color: #000;
+  background: #FFF;
+  font-family: Optima, "Lucida Grande", Georgia, Verdana, sans-serif;
+  font-size: 100%;
+}
+
+h4 {
+  padding: 5px;
+}
+
+p {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+ul {
+  margin-top: 0px;
+}
+
+div.black_link a {
+  color: #000;
+}
+
+div.black_link a:link, a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+div.black_link a:hover, a:active {
+  color: #000;
+  text-decoration: underline;
+}
+
+div.blue_link a {
+  color: #00F;
+}
+
+div.blue_link a:link, a:visited {
+  color: #00F;
+  text-decoration: none;
+}
+
+div.blue_link a:hover, a:active {
+  color: #00F;
+  text-decoration: underline;
+}
+
+span.self {
+  font-weight: bold;
+}
+
+span.representative {
+  background: yellow;
+}
+
+#wrapper {
+  position: static;
+  width: 950px;
+  margin: 0 auto;
+}
+
+#header {
+  position: relative;
+  height: 80px;
+  width: 100%;
+  border-bottom: 2px black dotted;
+}
+
+#header_menu {
+  position: absolute;
+  top: 15px;
+  right: 0px;
+}
+
+#main_logo {
+  position: absolute;
+  top: 10px;
+  display: inline;
+}
+
+#main_banner {
+  position: absolute;
+  top: 20px;
+  margin-left: 40px;
+  font-family: Optima, "Lucida Grande", Georgia, Arial, serif;
+  font-size: 160%;
+  font-weight: bold;
+  text-align: left;
+  display: inline;
+}
+
+#sub_banner {
+  position: absolute;
+  top: 50px;
+  margin-left: 40px;
+  font-family: Optima, "Lucida Grande", Georgia, Arial, serif;
+  font-size: 110%;
+  text-align: left;
+}
+
+#cambridge_logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#browse {
+  display: inline;
+}
+
+#browse_form {
+  display: inline;
+}
+
+div.search_form {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline;
+}
+
+div.search_result {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form {
+  text-align: center;
+}
+
+#settings {
+  display: inline;
+}
+
+#settings_form {
+  display: inline;
+}
+
+#middler {
+  position: relative;
+  width: 100%;
+  padding-top: 10px; 
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.main_title {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+div#home {
+  float: left;
+  width: 470px;
+  font-size: 100%;
+}
+
+div#home_intro {
+  padding: 10px 10px 0px 0px;
+  text-indent: 20pt;
+  margin-bottom: 10px;
+}
+
+div#home_news {
+  padding: 10px 10px 0px 0px;
+  margin-bottom: 10px;
+}
+
+div#home_reference {
+  padding: 10px 10px 0px 0px;
+  margin-bottom: 10px;
+}
+
+div#brief_stats {
+  float: right;
+  width: 470px;
+  margin-left:10px;
+  margin-bottom: 10px;
+}
+
+#footer {
+  position: relative;
+  clear:both;
+  height: 20px;
+  width: 100%;
+  padding-top: 2px;
+  border-top: 2px black dotted;
+  font-size: 90%;
+  text-align: center;
+}
+
+div#jmol_left {
+  float: left;
+  width: 60%;
+}
+
+div#jmol_right {
+  float: right;
+  width: 40%;
+}
+
+div#fugue_search_form {
+  width: 700px;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+div#notice {
+  width: 800px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 110%;
+  font-weight: bold;
+  color: #336600;
+}
+
+div.relative {
+  margin-left: 20px;
+}
+
+div.relative a {
+  color: #000;
+}
+
+div.relative a:link, a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+div.relative a:hover, a:active {
+  color: #000;
+  background: #AAA;
+  text-decoration: underline;
+}
+
+div.current_hierarchy {
+  margin-left: 20px;
+}
+
+div.current_hierarchy a {
+  color: #000;
+  background: #DDD;
+}
+
+div.current_hierarchy a:link, a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+div.current_hierarchy a:hover, a:active {
+  color: #000;
+  background: #AAA;
+  text-decoration: underline;
+}
+
+div.list {
+  padding: 4px;
+  width: 99%;
+  height: auto;
+  background: #FFF;
+}
+
+div.list:hover {
+  padding: 4px;
+  width: 99%;
+  background: #FFF;
+}
+
+div.list_title {
+  font-weight: bold;
+}
+
+div.small_image {
+  float: left;
+  width: 115px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+div.list_content {
+  float: left;
+  font-size: 90%;
+}
+
+div.list_content2 {
+  float: left;
+  margin-top: 5px;
+  font-size: 90%;
+  padding-left: 15px;
+}
+
+div.list_spacer {
+  clear: both;
+  height: 2px;
+  width: 99%;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  background: #AAA;
+}
+
+/* CSS for uncounted list */
+ul.stats {
+  margin-top: 5px;
+  padding-top: 0px;
+}
+
+ul.contact {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+ul li.contact {
+  list-style-type: none;
+}
+
+ul li div.contact_name {}
+
+ul li div.contact_lab {}
+
+ul li div.contact_affiliation {}
+
+ul li div.contact_email {}
+
+table.brief_stats {
+  width: 450px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #666666;
+  border-collapse: collapse;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+table.brief_stats th {
+  text-align: left;
+  font-weight: bold;
+  font-size: 90%;
+  padding: 5px;
+  border: 1px solid #666666;
+}
+
+table.brief_stats td {
+  text-align: right;
+  font-size: 90%;
+  padding: 5px;
+  border: 1px solid #666666;
+}
+
+table.brief_stats th.center {
+  text-align: center;
+}
+
+
+table.bipa {
+  width: 930px;
+  /* word-wrap: break-word; */
+  border-style: solid;
+  border-width: 1px;
+  border-color: #666666;
+  border-collapse: collapse;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+table.bipa th {
+  text-align: center;
+  font-weight: bold;
+  font-size: 90%;
+  padding: 5px;
+  border: 1px solid #666666;
+}
+
+table.bipa td {
+  font-size: 90%;
+  padding: 5px;
+  border: 1px solid #666666;
+}
+
+table.bipa a {
+  color: #00F;
+}
+
+table.bipa a:link, a:visited {
+  color: #00F;
+  text-decoration: none;
+}
+
+table.bipa a:hover, a:active {
+  color: #00F;
+  text-decoration: underline;
+}
+
+table.bipa tr.title, td.title {
+  margin: 0px;
+  font-weight: bold;
+}
+
+table.bipa td.title_center {
+  text-align: center;
+}
+
+table.joy_annotation {
+  border-style: none;
+  font-family: "Courier New", courier, monospace;
+  width: 700px;
+}
+
+table.joy_annotation th {
+  margin: 0px;
+  padding: 0px;
+  border-style: none;
+}
+
+table.joy_annotation td {
+  margin: 0px;
+  padding: 0px;
+  border-style: none;
+}
+
+#scop_tree {
+  margin-bottom: 10px;
+}
+
+table caption {
+  font-size: 70%;
+  text-align: left;
+}
+
+/* for compatibility issues with IE and Firefox
+ * both class .sequence and .alighment had to be set below
+ *
+ * 'overflow-x: scroll;
+ *
+ * http://www.positioniseverything.net/explorer/expandingboxbug.html
+ */
+
+.alignment {
+  width: 700px;
+  margin-bottom: 5px;
+  font-family: "Courier New", courier, monospace;
+  font-size: 90%;
+  white-space: nowrap;
+}
+
+.sequence {
+  width: 700px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.cell_number {
+  text-align: right;
+  font-family: "Courier New", courier, monospace;
+}
+
+.cell_text {
+  text-align: left;
+  font-family: "Courier New", courier, monospace;
+}
+
+.ruler {
+  margin-top: 5px;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.button {
+  margin-top: 5px;
+  text-align: right;
+  font-size: 80%;
+}
+
+div#zoom {
+  font-size: 90%;
+}
+
+.link_des {
+  font-size: 70%;
+  font-variant: small-caps;
+}
+
+
+/* Environments */
+.positive_phi {
+  font-style: italic;
+}
+
+.helix {
+  color: #F00;
+}
+
+.beta_sheet {
+  color: #00F;
+}
+
+.on_surface {
+  text-transform: uppercase;
+}
+
+.buried {
+  text-transform: lowercase;
+}
+
+.dna_interface {
+  background: #FF8040;
+}
+
+.hbonding_dna {
+  background: #FFBB00;
+  font-weight: bold;
+}
+
+.whbonding_dna {
+  background: #FFBB00;
+  text-decoration: overline;
+}
+
+.vdw_contacting_dna {
+  background: #FFBB00;
+  text-decoration: underline;
+}
+
+.rna_interface {
+  background: #46C7C7;
+}
+
+.hbonding_rna {
+  background: #00FFDD;
+  font-weight: bold;
+}
+
+.whbonding_rna {
+  background: #00FFDD;
+  text-decoration: overline;
+}
+
+.vdw_contacting_rna {
+  background: #00FFDD;
+  text-decoration: underline;
+}
+
+.binding_both {
+  background: #00CC00;
+  font-weight: bold;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  border: 2px solid red;
+  display: inline-block;
+}
+
+#errorExplanation {
+  width: 600px;
+  border: 2px solid red;
+  padding: 5px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 110%;
+  margin: 5px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 100%;
+  list-style: square;
+}
+
+div#footer_banner {
+ margin-top: 5px;
+ text-align: center
+}

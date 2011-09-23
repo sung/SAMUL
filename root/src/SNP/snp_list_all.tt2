@@ -1,0 +1,22 @@
+[%- # Use the TT Dumper plugin to Data::Dumper variables to the browser   -%]
+[%- # Not a good idea for production use, though. :-)  'Indent=1' is      -%]
+[%- # optional, but prevents "massive indenting" of deeply nested objects -%]
+[%- # Set the page title.  META can 'go back' and set values in templates -%]
+[%- # that have been processed 'before' this template (here it's for      -%]
+[%- # root/lib/site/html and root/lib/site/header).  Note that META on    -%]
+[%- # simple strings (e.g., no variable interpolation).   				 -%] 
+[%-IF cond == 'type'%]
+	[%-meta.title   = 'SNP type: ' _ list_this%]
+[%-ELSIF cond=='coord_name'%] 
+	[%-meta.title   = 'SNP in Chromosome: ' _ list_this%]
+[%-ELSE%]
+	[%-meta.title   = 'SNP list'%]
+[%-END%]
+
+[%-PROCESS pager.tt2 %]
+
+<div id='snp_list'>
+[%-PROCESS snp_table.tt2%]
+</div>
+
+[%-PROCESS pager.tt2 %]

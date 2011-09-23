@@ -1,0 +1,9 @@
+	<div id="pdb_motm_widget">
+		<script type="text/javascript">
+			rcsb_mom_width = '350px';
+			rcsb_mom_headerColor = '#6493c2';
+			rcsb_mom_bodyColor = '#eaf2f8';
+			rcsb_mom_type = 'full';
+		</script>
+		<script type="text/javascript" src="http://www.rcsb.org/pdb/widgets/rcsbPdbMotm.js"></script>
+	</div>

@@ -1,0 +1,16 @@
+[%- meta.title='News'%]
+
+		[%-#load google feeds control (float right) -%]
+		[%-SET div_tag="samul_news"-%] [%-# this tag is used in samul.css%]
+		[%-# root/lib/js/google_feeds.tt2%]
+		[% PROCESS google_feeds.tt2 dom="$div_tag" title="SAMUL News" stacked="true" horizontal="false" is_samul="1" feeder_width="300px" numResults="30" is_link_self="1"-%] 
+		<div id="[%div_tag%]"><a href="[%c.uri_for('/rss')%]" title="RSS feeder"><img src="[%c.uri_for('/static/images/rss/feed-icon-14x14.png')%]" alt="RSS logo"/></a>Loading SAMUL news...</div>
+
+
+		[%SET news_id=news_id - 1%]
+		<div id="headline_news" class="samul_panel">
+			<h2 class="main_title">[%news.$news_id.title%]
+				<a href="[%c.uri_for('/rss')%]" title="RSS feeder"><img src="[%c.uri_for('/static/images/rss/feed-icon-14x14.png')%]" alt="RSS logo"/></a>
+			</h2>	
+			<p class='desc'>[%news.$news_id.description%]</p>	
+		</div>

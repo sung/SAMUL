@@ -1,0 +1,22 @@
+<table class='general_list_table'>
+			<tr>
+				<th title="Click to see this protein in Gbrowse" class='bottom'>ENSP</th>
+				<th class='bottom'>Strand</th>
+				<th class='bottom'>Position</th>
+				<th class='bottom'>Allele</th>
+				<th class='bottom'>type</th>
+			</tr>
+			[%-FOREACH snp2ensp IN snp2ensps%]
+			<tr>
+				<td class='wide'><a title="Click to see [%snp2ensp.ensp%] in Gbrowse" href="[%gbrowse.link%][%snp2ensp.ensp%]">[%snp2ensp.ensp%]</a></td>
+				<td class='wide'>[%snp2ensp.strand%]</td>
+				[%-IF snp2ensp.start%]
+				<td class='wide'><a title="Click to see [%snp2ensp.start%] of [%snp2ensp.ensp%] in Gbrowse" href="[%gbrowse.link%][%snp2ensp.ensp%];h_feat=[%id%]@yellow;h_region=[%snp2ensp.ensp%]:[%snp2ensp.end%]..[%snp2ensp.end+1%]@red">[%snp2ensp.start%]-[%snp2ensp.end%]</td>
+				[%-ELSE%]
+				<td class='wide'>-</td>
+				[%-END%]
+				<td class='wide'>[%snp2ensp.allele%]</td>
+				<td class='wide'>[%snp2ensp.type%]</td>
+			</tr>
+			[%-END%]
+		</table><!-- end of snp2ensp -->

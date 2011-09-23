@@ -1,0 +1,16 @@
+[%- meta.title = 'About SAMUL' %]
+
+		[%#PROCESS boxy_url_load.tt2 title='samul-nori from wikipeida' dom='samul_wikipedia' ext_url='http://en.wikipedia.org/w/index.php?title=Samul_nori&printable=yes'-%]
+		[%#PROCESS samul_news.tt2%]
+		[%-#load google search api results (float right) -%]
+		[%-SET div_tag="about_samul_from_google"-%] [%-# this tag is used in samul.css%]
+		[%-SET find_this="samul nori"-%]
+		[% PROCESS google_search_api.tt2 keyword="$find_this" dom="$div_tag" is_large="1"-%] [%-# root/lib/js/google_search_api.tt2%]
+		<div id="[%div_tag%]" class="google_search">Loading...</div>
+
+		[%-#put some pictures here (my brother?)%]
+		<div id="about_samul_left" class="samul_panel">
+			[% INCLUDE about_samul.tt2 -%]
+		</div>
+
+		[% INCLUDE about_map.tt2 -%]

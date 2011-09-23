@@ -1,0 +1,13 @@
+[%-meta.title   = 'UNIPROT ' _ type _ ': ' _ list_this%]
+
+	[%PROCESS uniprot_news.tt2-%]
+
+	[%PROCESS pager.tt2 -%]
+	[%-# tooltip contents%]
+	<div class="plain_tooltip_small">&nbsp</div>
+
+	<div id='uniprot_list'>
+	[%PROCESS list_table.tt2 -%]
+	</div>
+
+	[%PROCESS pager.tt2 -%]

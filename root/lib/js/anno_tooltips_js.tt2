@@ -1,0 +1,7 @@
+	<script type="text/javascript">
+		$(document).ready(function() { 
+		[%- FOREACH m IN metaannos %]
+			$(".[%m.anno%]").tooltip({tip:'.[%m.anno%]_tooltip', effect: 'fade', fadeOutSpeed: 100}); 
+		[%-END%]
+		});
+	</script>

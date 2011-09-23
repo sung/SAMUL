@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+		<meta name="description" content="SAMUL: Systematic Annotation of  Macromolecules" /> 
+		<meta name="keywords" content="samul, faceview, pdb, uniprot, snp, variation, esst" />
+		<meta name="author" content="Sungsam Gong">
+		<title>Meta SNP</title>
+		<link rel="alternate" type="application/rss+xml" title="SAMUL news" href="http://samul.bio.cc/rss" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/samul.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/joy.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/pager.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/menu.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/boxy.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/coda-slider-2.0.css" />
+
+		<style type="text/css">
+		.message {
+			color: #66AA66;
+		}
+
+		.error {
+			color: #CC4444;
+		}
+
+		</style>
+		
+		<!--
+		<script src="http://www.google.com/jsapi?key=ABQIAAAA_I-9L91b9XCb1E6TMosr0BSyfqj2BxeuSVCxV8Ty6XoRprUmIBSu58FcRRfm69HfDV_uCuNC94ykTg" type="text/javascript"></script>
+		<script language="Javascript" type="text/javascript">
+			google.load("jquery", "1.4.2");
+			google.load("jqueryui", "1.7.2");
+		</script>
+		-->
+
+		<script type="text/javascript" src="/static/js/samul.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.boxy.js"></script>
+		<script type="text/javascript" src="/static/js/tools.tooltip-1.1.3.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.coda-slider-2.0.js"></script>
+
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+		<script type="text/javascript">
+				  google.load("visualization", "1", {packages:["piechart"]});
+				  google.setOnLoadCallback(drawChart);
+				  function drawChart() {
+					var data = new google.visualization.DataTable();
+					data.addColumn('string', 'Chromosome');
+					data.addColumn('number', 'NO. of SNP');
+					data.addRows(34);
+					data.setValue(0, 0, '1');
+					data.setValue(0, 1, 1458806);
+					data.setValue(1, 0, '2');
+					data.setValue(1, 1, 1437487);
+					data.setValue(2, 0, '4');
+					data.setValue(2, 1, 1172305);
+					data.setValue(3, 0, '3');
+					data.setValue(3, 1, 1168925);
+					data.setValue(4, 0, '6');
+					data.setValue(4, 1, 1154719);
+					data.setValue(5, 0, '5');
+					data.setValue(5, 1, 1030012);
+					data.setValue(6, 0, '7');
+					data.setValue(6, 1, 989443);
+					data.setValue(7, 0, '8');
+					data.setValue(7, 1, 892537);
+					data.setValue(8, 0, '10');
+					data.setValue(8, 1, 863908);
+					data.setValue(9, 0, '11');
+					data.setValue(9, 1, 828919);
+					data.setValue(10, 0, '12');
+					data.setValue(10, 1, 815196);
+					data.setValue(11, 0, '9');
+					data.setValue(11, 1, 804322);
+					data.setValue(12, 0, 'X');
+					data.setValue(12, 1, 658911);
+					data.setValue(13, 0, '13');
+					data.setValue(13, 1, 619274);
+					data.setValue(14, 0, '16');
+					data.setValue(14, 1, 578235);
+					data.setValue(15, 0, '14');
+					data.setValue(15, 1, 544462);
+					data.setValue(16, 0, '15');
+					data.setValue(16, 1, 521094);
+					data.setValue(17, 0, '17');
+					data.setValue(17, 1, 502101);
+					data.setValue(18, 0, '18');
+					data.setValue(18, 1, 482304);
+					data.setValue(19, 0, '20');
+					data.setValue(19, 1, 459733);
+					data.setValue(20, 0, '19');
+					data.setValue(20, 1, 404131);
+					data.setValue(21, 0, '22');
+					data.setValue(21, 1, 292783);
+					data.setValue(22, 0, '21');
+					data.setValue(22, 1, 289511);
+					data.setValue(23, 0, 'Y');
+					data.setValue(23, 1, 139740);
+					data.setValue(24, 0, 'HSCHR6_MHC_QBL');
+					data.setValue(24, 1, 3075);
+					data.setValue(25, 0, 'HSCHR6_MHC_COX');
+					data.setValue(25, 1, 2917);
+					data.setValue(26, 0, 'HSCHR6_MHC_MANN');
+					data.setValue(26, 1, 2154);
+					data.setValue(27, 0, 'HSCHR17_1');
+					data.setValue(27, 1, 1880);
+					data.setValue(28, 0, 'HSCHR6_MHC_DBB');
+					data.setValue(28, 1, 1734);
+					data.setValue(29, 0, 'HSCHR6_MHC_MCF');
+					data.setValue(29, 1, 1647);
+					data.setValue(30, 0, 'HSCHR6_MHC_SSTO');
+					data.setValue(30, 1, 1231);
+					data.setValue(31, 0, 'HSCHR4_1');
+					data.setValue(31, 1, 1094);
+					data.setValue(32, 0, 'HSCHR6_MHC_APD');
+					data.setValue(32, 1, 1051);
+					data.setValue(33, 0, 'MT');
+					data.setValue(33, 1, 656);
+
+					var chart = new google.visualization.PieChart(document.getElementById('snp_by_chr'));
+					chart.draw(data,{ 
+						width: 700, height: 500, is3D: true, title: 'NO. of SNP by chromosome',
+						backgroundColor: {},
+						legendBackgroundColor: {}
+					});
+				  }
+				</script>
+
+				    <script type="text/javascript">
+						      google.load("visualization", "1", {packages:["piechart"]});
+							  google.setOnLoadCallback(drawChart);
+							function drawChart() {
+							var data = new google.visualization.DataTable();
+							data.addColumn('string', 'Task');
+							data.addColumn('number', 'Hours per Day');
+							data.addRows(5);
+							data.setValue(0, 0, 'Work');
+							data.setValue(0, 1, 11);
+							data.setValue(1, 0, 'Eat');
+							data.setValue(1, 1, 2);
+							data.setValue(2, 0, 'Commute');
+							data.setValue(2, 1, 2);
+							data.setValue(3, 0, 'Watch TV');
+							data.setValue(3, 1, 2);
+							data.setValue(4, 0, 'Sleep');
+							data.setValue(4, 1, 7);
+							
+							var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+							chart.draw(data, {width: 400, height: 240, is3D: true, title: 'My Daily Activities'});
+						}
+				</script>
+
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<img src="/static/images/garland_logo.png" alt="the TLB group logo" /> 
+				<p class="dept">
+					Crystallography and Bioinformatics<br/>
+					Department of Biochemistry<br/>
+					University of Cambridge<br/>
+				</p>
+				<p class="title">SAMUL</p>
+			</div><!-- end of header -->
+
+
+			<div id="menu">
+				<ul id="nav" class="dropdown dropdown-horizontal">
+				<li><a href=http://samul.bio.cc/>Home</a></li>
+				<li><a href="#">Browse</a>
+					<ul>
+						<li><a href="http://samul.bio.cc/annotation">Annotations</a></li>
+						<li class="dir"><a href="http://samul.bio.cc/snp">SNPs</a>
+							<ul>
+								<li class="dir"><a href="#">By chromosome</a>
+									<ul>
+										<!-- moved to by level-ensg <li><a href="http://samul.bio.cc/snp/chr/all">All</a></li>-%] -->
+										<li><a href="http://samul.bio.cc/snp/chr/1">1</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/2">2</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/3">3</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/4">4</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/5">5</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/6">6</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/7">7</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/8">8</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/9">9</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/10">10</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/11">11</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/12">12</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/13">13</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/14">14</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/15">15</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/16">16</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/17">17</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/18">18</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/19">19</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/20">20</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/21">21</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/22">22</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/X">X</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/Y">Y</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/MT">MT</a></li>
+									</ul>
+								</li><!-- browse snp by chromosome -->
+								<li class="dir"><a href="#">By Level</a>
+									<ul>
+										<li><a href="http://samul.bio.cc/snp/to/ensg">SNP2ENSG</a></li>
+										<li><a href="http://samul.bio.cc/snp/to/enst">SNP2ENST</a></li>
+										<li><a href="http://samul.bio.cc/snp/to/ensp">SNP2ENSP</a></li>
+										<li><a href="http://samul.bio.cc/snp/to/uniprot">SNP2UNIPROT</a></li>
+										<li><a href="http://samul.bio.cc/snp/to/pdb">SNP2PDB</a></li>
+									</ul>
+								</li><!-- browse snp by level-->
+							</ul><!-- browose snp -->
+						</li><!-- browse snp -->
+						<li><a href="http://samul.bio.cc/pdb">PDB</a></li>
+						<li><a href="http://samul.bio.cc/uniprot">UNIPROT</a></li>
+					</ul><!-- browse -->
+				</li><!-- browse -->
+				<li><a href="http://samul.bio.cc/search">Search</a>
+					<ul>
+						<li class="dir"><a href="#">By ID</a>
+							<ul>
+								<li><a href="#" class="search_pdb">PDB</a></li>
+								<li><a href="#" class="search_uniprot">UNIPROT</a></li>
+								<li><a href="#" class="search_snp">SNP</a></li>
+							</ul>
+						</li>
+						<li><a href="#" class="search_gene">By gene name</a></li>
+						<li><a href="#" class="search_keyword">By keywords</a></li>
+						<li><a href="#" class="search_smiles">By ligand (SMILES)</a></li>
+					</ul>
+				</li><!-- end of Search -->
+				<li><a href="http://samul.bio.cc/static/references.html" class='boxy' title='References'>References</a></li>
+				<li><a href="http://samul.bio.cc/about">About</a></li>
+				<li><a href="#" class="contact_us">Contacts</a></li>
+			</ul>
+
+			</div><!-- end of menu --> 
+
+			<div id="indicator">
+				<p class="navi">Meta SNP</p>
+			</div><!-- end of indicator -->
+			
+			<div id="content">
+			
+
+				
+
+			  <div id="snp_by_chr"></div>
+			  <div id="chart_div"></div>
+
+			</div><!-- end of content -->
+
+			<div id="footer">
+			<!-- BEGIN site/footer -->
+	<a href="http://www.catalystframework.org" title="link to catalyst framework website" target="_BLINK"><img src="http://samul.bio.cc/static/images/btn_88x31_powered.png" alt="powered by catalyst" /></a>
+<p>
+	&copy; 2010 <a href="http://sung.bio.cc">Sungsam Gong</a>, The Crystallography and Biocomputing Group, Department of Biochemistry, University of Cambridge
+</p>
+<!-- END site/footer -->
+			</div><!-- end of footer -->
+	</div><!-- end of wrapper -->
+
+		
+		<!-- google analytics -->
+		<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+			try {
+				var pageTracker = _gat._getTracker("UA-7994267-3");
+				pageTracker._trackPageview();
+			} catch(err) {}
+		</script>
+	</body>
+</html>

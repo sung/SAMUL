@@ -1,0 +1,20 @@
+[% # SCOP -%]
+<div>
+		<b><a name="scop">I. SCOP Domains</a></b>
+</div>
+
+<div id="bullet">
+		<script language="javascript" type="text/javascript"> 
+		[%-FOREACH domain IN domains%]
+			[%-#domain.sid -%] 
+			[%-#domain.get_column('region') -%] 
+			[%-#region=domain.get_column('region').replace(',', ' or ')%]
+			[%-region=domain.get_column('region')%]
+			[%-checked=BLOCK %]define 'domain[% domain.px%]' [%region%]; select 'domain[% domain.px%]'; trace 8; color chain; cartoon[% END%]
+			[%-unchecked=BLOCK%]select 'domain[% domain.px%]'; color cpk; cartoon off; trace off;[%END%]
+			jmolCheckbox("[% checked %]", "[% unchecked %]", "[% domain.sid%]: [%region%]", 0, "[% id %]");
+			jmolBr();
+		[%-END%]
+		</script>
+</div>
+<hr>

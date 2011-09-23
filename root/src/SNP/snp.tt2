@@ -1,0 +1,102 @@
+[% # Set the page title.  META can 'go back' and set values in templates -%]
+[% # that have been processed 'before' this template (here it's for      -%]
+[% # root/lib/site/html and root/lib/site/header).  Note that META on    -%]
+[% # simple strings (e.g., no variable interpolation).   				 -%] 
+[%-meta.title = 'SNP: ' _ id-%]
+		[%PROCESS ensembl_news.tt2 %]
+		[%-SET slider_id="snp_info"%]
+		[%-SET dynamicArrows=1%]
+		[%-SET dynamicTabs=1%]
+		[%INCLUDE no_js_warning.tt2 -%] [% #root/libjs/no_js_warning.tt2%]
+		[%PROCESS coda_slider.tt2 slider_id="$slider_id" dynamicArrows="$dynamicArrows" dynamicTabs="$dynamicTabs"%] [%# root/lib/js/coda_slider.tt2%]
+
+		[%-# tooltip contents%]
+		<div class="plain_tooltip_small">&nbsp</div>
+
+		<div class="coda-slider-wrapper">
+			[%-UNLESS dynamicTabs%]
+			<div id="snp_nav_left" class="coda-nav-left"><a href="#" title="Slide left">&#171;</a></div>
+			<div id="snp_nav" class="coda-nav">
+				<ul>
+				[%-IF snp2ensgs.first%]
+					<li class="tab1"><a href="#1">ENSG</a></li>
+				[%-END%]
+				[%-IF snp2ensts.first%]
+					<li class="tab2"><a href="#2">ENST</a></li>
+				[%-END%]
+				[%-IF snp2ensps.first%]
+					<li class="tab3"><a href="#3">ENSP</a></li>
+				[%-END%]
+				[%-IF snp2uniprots.first%]
+					<li class="tab4"><a href="#4">UNIPROT</a></li>
+				[%-END-%]
+				[%-IF snp2pdbs.first%]
+					<li class="tab5"><a href="#5">PDB</a></li>
+				[%-END%]
+				</ul>
+			</div>
+			<div id="snp_nav_right" class="coda-nav-right"><a href="#" title="Slide right">&#187;</a></div>
+			[%-END%]
+			<div class="coda-slider preload" id="[%slider_id%]">
+				<div class="panel">
+					<div class="panel-wrapper">
+						<h2 class="title">SNP2ENSG</h2>
+						[%PROCESS snp2ensg.tt2-%]
+					</div>
+				</div><!-- panel ensg -->
+				[%-IF snp2ensts.first%]
+				<div class="panel">
+					<div class="panel-wrapper">
+						<h2 class="title">ENST</h2>
+						[%PROCESS snp2enst.tt2%]
+					</div>
+				</div><!-- panel enst -->
+				[%-END%]
+				[%-IF snp2ensps.first%]
+				<div class="panel">
+					<div class="panel-wrapper">
+						<h2 class="title">ENSP</h2>
+						[%PROCESS snp2ensp.tt2%]
+					</div>
+				</div><!-- panel ensp -->
+				[%-END%]
+				[%-IF snp2uniprots.first%]
+				<div class="panel">
+					<div class="panel-wrapper">
+						<h2 class="title">UNIPROT</h2>
+						[%PROCESS snp2uniprot.tt2%]
+					</div>
+				</div><!-- panel uniprot -->
+				[%-END%]
+				[%-IF snp2pdbs.first%]
+				<div class="panel">
+					<div class="panel-wrapper">
+						<h2 class="title">PDB</h2>
+						[%PROCESS snp2pdb.tt2%]
+					</div>
+				</div><!-- panel pdb -->
+				[%-END%]
+			</div>
+		</div>
+
+	<!-- unless
+		[%-UNLESS snp2ensgs.first%]
+			<p class='warning'>No mapping onto Ensembl gene</p>
+		[%-END%]
+
+		[%-UNLESS snp2ensts.first%]
+			<p class='warning'>No mapping onto Ensembl transcript</p>
+		[%-END%]
+
+		[%-UNLESS snp2ensps.first%]
+			<p class='warning'>No mapping onto Ensembl protein</p>
+		[%-END%]
+
+		[%-UNLESS snp2uniprots.first%]
+			<p class='warning'>No mapping onto UNIPROT</p>
+		[%-END%]
+
+		[%-UNLESS snp2pdbs.first%]
+			<p class='warning'>No mapping onto PDB</p>
+		[%-END%]
+	-->

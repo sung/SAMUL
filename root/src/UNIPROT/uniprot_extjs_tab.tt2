@@ -1,0 +1,31 @@
+[% # Set the page title.  META can 'go back' and set values in templates -%]
+[% # that have been processed 'before' this template (here it's for      -%]
+[% # root/lib/site/html and root/lib/site/header).  Note that META on    -%]
+[% # simple strings (e.g., no variable interpolation).   				 -%] 
+[%meta.title = id%]
+
+	<script type="text/javascript">
+	[%PROCESS extjs_tabs.tt2 -%] [%-#root/lib/js/extjs_tabs.tt2%]
+	</script>
+
+	<div id="uniprot_tabs">
+		<div id="uni_seq" class="x-hide-display">
+			[% INCLUDE uni_seq.tt2 -%]
+		</div>
+
+		<div id="uni_xref" class="x-hide-display">
+			[% INCLUDE uni_xref.tt2 -%]
+		</div>
+
+		<div id="uni_variants" class="x-hide-display">
+			[% IF variants %]
+				[% INCLUDE uni_variants.tt2 -%]
+			[%ELSE%]
+				<p>No variants found</p>
+			[% END%]
+		</div>
+
+		<div id="uni_ft" class="x-hide-display">
+			[%  INCLUDE uni_ft.tt2 -%]
+		</div>
+	</div>

@@ -1,0 +1,34 @@
+		<table class="general_list_table">
+			<caption><a title="Click to download in XML format" class='download'href="http://www.rcsb.org/pdb/rest/describeMol?structureId=[%id%]">[XML]</a></caption>
+			<tr>
+				<th class='bottom'>Entity NO.</th>
+				<th class='bottom'>Type</th>
+				<th class='bottom'>Description</th>
+				<th class='bottom'>EC</th>
+				<th class='bottom'>Length</th>
+				<th class='bottom'>Chain</th>
+				<th class='bottom'>UniProt</th>
+				<th class='bottom'>Mapping</th>
+			</tr>
+			[%-FOREACH p IN polymers%]
+			<tr>
+				<td rowspan=[%p.chains.size%] class='wide'>[%p.entity%]</td>
+				<td rowspan=[%p.chains.size%] class='wide'>[%p.type%]</td>
+				<td rowspan=[%p.chains.size%] class='wide'><span class="rcsb_keyword_tag">[%p.desc%]</span></td>
+				<td rowspan=[%p.chains.size%] class='wide'>[%p.ec%]</td>
+				<td rowspan=[%p.chains.size%] class='wide'>[%p.len%]</td>
+				[%-FOREACH chain IN p.chains%]
+				<td class='wide'><a title="Click to see [%chain%] of [%id%] in detail" href='[%c.uri_for('/pdb')%]/[%id%]/[%chain%]'>[%chain%]</a></td>
+					[%-IF pdb2uniprot.defined(chain)%]
+					<td class='wide'><a title="Click to see [%pdb2uniprot.$chain%] in detail" href='[%c.uri_for('/uniprot')%]/[%pdb2uniprot.$chain%]'>[%pdb2uniprot.$chain%]</a></td>
+					<td class='wide'><a title="Residue level mapping between [%chain%]:[%id%] and [%pdb2uniprot.$chain%]" href="[%c.uri_for('/pdb')%]/[%id%]/[%chain%]/resmap">ResMap</a></td>
+			</tr>
+					[%-ELSE%]
+					<td class='wide'></td>
+					<td class='wide'></td>
+			</tr>
+					[%-END%]
+			[%# unless last time%]
+				[%-END%]
+			[%-END%]
+		</table><!-- end of polymer table -->

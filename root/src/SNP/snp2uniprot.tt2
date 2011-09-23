@@ -1,0 +1,19 @@
+<table class='general_list_table'>
+			<tr>
+				<th title="Click to see in detail" class='bottom'>UniProt</th>
+				<th title="Click to see this position in Gbrowse" class='bottom'>Position</th>
+				<th class='bottom'>WT</th>
+				<th class='bottom'>Allele</th>
+				<th class='bottom'>Type</th>
+			</tr>
+			[%-FOREACH snp2uniprot IN snp2uniprots%]
+			<tr>
+				[%-end=snp2uniprot.uniprot_res_num+1%]
+				<td class='wide'><a title="Click to see [%snp2uniprot.uniprot%] in detail" href='[%c.uri_for('/uniprot')%]/[%snp2uniprot.uniprot%]'>[%snp2uniprot.uniprot%]</a></td>
+				<td class='wide'><a title="Click to see [%snp2uniprot.uniprot_res_num%] of [%snp2uniprot.uniprot%] in Gbrowse" href='[%gbrowse.link%][%snp2uniprot.uniprot%];h_feat=[%id%]@yellow;h_region=[%snp2uniprot.uniprot%]:[%snp2uniprot.uniprot_res_num%]..[%end%]@red'>[%snp2uniprot.uniprot_res_num%]</a></td>
+				<td class='wide'>[%snp2uniprot.uniprot_res%]</td>
+				<td class='wide'>[%snp2uniprot.allele%]</td>
+				<td class='wide'>[%snp2uniprot.type%]</td>
+			</tr>
+			[%-END%]
+</table>

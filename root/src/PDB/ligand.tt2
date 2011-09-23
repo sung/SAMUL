@@ -1,0 +1,30 @@
+	<table class='general_list_table'>
+		<caption><a title="Click to download in XML format" class='download' href="http://www.rcsb.org/pdb/rest/ligandInfo?structureId=[%id%]">[XML]</a></caption>
+		[%-FOREACH l IN ligands%]
+		<tr>
+			<td class='narrow'>
+				<table class='pdb_info'>
+					<tr>
+						<th>ID</th>
+						<td class='dotted'>[%l.chemicalID%]</td>
+					</tr>
+					<tr>
+						<th>Name</th>
+						<td class='dotted'><span class="rcsb_keyword_tag">[%l.chemicalName%]</span></td>
+					</tr>
+					<tr>
+						<th>Formula</th>
+						<td class='dotted'>[%l.formula%]</td>
+					</tr>
+					<tr>
+						<th>Smile</th>
+						<td><a title="Click to search similar lignads of this SMILES string" href="[%c.uri_for('/search/smiles')%]/[%l.smiles%]">[%l.smiles%]</td>
+					</tr>
+				</table>
+			</td>
+			<td class='narrow'>
+				<img src='http://www.rcsb.org/pdb/images/[%l.chemicalID%]_200.gif' border=0>
+			</td>
+		</tr>
+		[%END%]
+	</table>

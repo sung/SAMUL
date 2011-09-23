@@ -1,0 +1,29 @@
+		[%-# google street view map API %]
+		<script type="text/javascript">
+
+			function initialize() {
+				var myPano = new GStreetviewPanorama(document.getElementById("[%dom%]"));
+				myAddress = new GLatLng([%lat%],[%lon%]);
+				myPOV = {yaw:190,pitch:-10};
+				myPano.setLocationAndPOV(myAddress, myPOV);
+				GEvent.addListener(myPano, "error", handleNoFlash);
+			}
+
+			function handleNoFlash(errorCode) {
+			  if (errorCode == 603) {
+				alert("Error: Flash doesn't appear to be supported by your browser");
+				return;
+			  }
+			}  
+		</script>
+
+		<!-- google map
+				myAddress=new GClientGeocoder.getLatLng("[%address%]")
+			    function initialize() {
+					if (GBrowserIsCompatible()) {
+				        var map = new GMap2(document.getElementById("[%dom%]"));
+			    	    map.setCenter(new GLatLng([%lat%], [%lon%]), 13);
+				        map.setUIToDefault();
+				      }
+			    }
+		-->

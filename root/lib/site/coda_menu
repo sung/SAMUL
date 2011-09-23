@@ -1,0 +1,53 @@
+	<ul id="nav" class="dropdown dropdown-horizontal">
+				<li><a title="Go to main page" href=[%c.uri_for('/')%]>Home</a></li>
+				<li><a href="#">Browse</a>
+					<ul>
+						<li><a href="[%c.uri_for('/annotation')%]">Annotations</a></li>
+						<li class="dir"><a href="[%c.uri_for('/snp')%]">SNPs</a>
+							<ul>
+								<li class="dir"><a href="#">By chromosome</a>
+									<ul>
+										<!-- moved to by level-ensg <li><a href="[%c.uri_for('/snp/chr')%]/all">All</a></li>-%] -->
+										[%-FOREACH chr IN [1 .. 22]%]
+										<li><a href="[%c.uri_for('/snp/chr')%]/[%chr%]">[%chr%]</a></li>
+										[%-END%]
+										<li><a href="[%c.uri_for('/snp/chr')%]/X">X</a></li>
+										<li><a href="[%c.uri_for('/snp/chr')%]/Y">Y</a></li>
+										<li><a href="[%c.uri_for('/snp/chr')%]/MT">MT</a></li>
+									</ul>
+								</li><!-- browse snp by chromosome -->
+								<li class="dir"><a href="#">By Level</a>
+									<ul>
+										<li><a href="[%c.uri_for('/snp/to/ensg')%]">SNP2ENSG</a></li>
+										<li><a href="[%c.uri_for('/snp/to/enst')%]">SNP2ENST</a></li>
+										<li><a href="[%c.uri_for('/snp/to/ensp')%]">SNP2ENSP</a></li>
+										<li><a href="[%c.uri_for('/snp/to/uniprot')%]">SNP2UNIPROT</a></li>
+										<li><a href="[%c.uri_for('/snp/to/pdb')%]">SNP2PDB</a></li>
+									</ul>
+								</li><!-- browse snp by level-->
+							</ul><!-- browose snp -->
+						</li><!-- browse snp -->
+						<li><a href="[%c.uri_for('/pdb')%]">PDB</a></li>
+						<li><a href="[%c.uri_for('/uniprot')%]">UNIPROT</a></li>
+					</ul><!-- browse -->
+				</li><!-- browse -->
+				<li><a href="[%c.uri_for('/search')%]">Search</a>
+					<ul>
+						<li class="dir"><a href="#">By ID</a>
+							<ul>
+								<li><a href="#" class="search_pdb">PDB</a></li>
+								<li><a href="#" class="search_uniprot">UNIPROT</a></li>
+								<li><a href="#" class="search_snp">SNP</a></li>
+							</ul>
+						</li>
+						<li><a href="#" class="search_gene">By gene name</a></li>
+						<li><a href="#" class="search_keyword">By keywords</a></li>
+						<li><a href="#" class="search_smiles">By ligand (SMILES)</a></li>
+					</ul>
+				</li><!-- end of Search -->
+				<li class='hidden'><a href="[%c.uri_for('/static/references.html')%]" class='boxy' title='References'>References</a></li>
+				<li><a title="Published literatures what SAMUL is based on" href='#' onclick='Boxy.load("[%c.uri_for('/static/references.html')%]", {title:"References", modal:false});'>Reference</a></li>
+				<li class="hidden"><a href="[%c.uri_for('/news')%]">News</a></li>
+				<li><a title="Want to know about SAMUL?" href="[%c.uri_for('/about')%]">About</a></li>
+				<li><a title="Please have your say" href="#" class="contact_us">Contacts</a></li>
+			</ul>

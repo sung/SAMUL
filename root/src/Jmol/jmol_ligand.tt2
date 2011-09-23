@@ -1,0 +1,20 @@
+[% # Ligand-%]
+<div>
+		<b><a name="ligand">IV. Ligands</a></b>
+</div>
+
+<div id="bullet">
+		<script language="javascript" type="text/javascript"> 
+		[%-FOREACH ligand IN ligands-%]
+			[%-SET lig_name=ligand.get_column('des').split(':').first-%]
+			[%-#SET lig_des=ligand.get_column('des').split(':').last%]
+			[%-checked=BLOCK %]select '[%lig_name%]'; color cpk; spacefill;[% END -%]
+			[%-unchecked=BLOCK%]select '[%lig_name%]'; color cpk; spacefill off;[%END%]
+			jmolCheckbox("[% checked %]", "[% unchecked %]", "[%ligand.get_column('des')%]", 0, "[% id %]");
+			jmolBr();
+		[%-END%]
+			jmolCheckbox("select ligand; spacefill;", "select ligand; spacefill off;", "All ligands", 0, "[% id %]");
+			jmolBr();
+		</script>
+</div>
+<hr>

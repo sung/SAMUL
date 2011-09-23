@@ -1,0 +1,8 @@
+<link rel="stylesheet" type="text/css" href="[%c.uri_for('/static/css/reset.css')%]" />
+		<link rel="stylesheet" type="text/css" href="[%c.uri_for('/static/css/samul.css')%]" />
+		<link rel="stylesheet" type="text/css" href="[%c.uri_for('/static/css/joy.css')%]" />
+		<link rel="stylesheet" type="text/css" href="[%c.uri_for('/static/css/pager.css')%]" />
+		<link rel="stylesheet" type="text/css" href="[%c.uri_for('/static/css/menu.css')%]" />
+		<link rel="stylesheet" type="text/css" href="[%c.uri_for('/static/css/boxy.css')%]" />
+		<link rel="stylesheet" type="text/css" href="[%c.uri_for('/static/css/coda-slider-2.0.css')%]" />
+		[%-#<link rel="stylesheet" type="text/css" href="[%c.uri_for('/static/Ext/resources/css/ext-all.css')%]

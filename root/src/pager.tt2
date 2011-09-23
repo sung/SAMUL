@@ -1,0 +1,36 @@
+			[%-IF pager %]
+			[%-SET loop_max=6 %]
+			[%-SET loop_half=loop_max / 2  %]
+			[%-SET less=pager.current_page - loop_max %]
+			[%-SET more=pager.current_page + loop_max %]
+			<div class="pagination">
+				   [%-IF pager.current_page > loop_half + 1 %]
+					   <span><a href="[% c.req.uri_with( {page => pager.first_page,total=>total}) %]">[%pager.first_page%]</a></span>
+					   <span><a href="[% c.req.uri_with( {page => pager.first_page,total=>total}) %]">[%pager.first_page + 1%]</a></span>
+						...
+						[%-IF pager.current_page > loop_max + 1 %]
+					   <span><a href="[% c.req.uri_with( {page => less,total=>total} ) %]">Previous</a></span>
+						[%-END %]
+				   [%-END %]
+
+				   [%-start = (pager.current_page - loop_half) > 0 ? (pager.current_page - loop_half) : 1;
+					FOREACH page IN [ start .. pager.last_page ] %]
+					   [%-LAST IF loop.count > loop_max %]
+					   [%-IF pager.current_page == page %]
+						   <span class="current"> [% page %] </span>
+					   [%-ELSE %]
+						   <span> <a href="[% c.req.uri_with( {page => page,total=>total} )%]">[% page %]</a> </span>
+					   [%-END %]
+				   [%-END %]
+
+				   [%-IF more < pager.last_page%]
+					   <span><a href="[% c.req.uri_with( {page => more,total=>total})%]">Next</a></span>
+				   [%-END %]
+				   [%-IF pager.current_page + loop_half <= pager.last_page%]
+						...
+					   <span><a href="[% c.req.uri_with( {page => pager.last_page,total=>total} )%]">[%pager.last_page - 1%]</a></span>
+					   <span><a href="[% c.req.uri_with( {page => pager.last_page,total=>total} )%]">[%pager.last_page%]</a></span>
+				   [%-END %]
+			</div>
+			[%-END%]
+

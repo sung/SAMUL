@@ -1,0 +1,11 @@
+[%-meta.title   = 'Chromosome: ' _ coord%]
+
+	[%PROCESS ensembl_news.tt2-%]
+
+	[%-uri=BLOCK%][%c.uri_for('/snp/chr')%]/[%coord%]/type[%END-%]
+	<!-- tooltip contents -->
+	<div class="plain_tooltip_small">&nbsp;</div>
+
+	<div class='snp2chr'>
+		[%PROCESS snp_by_type_table.tt2 ref="$uri" title="Click to see all SNPs of this category in chromosome $coord"-%]
+	</div>

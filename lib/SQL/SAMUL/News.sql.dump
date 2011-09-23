@@ -1,0 +1,53 @@
+-- MySQL dump 10.11
+--
+-- Host: spunky    Database: SAMUL
+-- ------------------------------------------------------
+-- Server version	5.1.31-1ubuntu2
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `News`
+--
+
+DROP TABLE IF EXISTS `News`;
+CREATE TABLE `News` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text NOT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `link` (`link`),
+  KEY `index_news_on_date` (`created`)
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `News`
+--
+
+LOCK TABLES `News` WRITE;
+/*!40000 ALTER TABLE `News` DISABLE KEYS */;
+INSERT INTO `News` VALUES (1,'2007-03-15 15:25:31','Hello world! Hello SAMUL!','Initial service launched.\r\nSAMUL is a new service name of FaceView (http://faceview.bio.cc) which was initially started in KOBIC. (http://www.kobic.re.kr)','messenger/news/1'),(2,'2007-03-15 15:25:31','Gbrowse launced','Domains, SNPs, and disease-related amino acids can be viewed in 2D image (http://faceview.bio.cc/cgi-bin/gbrowse/samul)','messenger/news/2'),(3,'2007-03-15 15:25:31','Jmol is running','Amino acids variants can be viewed in 3D structure using Jmol (e.g. http://samul.bio.cc/pdb/1dan/jmol)','messenger/news/3'),(4,'2007-03-21 15:25:31','Jmol enhanced','SCOP domains can be selected in the 3D structure of a PDB entry','messenger/news/4'),(5,'2007-07-06 14:25:31','remediated PDB files','We use PDB files based on the remediated files (http://remediation.wwpdb.org/)','messenger/news/5'),(6,'2007-12-19 15:25:31','UniProt FT','UniProt feature lines (FT) are incorporated into Gbrowse (http://faceview.bio.cc/cgi-bin/gbrowse/samul)','messenger/news/6'),(7,'2008-09-12 14:25:31','Jmol','Solvent (in)accessible area can be browseable within Jmol','messenger/news/7'),(8,'2008-09-12 14:25:31','SNP highlighted in Gbrowse','Selected SNPs are highlighed in Gbrowse (e.g. http://faceview.bio.cc/cgi-bin/gbrowse/samul/?name=P35247;h_feat=rs3088308@yellow;h_region=P35247:290..291)','messenger/news/8'),(9,'2009-11-09 15:25:31','SAMUL is a DAS server','FaceView servers as a DAS server (DSN:http://faceview.bio.cc/cgi-bin/das/dsn, SAMUL:http://faceview.bio.cc/cgi-bin/das/samul, (e.g. http://faceview.bio.cc/cgi-bin/das/samul/features?segment=P24941)','messenger/news/9'),(10,'2009-12-01 15:25:31','ResMap (aka. Double-map)','Showing alignments between PDB and its corresponding UniProt sequence. It is also known as Double-map. (e.g. http://samul.bio.cc/pdb/1a25/A/resmap)','messenger/news/10'),(11,'2010-03-12 15:25:31','SAMUL face lifted','SAMUL (aka. FaceView) has been face-lifted. It is now builted on Catalyst web frame work, perl template-toolkit, modern Ajax library such as jQuery and google ajax library. I hope you like it. -Sung','messenger/news/11'),(12,'2010-03-18 10:43:51','Gbrowse updated to 1.69','We upgraded Gbrowse to version 1.69. The main feature is track-based DAS feeders and image collapse buttons, which is very convenient when disabling/enabling certain track of interests without refereshing the website.','messenger/news/12'),(13,'2010-03-25 17:25:40','Gbrowse upgraded to 2.00','Gbrowse has been upgraded to version 2.0, which is a major change! GBrowse 2.0 is a rewrite of the original GBrowse to add dynamic updating via AJAX and a smoother user experience. In addition, it provides administrators with the ability to attach a different genome database to each GBrowse track, making it much easier to manage and update tracks. It also provides a distributed backend system of \"slave\" renderers, allowing each track to be rendered in parallel on a different machine and significantly increasing performance. GBrowse 2.0 is currently in alpha test, but is quite usable. For more info, visit http://gmod.org/wiki/Category:GBrowse_2','messenger/news/13'),(14,'2010-06-14 11:24:28','PICCOLO alive!','PDB entries of PICCOLO, a database of protein-protein interaction, are being served from SAMUL to their original links to PICCOLO. Visit http://www-cryst.bioc.cam.ac.uk/samul/annotation/PICCOLO','messenger/news/14'),(15,'2010-07-05 10:30:02','New UniProt feature Key INTRAMEM','A new UniProt feature key, INTRAMEM, has been introduced in the flat file and XML format of UniProtKB entries. In addition to the feature keys TOPO_DOM (which describes the topology of regions for transmembrane proteins that span membrane compartments) and TRANSMEM (which describes the extent of the region spanning a membrane), we have introduced a new feature key INTRAMEM to describe the extent of a region located in a membrane without crossing it. \r\nSAMUL, of course, accomodate \'INTRAMEM\' feautres mapped onto PDB residues; visit http://mordred.bioc.cam.ac.uk/samul/annotation/INTRAMEM\r\nFor more info, http://www.uniprot.org/docs/sp_news.htm\r\nhttp://www.uniprot.org/docs/xml_news.htm','messenger/news/15'),(16,'2010-07-05 17:10:38','Gbrowse upgraded to 2.12','SAMUL is now using Gbrowse 2.12.\r\nNew features & enhancements:\r\nThe DAS server and client are now functional. You will need Bio::Das version 1.17 and Bio::Graphics version 2.11 for best results.\r\nThe \"import track\" function now allows you to specify the URL of either a BAM or a BigWig file. The track will be displayed without physically copying the file onto the GBrowse server. You will need Bio::DB::Bam and Bio::DB::BigWig for these features to work.\r\nUploading a Wig file now generates a BigWig database for improved performance and scalability. This requires Bio::DB::BigWig to be installed.\r\nThere is now a \"Get chromosome sizes\" entry in the File menu.\r\nCalling GBrowse with the CGI argument \"action=scan\" will generate a quick summary of track contents.\r\nImproved performance when working with truly huge (>1000 track definition) configuration files.\r\nFasta, GFF3, SAM and wiggle dumps now include the genome build ID if that information is provided in the data source \"metadata\" configuration variable.','messenger/news/16');
+/*!40000 ALTER TABLE `News` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2010-09-22 23:00:01

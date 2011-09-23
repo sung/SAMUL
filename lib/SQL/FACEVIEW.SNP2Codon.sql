@@ -1,0 +1,52 @@
+-- MySQL dump 10.11
+--
+-- Host: 192.168.1.1    Database: FACEVIEW
+-- ------------------------------------------------------
+-- Server version	5.0.51a
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `SNP2Codon`
+--
+
+DROP TABLE IF EXISTS `SNP2Codon`;
+CREATE TABLE `SNP2Codon` (
+  `id` int(3) NOT NULL auto_increment,
+  `rs_id` varchar(50) not null,
+  `aa1` char(1) NOT NULL,
+  `1st` char(1) NOT NULL,
+  `2nd` char(1) NOT NULL,
+  `3rd` char(1) NOT NULL,
+  `snp_pos` int(1) not null,
+  `aa2` char(1) NOT NULL,
+  `mut_dna` char(1) not null,
+
+  PRIMARY KEY  (`id`),
+  KEY `rs_id` (`rs_id`),
+  KEY `aa1` (`aa1`),
+  KEY `codon` (`1st`, `2nd`, `3rd`),
+  KEY `snp_pos` (`snp_pos`),
+  KEY `aa2` (`aa2`),
+  KEY `mut_dna` (`mut_dna`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2009-06-02 15:07:26

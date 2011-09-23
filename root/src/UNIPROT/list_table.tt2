@@ -1,0 +1,34 @@
+	<table class='general_list_table'>
+		<tr>
+			<th class='bottom'>Accession</th>
+			<th class='bottom'>ID</th>
+			<th title="Click to search UniProt having this keywords" class='bottom'>Name</th>
+			<th title="Click to search UniProt of this gene name" class='bottom'>Gene</th>
+			<th class='bottom'>Length</th>
+			<th class='bottom'>MW</th>
+			<th title="Click to search UniProt of this taxanomy" class='bottom'>Species</th>
+		</tr>
+		[%-FOREACH entry IN metauniprots%]
+		<tr>
+			<td class='wide'><a title="Click to see [%entry.acc%] in detail" href='[%c.uri_for('/uniprot')%]/[%entry.acc%]'>[%entry.acc%]</a></td>
+			<td class='wide'>[%entry.display_id%]</td>
+			[%-IF keyword %]
+				<td class='wide'>[%entry.name.replace(keyword, "<font color='red'>$keyword</font>")%]</td>
+			[%-ELSE%]
+				<td class='wide'><a title="search UniProt of this protein name (*it takes a bit long time, so be patience*)" href='[%c.uri_for('/search/keyword')%]/[%entry.name%]'>[%entry.name%]</a></td>
+			[%-END%]
+			[%-IF type =='gene'%]
+				<td class='wide'><font color="red">[%entry.gene%]</font></td>
+			[%-ELSE%]
+				<td class='wide'><a title="Click to search all UniProt entries of [%entry.gene%]" href='[%c.uri_for('/uniprot/gene')%]/[%entry.gene%]'>[%entry.gene%]</a></td>
+			[%-END%]
+			<td class='wide'>[%entry.length%]</td>
+			<td class='wide'>[%entry.mw%]</td>
+			[%-IF type =='tax_id'%]
+				<td class='wide'><font color="red">[%entry.get_column('sn')%]</font></td>
+			[%-ELSE%]
+				<td class='wide'><a title="Click to search all UniProt entries of '[%entry.get_column('sn')%]'" href='[%c.uri_for('/uniprot/species')%]/[%entry.tax_id%]'>[%entry.get_column('sn')%]</a></td>
+			[%-END%]
+		</tr>
+		[%-END%]
+	</table><!-- end of UNIPROT list table -->

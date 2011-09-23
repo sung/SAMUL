@@ -1,0 +1,222 @@
+package Samul::Web::Controller::Search;
+
+use strict;
+use warnings;
+use parent 'Catalyst::Controller';
+
+=head1 NAME
+
+Samul::Web::Controller::Search - Catalyst Controller
+
+=head1 DESCRIPTION
+
+Catalyst Controller.
+
+=head1 METHODS
+
+=cut
+
+
+=head2 index
+
+=cut
+
+sub index :Path :Args(0) {
+    my ( $self, $c ) = @_;
+
+    #$c->response->body('Matched Samul::Web::Controller::Search in Search.');
+    $c->stash->{template} = 'Search/form.tt2';
+}
+
+=head2 hgnc 
+	Fetch PDB/Gene/UniProt/ENSP/RefSeq/RSID
+=cut
+
+sub hgnc: Local {
+    # Retrieve the usual Perl OO '$self' for this object. $c is the Catalyst
+    # 'Context' that's used to 'glue together' the various components
+    # that make up the application
+    my ($self, $c) = @_;
+
+    # stash where they can be accessed by the TT template
+    $c->stash->{Hgncs} = [$c->model('FACEVIEW::Hgnc')->slice(0,15)];
+    
+    # Set the TT template to use.  You will almost always want to do this
+    # in your action methods (action methods respond to user input in
+    # your controllers).
+    $c->stash->{template} = 'Search/hgnc.tt2';
+}
+
+=head2 by_keywords
+	Search 'name' filed of FACEVIEW.HGNC table give a keyword from a form
+=cut
+sub by_keywords: Local {
+    my ($self, $c) = @_;
+	# get parameters
+	my $keyword= $c->request->params->{keyword} or $c->detach('/messenger/err_msg', ["Please type your key words"]);
+    $c->stash->{keyword} = $keyword; 
+	$c->stash->{total}= $c->request->params->{total} if $c->request->params->{total};
+
+
+	# get total number of entries
+	# [todo] run this query unless total defined
+	unless($c->stash->{total}){
+	    $c->stash->{total} = $c->model('UNIPROT::Uniprotseq')->search(
+			{
+				name=>{-like=>"%$keyword%"},
+			},
+    	    {
+        	    column=>[qw/id/],
+	        },
+		)->count();
+	}
+
+	# alwasy set $c->stash-{total} before forwarding
+	# set paging values (page, limit, pager)
+	$c->forward('/pager/set_page');
+
+	# get data
+    $c->stash->{uniprots} = [$c->model('UNIPROT::Uniprotseq')->search(
+		{
+			name=>{-like=>"%$keyword%"},
+		},
+		{
+			page=>$c->stash->{page},
+			rows=>$c->stash->{limit},
+		},
+	)];
+
+    $c->stash->{template} = 'Search/by_uniprot_keywords.tt2';
+
+}
+
+=head2 by_keywords
+	deprecated
+=cut
+sub _by_keywords_for_hgnc: Private{
+    my ($self, $c) = @_;
+	# get parameters
+	my $keyword= $c->request->params->{keyword} or $c->detach('/messenger/err_msg', ['Please type your key words']);
+
+    $c->stash->{keyword} = $keyword; 
+    $c->stash->{keywords} = [$c->model('FACEVIEW::Hgnc')->search(
+		{
+			name=>{-like=>"%$keyword%"},
+		},
+	)];
+    $c->stash->{template} = 'Search/by_keywords.tt2';
+
+}
+
+=head2 by_ids
+	# action called from the form e.g. '/search/by_ids?id=xx&id_type=yy'
+	Search 'id' from various table depending on in_type
+	/search/by_ids/
+=cut
+sub by_ids: Local {
+    my ($self, $c) = @_;
+
+	# get parameters
+	my $id= $c->req->params->{id};
+	# or get argument if  
+	$id=$c->req->args->[0] unless defined $id;
+
+	$c->res->redirect($c->uri_for("/search")) unless defined $id;
+
+	my $id_type= $c->req->params->{id_type};
+
+    $c->stash->{id} = $id; 
+    $c->stash->{id_type} = $id_type; 
+
+	$c->res->redirect($c->uri_for("/$id_type/$id"));
+}
+
+=head2
+	called from /pdb/xx, /uniprot/xx, /snp/xx
+	check whether a ID is valid wthin a given database 
+	if not print a error messenger
+=cut
+sub sanitizer: Private{
+    my ($self, $c) = @_;
+
+    my $type= $c->req->args->[0];
+    my $id=$c->stash->{id};
+    my $chain=$c->stash->{chain} if $type eq 'pdbc';
+
+	$c->res->redirect($c->uri_for("/search")) unless defined $id;
+	my $db={
+		#implement pdb and chain via PDB2UniProt
+		pdbc=>{
+			name=>'GLORIA::Pdb2uniprot',
+			get_this=>'uniprot',
+			get_this1=>'pdb',
+			get_this2=>'pdb_chain_id',
+		},
+		pdb=>{
+			name=>'GLORIA::Pdbdat',
+			get_this=>'pdb',
+		},
+		uniprot=>{
+			name=>'UNIPROT::Uniprotseq',
+			get_this=>'acc',
+		},
+		snp=>{
+			name=>'FACEVIEW::Snp2ensg',
+			get_this=>'rs_id',
+		},
+		keyword=>{
+			name=>'UNIPROT::Uniprotseq',
+			get_this=>'name',
+		},
+	};
+
+	my $get_this=$db->{$type}{get_this};
+	my $ref;
+	unless($type eq 'pdbc'){
+		$ref = [$c->model($db->{$type}{name})->search(
+			{
+				$db->{$type}{get_this}=>$c->stash->{id}
+			},
+			{
+					select=>[$get_this],
+			}
+		)];
+	# for pdbc called by /pdb/xx/yy/resmap
+	}else{
+		$ref = [$c->model($db->{$type}{name})->search(
+			{
+				$db->{$type}{get_this1}=>$c->stash->{id},
+				$db->{$type}{get_this2}=>$c->stash->{chain},
+			},
+			{
+				select=>[$db->{$type}{get_this}],
+			}
+		)];
+	}
+
+	unless (exists ${$ref}[0]){
+		# CASE I. suggest pattern matching if not exists 
+		unless($type eq 'pdbc'){
+			$c->res->redirect($c->uri_for('/suggest', {id=>$id, id_type=>$type, call=>'search'}));
+		}else{
+		# CASE II. whether exists or not
+			$c->detach('/messenger/err_msg', ["No matched entries for $id:$chain"]) unless exists ${$ref}[0];
+		}
+	}else{
+		$c->stash->{is_id}=${$ref}[0]->$get_this;
+	}
+
+}#end of sanitizer which is forwarded by 'pdb' 'uniprot' 'snp'
+
+=head1 AUTHOR
+
+Sung Gong
+
+=head1 LICENSE
+
+This library is free software. You can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+=cut
+
+1;

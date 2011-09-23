@@ -1,0 +1,13 @@
+[%-meta.title   = 'SNP >> Chr:' _ coord _ ' >> Type: ' _ snp_type%]
+
+	[%PROCESS ensembl_news.tt2-%]
+
+	[%PROCESS pager.tt2 -%]
+	<!-- tooltip contents -->
+	<div class="plain_tooltip_small">&nbsp;</div>
+
+	<div id='snp_list'>
+		[%PROCESS snp_table.tt2 onto='ensg'-%]
+	</div>
+
+	[%PROCESS pager.tt2 -%]

@@ -1,0 +1,40 @@
+	[%- # Names/Origins-%]
+	<table class='general_list_table'>
+		[%-FOREACH uniprot IN uniprots%]
+		<tr>
+			<th class='right'>Accession</th>
+			<td class='left'><a title="Click to visit UniProt website for [%id%]" class="external" href="[%link.uniprot%]/uniprot/[%id%]">[%id%]</a></td>
+		<tr>
+			<th class='right'>ID</th>
+			<td class='left'>[%uniprot.display_id%]</td>
+		</tr>
+		<tr>
+			<th class='right'>Name</th>
+			<td class='left'><a title="Click to search UniProt of this protein name (*it takes a bit long time, so be patience*)" href="[%c.uri_for('/search/keyword')%]/[%uniprot.name%]">[%uniprot.name%]</a></td>
+		</tr>
+		<tr>
+			<th class='right'>Gene</th>
+			<td class='left'><a title="Click to search all UniProt entries of [%uniprot.gene%]" href='[%c.uri_for('/uniprot/gene')%]/[%uniprot.gene%]'>[%uniprot.gene%]</a></td>
+		</tr>
+		<tr>
+			<th class='right'>MW</th>
+			<td class='left'>[%uniprot.mw%]</td>
+		</tr>
+		<tr>
+			<th class='right'>Species</th>
+			<td class="left"><a title="Click to search UniProt of this taxanomy" href="[%c.uri_for('/uniprot/species')%]/[%uniprot.tax_id%]">[%uniprot.get_column('sn')%]</a></td>
+		</tr>
+		<tr>
+			<th class='right'>Sequence</th>
+			<td class='left_last'>
+				[%-len=uniprot.sequence.length-%]
+				[%-line=0-%]
+				<pre>
+				[%-WHILE line<len-%] 
+					[%-uniprot.sequence.substr(line, 95)-%]<br>
+					[%-line=line+95-%]
+				[%-END-%]</pre>
+			</td>
+		</tr>
+	[%END-%]
+	</table>

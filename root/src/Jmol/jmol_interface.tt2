@@ -1,0 +1,23 @@
+[% # INTERFACE-%]
+<div>
+		<b><a name="surface">III. Interface</a></b><br>
+</div>
+
+<div id="bullet">
+	[%-FOREACH interface IN interfaces%]
+		<font color="#9999FF" face="Arial, Helvetica, sans-serif" size="2">
+		[% interface.title-%]<br> 
+		</font>
+		<font face="Arial, Helvetica, sans-serif" size="2" color="#FFFFFF">
+		<script language="javascript" type="text/javascript"> 
+			[%-#int=interface.file.replace('.int', '')-%]
+			[%-checked=BLOCK%]define 'face[%interface.num%]' [%interface.region%]; select 'face[%interface.num%]'; color chain; spacefill;[%END%]
+			[%-unchecked=BLOCK%]select 'face[%interface.num%]'; spacefill off; color cpk;[%END%]
+			jmolCheckbox("[%checked%]", "[%unchecked%]", "[%interface.name%]", 0, "[%id%]");
+			jmolBr();
+			jmolBr();
+		</script>
+		</font>
+	[% END -%]
+</div>
+<hr>

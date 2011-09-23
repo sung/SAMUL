@@ -1,0 +1,20 @@
+		[%-# google map API %]
+		<script type="text/javascript">
+
+			function initialize() {
+				if (GBrowserIsCompatible()) {
+					var map = new GMap2(document.getElementById("[%dom%]"));
+					map.setCenter(new GLatLng([%lat%], [%lon%]), 13);
+					[%-IF zoom %]
+					map.addControl(new GSmallMapControl());
+					[%END%]
+					[%-IF type_control%]
+    				map.addControl(new GMapTypeControl());
+					[%END-%]
+					[%-IF address%]
+					map.openInfoWindow(map.getCenter(),
+					document.createTextNode("[%address%]"));
+					[%END-%]
+				}
+			}
+		</script>

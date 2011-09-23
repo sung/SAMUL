@@ -1,0 +1,75 @@
+		<table class="general_list_table">
+		[%-FOREACH mp IN metapdbs%]
+			<tr>
+				<td class='narrow'>
+					<table class='pdb_info'>
+						<tr>
+							<th>ID</th>
+							[%-IF rcsb_menu_tag%]
+							<td class='dotted'><span class="rcsb_menu_tag">[%mp.pdb%]</span></td>
+							[%-ELSE%]
+							<td class='dotted'><a title="Click to see [%mp.pdb%] in depth" href='[%c.uri_for('/pdb')%]/[%mp.pdb%]'>[%mp.pdb%]</a></td>
+							[%-END%]
+						</tr>
+						<tr>
+							<th>Class</th>
+							[%-IF type =='class'%]
+								<td class='dotted'><font color="red">[%mp.header%]</font></td>
+							[%-ELSE%]
+								<td class='dotted'><a title="Click to search all pdb entries of [%mp.header%]" href='[%c.uri_for('/pdb/class')%]/[%mp.header%]'>[%mp.header%]</a></td>
+							[%-END%]
+						</tr>
+						<tr>
+							<th>Release</th>
+							<td class='dotted'>[%mp.release%]</td>
+						</tr>
+						<tr>
+							<th>Title</th>
+							<td class='dotted'>[%mp.title%]</td>
+						</tr>
+						<tr>
+							<th>Source</th>
+							<td class='dotted'>[%mp.source%]</td>
+						</tr>
+						<tr>
+							<th>Author</th>
+							<td class='dotted'>
+							[%-cnt=0%]
+							[%-FOREACH a IN mp.author.split(',')%]
+								[%-cnt=cnt+1%]
+								[%-IF cnt % 2 == 0%]
+									<span class="rcsb_author_tag" rel="[%previous _ ', ' _ a%]">[%previous _ ', ' _ a%]</span><br>
+								[%-ELSE%]
+									[%-previous=a%]
+								[%-END%]
+							[%-END%]
+							</td>
+						</tr>
+						[%-IF wwwpdbs.first%]
+						<tr>
+							<th>PubMed</th>
+							[%-IF wwwpdbs.first.pubmed == -1%]
+							<td class='dotted'></td>
+							[%-ELSE%]
+							<td class='dotted'><a class="external" href="[%link.pubmed%]/[%wwwpdbs.first.pubmed%]">[%wwwpdbs.first.pubmed%]</a></td>
+							[%-END%]
+						</tr>
+						[%-END%]
+						<tr>
+							<th>Resolution</th>
+							<td class='dotted'>[%mp.resolution%]</td>
+						</tr>
+						<tr>
+							<th>Method</th>
+							<td>[%mp.method%]</td>
+						</tr>
+					</table>
+				</td>
+				<td class='narrow'>
+					<span class="rcsb_image_medium" rel="[%mp.pdb%]" title="Image Title"></span><br>
+					[%-jmol_ref=BLOCK%]<a href='[%c.uri_for('/pdb/')%][%mp.pdb%]/jmol'>Jmol</a>[%END%]
+					Molecular viewer for [%pdb.pdb%]: [%jmol_ref%]<br><br>	
+					[%-END%]
+				</td>
+			</tr>
+		</table>

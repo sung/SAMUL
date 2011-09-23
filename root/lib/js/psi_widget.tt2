@@ -1,0 +1,8 @@
+	<div id="psi_widget">
+		<script type="text/javascript">
+			var SGKB_width='200px';// or default is 250px
+			var SGKB_height='250px';// or default is 250px
+			var SGKB_color='grey'; // or default is RED
+		</script>
+		<script type="text/javascript" src="http://kb.psi-structuralgenomics.org/Widget/SGKBWidget.js"></script>
+	</div>

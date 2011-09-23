@@ -1,0 +1,13 @@
+[% # IMG-%]
+<table>
+<tr>
+	<td>
+		<h2>Feature</h>
+	</td>
+</tr>
+<tr>
+	<td>
+		<a href='[%gbrowse.link%][%snp2uniprot.uniprot%]'><img src='[%gbrowse.img%][%id%];h_feat=[%id%]@yellow;h_region=' border=0></a>
+	</td>
+</tr>
+</table>

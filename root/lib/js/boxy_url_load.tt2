@@ -1,0 +1,8 @@
+		<script type='text/javascript'>
+			$(function() {
+			  $('.[%dom%]').click(function() {
+				Boxy.load("[%ext_url%]", {title: "[%title%]"}); 
+				return false;
+				});
+			});
+		</script>

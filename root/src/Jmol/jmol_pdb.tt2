@@ -1,0 +1,55 @@
+[% # This is a TT comment.  The '-' at the end "chomps" the newline.  You won't -%]
+[% # see this "chomping" in your browser because HTML ignores blank lines, but  -%]
+[% # it WILL eliminate a blank line if you view the HTML source.  It's purely   -%]
+[%- # optional, but both the beginning and the ending TT tags support chomping. -%]
+
+[%- # Provide a title to root/lib/site/header-%]
+[%- #USE Dumper(Indent=1) -%]
+[%- meta.title   = 'Molecular Structure of ' _ id-%]
+
+[%-INCLUDE jmol_init.tt2 %]
+<body>
+	<div id="jmol_load">
+		<script language="javascrit" type="text/javascript">
+			[%-IF bgcolor%]
+				jmolSetAppletColor('[%bgcolor%]');
+			[%-END-%]
+
+			[%-uri_pdb=BLOCK%]http://www.rcsb.org/pdb/files/[%id%].pdb.gz[%END%]
+			[%-default=BLOCK%]load '[%uri_pdb%]'; wireframe off; spacefill off; cartoon; color cpk[%END%]
+			[%-move=BLOCK%]move 0 45 0 0 0 0 0 0 5[%END%]
+			[%-IF hl-%]
+				[%-load_hl=BLOCK%]select [%hl%]; color cpk; spacefill[%END-%]
+				[%-label_default=BLOCK%]set labelOffset 10 10; set fontSize 13; color label white[%END-%]
+				[%-SET label_all=[]-%]
+
+				[%-IF label-%]
+					[%-label_list=label.split(',')-%]
+				[%-ELSE-%]
+					[%-label_list=hl.split(',')-%]
+				[%-END-%]
+
+				[%-FOREACH el IN hl.split(',')-%]
+					[%-lb=label_list.shift-%]
+					[%-load_label=BLOCK-%]select [%el%] and *.ca; label [%lb%]; [%END%]
+					[%-label_all.push(load_label)-%]
+				[%-END-%]
+				[%script=BLOCK%][%default%]; [%load_hl%]; [%label_default%]; [%label_all.join(' ')%]; [%move%];[%END-%]
+			[%ELSE-%]
+				[%script=BLOCK%][%default%]; [%move%];[%END-%]
+			[%END%]
+			<!-- for FF and IE>jmolApplet([800, 700], "[%script%]")-->
+			jmolApplet(["100%", "90%"], "[%script%]");
+		</script>
+
+		<p class="small">If you cannot see the molecule, you might want to install
+			<a href="http://www.java.com/en/download/index.jsp" target="_BLINK"> Java Runtime Environment</a>
+		</p>
+		<div id='jmol_command'>
+			<script language="javascrit" type="text/javascript">
+				jmolCommandInput('Jmol Script', 75);
+			</script>
+		</div>
+
+	</div><!-- end of div 'jmol_load' -->
+</body>

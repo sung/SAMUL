@@ -1,0 +1,84 @@
+			[%-#google feed control-%]
+			<!-- google feeds control-->
+			<script src="http://www.google.com/jsapi?key=notsupplied-wizard" type="text/javascript"></script>
+
+			<!-- Dynamic Feed Control and Stylesheet -->
+			<script src="http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.js" type="text/javascript"></script>
+			[%-#<style type="text/css">@import url("http://www.google.com/uds/solutions/dynamicfeed/gfdynamicfeedcontrol.css");</style>%]
+			<style type="text/css">@import url("[%c.uri_for('/static/css')%]/samul_news.css");</style>
+
+			<script type="text/javascript">
+				function LoadDynamicFeedControl() {
+					var feeds = [
+						[%-IF is_samul%]
+						{
+						  title: '[%site.name%]',
+						  url: '[%c.uri_for('/rss')%]'
+						},
+						[%-END%]
+						[%-IF is_pdb%]
+						{
+						  title: 'PDB',
+						  url: '[%feeds.PDB%]'
+						},
+						[%-END%]
+						[%-IF is_uniprot%]
+						{
+						  title: 'UniProt',
+						  url: '[%feeds.UniProt%]'
+						},
+						[%-END%]
+						[%-IF is_uniprot_entry%]
+						{
+						  title: '[%title%]',
+						  url: 'http://www.uniprot.org/uniprot/[%title%].rss?version=*'
+						},
+						[%-END%]
+						[%-IF is_ensembl%]
+						{
+						  title: 'Ensembl',
+						  url: '[%feeds.Ensembl%]'
+						},
+						[%-END%]
+						[%-IF is_ebi%]
+						{
+						  title: 'EBI',
+						  url: '[%feeds.EBI%]'
+						},
+						[%-END%]
+						[%-IF is_credo%]
+						{
+						  title: 'CREDO',
+						  url: '[%feeds.CREDO%]'
+						},
+						[%-END%]
+						[%-IF is_cosmic%]
+						{
+						  title: 'COSMIC',
+						  url: '[%feeds.COSMIC%]'
+						},
+						[%-END%]
+					  ];
+					var options = {
+						stacked : [%stacked or 'false'%],
+						horizontal : [%horizontal or 'false'%],
+						title : "[%title or 'News'%]",
+						[%-IF numResults%]
+						numResults : "[%numResults%]",
+						[%-END%]
+						[%-IF is_link_self%]
+						linkTarget: google.feeds.LINK_TARGET_SELF,
+						[%-END%]
+					}
+
+					new GFdynamicFeedControl(feeds, '[%dom%]', options);
+
+					[%-IF feeder_width%]
+					document.getElementById('[%dom%]').style.width = "[%feeder_width%]";
+					[%-END%]
+				}
+				// Load the feeds API and set the onload callback.
+				google.load('feeds', '1');
+				google.setOnLoadCallback(LoadDynamicFeedControl);
+			</script>
+			<!-- ++End Dynamic Feed Control Wizard Generated Code++ -->

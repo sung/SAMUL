@@ -1,0 +1,15 @@
+[% # IMG-%]
+<table>
+<tr>
+	<td>
+		<h2>Feature</h>
+	</td>
+</tr>
+<tr>
+	<td>
+		<iframe src='[%gbrowse.img%][%id%];embed=1' width="1000" height="800">
+			<img src='[%gbrowse.img%][%id%]' border=0>
+		</iframe>
+	</td>
+</tr>
+</table>

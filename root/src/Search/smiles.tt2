@@ -1,0 +1,57 @@
+[% meta.title   = 'SMILE query: ' _ smiles-%]
+
+	[%PROCESS PDB/pdb_news.tt2-%]
+
+	[%PROCESS pager.tt2 -%]
+
+	<!-- tooltip contents -->
+	<div class="plain_tooltip_small">&nbsp;</div>
+
+	<div id='smile_search'>
+		<table class='general_list_table'>
+			<caption>SMILE search results 
+				<a title="Click to download in XML format" class='download' href="http://www.rcsb.org/pdb/rest/smilesQuery?dissimilarity=0.3&search_type=3&smiles=[%smiles%]">(XML)</a>
+			</caption>
+			[%-FOREACH l IN results.slice(from,to)%]
+			<tr>
+				<td class='narrow'>
+					<table class='pdb_info'>
+						<tr>
+							<th>ID</th>
+							<td class='dotted'>[%l.chemicalID%]</td>
+						</tr>
+						<tr>
+							<th>Name</th>
+							<td class='dotted'>[%l.chemicalName%]</td>
+						</tr>
+						<tr>
+							<th>Formula</th>
+							<td class='dotted'>[%l.formula%]</td>
+						</tr>
+						<tr>
+							<th>SMILES</th>
+							<td class='dotted'><a title="Click to search similar ligands with this SMILES string" href="[%c.uri_for('/search/smiles')%]/[%l.smiles%]">[%l.smiles%]</a></td>
+						</tr>
+						<tr>
+							<th>PDB</th>
+							<td>
+								[%-cnt=0%]
+								[%-FOREACH pdb IN l.pdbs%]
+									[%-cnt=cnt+1%]
+									<a title="Click to see [%pdb%] in detail" href="[%c.uri_for('/pdb')%]/[%pdb%]">[%pdb%]</a>
+									[%-IF cnt % 10 ==0%]
+									<br>
+									[%-END%]
+								[%-END%]
+							</td>
+					</table>
+				</td>
+				<td class='narrow'>
+					<img src='http://www.rcsb.org/pdb/images/[%l.chemicalID%]_200.gif' border=0>
+				</td>
+			</tr>
+			[%-END%]
+		</table>
+	</div>
+
+	[%-PROCESS pager.tt2 %]

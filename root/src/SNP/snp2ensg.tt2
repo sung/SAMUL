@@ -1,0 +1,27 @@
+<table class='general_list_table'>
+				<tr>
+					<th class='bottom'>ENSG</th>
+					<th class='bottom'>Chr</th>
+					<th class='bottom'>Strand</th>
+					<th class='bottom'>Position</th>
+					<th class='bottom'>Allele</th>
+					<th class='bottom'>Genotyped?</th>
+					<th class='bottom'>Validation</th>
+				</tr>
+				[%-FOREACH snp2ensg IN snp2ensgs-%]
+				[%-IF snp2ensg.genotyped%]
+					[%-genotype='Yes'%]
+				[%-ELSE%]
+					[%-genotype='No'%]
+				[%-END%]
+				<tr>
+					<td class='wide'>[%snp2ensg.ensg-%]</td>
+					<td class='wide'><a title="Click to see all the SNPs in chromosome [%snp2ensg.coord_name%]" href="[%c.uri_for('/snp/chr')%]/[%snp2ensg.coord_name%]">[%snp2ensg.coord_name%]<a></td>
+					<td class='wide'>[%snp2ensg.strand-%]</td>
+					<td class='wide'>[%snp2ensg.end-%]</td>
+					<td class='wide'>[%snp2ensg.allele-%]</td>
+					<td class='wide'>[%genotype-%]</td>
+					<td class='wide'>[%snp2ensg.validation-%]</td>
+				</tr>
+				[%-END%]
+			</table><!-- end of snp2ensg -->

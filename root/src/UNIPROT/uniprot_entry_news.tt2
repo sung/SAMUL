@@ -1,0 +1,7 @@
+
+    [%-#load google feeds control (float right) -%]
+    [%-SET div_tag="uniprot_news"-%] [%-# this tag is used in samul.css%]
+    [%-# root/lib/js/google_feeds.tt2%]
+    [% PROCESS google_feeds.tt2 dom="$div_tag" title="$id" stacked="false" horizontal="true" is_uniprot_entry="1"-%]
+    <div id="[%div_tag%]">Loading...</div>
+

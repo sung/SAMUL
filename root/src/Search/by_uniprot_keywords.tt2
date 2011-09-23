@@ -1,0 +1,13 @@
+[%- meta.title   = 'Keywords: ' _ keyword-%]
+
+	[%PROCESS UNIPROT/uniprot_news.tt2-%] 
+
+	[%PROCESS pager.tt2 -%]
+	<!-- tooltip contents -->
+	<div class="plain_tooltip_small">&nbsp;</div>
+
+	<div id='search_by_keyword'>
+		[%-PROCESS UNIPROT/list_table.tt2 -%]
+	</div>
+
+	[%PROCESS pager.tt2 %]

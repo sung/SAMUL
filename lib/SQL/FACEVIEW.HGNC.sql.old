@@ -1,0 +1,39 @@
+--HGNC ID Approved Symbol Approved Name   Status  Locus Type      Previous Symbols        Previous Names  Aliases Chromosome      Enzyme IDsEntrez Gene ID   MGD ID  Pubmed IDs      RefSeq IDs      Gene Family Name        GDB ID (mapped data)    Entrez Gene ID (mapped data)    OMIM ID (mapped data)      RefSeq (mapped data)    UniProt ID (mapped data)
+drop table if exists `HGNC`;
+CREATE TABLE if not exists `HGNC` (                               
+          `hgnc` mediumint unsigned not null,        
+          `symbol` varchar(50) default null,        
+          `name` varchar(150) default null,          
+          `status` enum('Approved', 'Symbol Withdrawn', 'Entry Withdrawn') default null,        
+          `locus_type` varchar(150) default null,     
+
+          `prv_symbol` varchar(100) default null,    
+          `prv_name` varchar(255) default null,      
+          `aliases` varchar(150) default null,       
+
+          `chrom` varchar(40) default null,         
+          `enzymes` varchar(100) default null,     
+
+          `entrez_id` mediumint unsigned default null,      
+          `mgd` mediumint unsigned default null,         
+
+          `pubmed_ids` varchar(100) default null,        
+          `refseq_ids` varchar(100) default null,     
+
+          `gene_family` varchar(100) default null,    
+          `gdb` int(8) default null,         
+
+          `entrez_mapped` mediumint unsigned default null,  
+          `mim` int(7) default null,          
+          `refseq_mapped` varchar(20) default null,  
+
+          `uniprot` char(6) default null,       
+
+        PRIMARY KEY  (`hgnc`),                           
+		key gene (`symbol`, `name`),
+
+		key refseq (`refseq_mapped`,`refseq_ids`),
+		key entrez (`entrez_mapped`, `entrez_id`),
+		key uniprot (`uniprot`),
+		key chr (`chrom`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

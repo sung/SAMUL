@@ -1,0 +1,33 @@
+		<!-- html tooltip element for annotations --> 
+		[%-FOREACH m IN metaannos%]
+		<div class="[%m.anno%]_tooltip html_tooltip"> 
+			[%-#<img src="http://static.flowplayer.org/img/title/eye.png" alt="Flying screens" style="float:left;margin:0 15px 20px 0" /> %]
+			<table> 
+				<tr> 
+					<td class="label">Source</td> 
+					[%-IF m.source == 'TLB'%]
+					<td><a class="external" title="Visit TLB home" href="[%link.tlb%]">[%m.source%]</a></td> 
+					[%-ELSIF m.source == 'UNIPROT'%]
+					<td><a class="external" title="Visit UniProt home" href="[%link.uniprot%]">[%m.source%]</a></td> 
+					[%-ELSIF m.source == 'PDB'%]
+					<td><a class="external" title="Visit PDB home" href="[%link.pdb%]">[%m.source%]</a></td> 
+					[%-ELSE%]
+					<td>[%m.source%]</td> 
+					[%-END%]
+				</tr> 
+				<tr> 
+					<td class="label">Link</td> 
+					<td><a href="[%m.url%]" title="link to [%m.anno%]" target="_BLINK">[%m.url%]</a></td> 
+				</tr> 
+				<tr> 
+					<td class="label">Ver</td> 
+					<td>[%m.version%]</td> 
+				</tr> 
+				<tr> 
+					<td class="label">Detail</td> 
+					<td>[%m.des%]</td> 
+				</tr> 
+			</table> 
+			<p>Click to see all PDB entries of [%m.anno%]</p>
+		</div><!-- end of [%m.anno%]_tooltip -->
+		[%-END%]

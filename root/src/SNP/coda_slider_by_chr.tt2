@@ -1,0 +1,62 @@
+[%- # Use the TT Dumper plugin to Data::Dumper variables to the browser   -%]
+[%- # Not a good idea for production use, though. :-)  'Indent=1' is      -%]
+[%- # optional, but prevents "massive indenting" of deeply nested objects -%]
+[%- # Set the page title.  META can 'go back' and set values in templates -%]
+[%- # that have been processed 'before' this template (here it's for      -%]
+[%- # root/lib/site/html and root/lib/site/header).  Note that META on    -%]
+[%- # simple strings (e.g., no variable interpolation).   				 -%] 
+[%-meta.title   = 'Meta SNPs'%]
+
+[%-INCLUDE no_js_warning.tt2 %]
+
+	<div class="coda-slider-wrapper">
+<!-- non-dynamic tab
+		<div id="snp_by_chr_nav" class="coda-nav">
+			<ul>
+				[%- FOREACH t IN [ 1 .. 22 ] %]
+				<li class="tab[%t%]"><a href="#[%t%]">Chr:[%t%]</a></li>
+				[%-END%]
+				<li class="tab23"><a href="#23">Chr:X</a></li>
+				<li class="tab24"><a href="#24">Chr:Y</a></li>
+				<li class="tab25"><a href="#25">Chr:MT</a></li>
+			</ul>
+		</div>
+-->
+		<div class="coda-slider preload" id="snp_by_chr">
+			[%- # By chromosome -%]
+			[%- total = 0%]
+			[%-FOREACH c IN chromosomes%]	
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">Chr:[%c.des%]</h2>
+					<table class='general_list_table'>
+						[%-FOREACH s IN snp2chr%]
+						[%-IF s.version == c.des%]
+						<tr>
+							<th class='right'>[%s.des%]</th>
+							<td class='left'>[%s.cnt%] </td>
+						</tr>
+						[%END-%]
+						[%END-%]
+					</table>
+				</div>
+			</div>
+			[%- total = total + c.cnt%]
+			[%-END%]
+
+			[%- # All from SNP2ENSG-%]
+			<div class="panel">
+				<div class="panel-wrapper">
+					<h2 class="title">All ([%total%])</h2>
+					<table class='general_list_table'>
+						[%-FOREACH a IN snpall%]
+						<tr>
+							<th class='right'>[%a.des%]</th>
+							<td class='left'>[%a.cnt%]</td>
+						</tr>
+						[%-END%]
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>

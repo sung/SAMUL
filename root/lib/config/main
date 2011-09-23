@@ -1,0 +1,76 @@
+[%- # config/main
+   #
+   # This is the main configuration template which is processed before
+   # any other page, by virtue of it being defined as a PRE_PROCESS
+   # template.  This is the place to define any extra template variables,
+   # macros, load plugins, and perform any other template setup.
+
+   IF Catalyst.debug;
+     # define a debug() macro directed to Catalyst's log
+     MACRO debug(message) CALL Catalyst.log.debug(message);
+   END;
+
+   # define a data structure to hold sitewide data
+	site = {
+		name=> 'SAMUL',
+		title => 'SAMUL: Systematic Annotations for MarcromolecULs',
+		author=> 'Sungsam Gong',
+		contact=> 'sung@bio.cc',
+		version=> 0.99,
+		year=> 2010,
+		group=> 'The Crystallography and Biocomputing Group',
+		dept=> 'Department of Biochemistry',
+		univ=> 'University of Cambridge',
+   };
+
+	google={
+		ajax_api_key=>'ABQIAAAA_I-9L91b9XCb1E6TMosr0BRVF51JTilPQDEKXIGm0pSLj8P6oxRaCrI3at9ax3-6I5Xep4VeTdp41Q',
+		map_api_key=>'ABQIAAAA_I-9L91b9XCb1E6TMosr0BRVF51JTilPQDEKXIGm0pSLj8P6oxRaCrI3at9ax3-6I5Xep4VeTdp41Q',
+	};
+
+	link={
+		dept=>'http://www.bioc.cam.ac.uk',
+		tlb=>'http://www-cryst.bioc.cam.ac.uk',
+		bipa=>'http://www-cryst.bioc.cam.ac.uk/bipa',
+		credo=>'http://www-cryst.bioc.cam.ac.uk/credo',
+		piccolo=>'http://mordred.bioc.cam.ac.uk/piccolo/piccolo.php',
+		joy=>'http://tardis.nibio.go.jp/joy',
+		jmol=>'http://jmol.org',
+		pdb=>'http://www.pdb.org',
+		uniprot=>'http://www.uniprot.org',
+		gbrowse=>'http://gmod.org/wiki/Gbrowse',
+		das=>'http://en.wikipedia.org/wiki/Distributed_Annotation_System',
+		ensembl_human=>'http://www.ensembl.org/Homo_sapiens/Info/Index',
+		uniprot_ft=>'http://www.uniprot.org/manual/?query=category:sequence_annotation',
+		pubmed=>'http://www.ncbi.nlm.nih.gov/pubmed',
+	};
+
+	ref={
+		doublemap=>'http://www.ploscompbiol.org/article/info:doi/10.1371/journal.pcbi.1000179',
+	};
+
+	gbrowse={
+		link=>'http://samul.org/gb2/gbrowse/samul/?name=',
+		img=>'http://samul.org/gb2/gbrowse_img/samul/?label=ScopDomain-Binding-Region-Site;name=',
+		das=>'http://samul.org/gb2/das',
+	};
+
+	feeds={
+		SAMUL=>Catalyst.uri_for('/rss'),	#not working
+		PDB=>'http://www.rcsb.org/pdb/rss/LastLoad',
+		UniProt=>'http://www.uniprot.org/news/?format=rss',
+		Ensembl=>'http://www.ensembl.info/feed/rss',
+		EBI=>'http://www.ebi.ac.uk/Information/News/rss/ebinews.xml',
+		CREDO=>'http://www-cryst.bioc.cam.ac.uk/taxonomy/term/33/0/feed',
+		COSMIC=>'http://www.sanger.ac.uk/shared/news-report/atom/20031105161551',
+	};
+
+   # load up any other configuration items
+   PROCESS config/col
+         + config/url;
+
+   # set defaults for variables, etc.
+   DEFAULT
+     message = 'There is no message';
+
+-%]

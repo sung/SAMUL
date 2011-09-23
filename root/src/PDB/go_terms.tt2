@@ -1,0 +1,19 @@
+	<table class='general_list_table'>
+		<caption><a title="Click to download in XML format" class='download' href='http://www.pdb.org/pdb/rest/goTerms?structureId=[%id%].[%chain%]'>[XML]</caption>
+		<tr>
+			<th class='bottom'>Ontology</th>
+			<th class='bottom'>ID</th>
+			<th class='bottom'>Name</th>
+			<th class='bottom'>Definition</th>
+			<th class='bottom'>Synonyms</th>
+		</tr>
+	[%-FOREACH g IN go_terms%]
+		<tr>
+			<td class='wide'>[%g.ontology%]</td>
+			<td class='wide'>[%g.id%]</td>
+			<td class='wide'>[%g.name%]</td>
+			<td class='wide'>[%g.definition%]</td>
+			<td class='wide'>[%g.synonyms%]</td>
+		</tr>
+	[%-END%]
+	</table>

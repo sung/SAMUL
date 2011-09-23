@@ -1,0 +1,48 @@
+[%- # variation%]
+[%- IF num_spvar%]
+<table class='general_list_table'>
+	<caption>[%num_spvar%] from UniProt variants</caption>
+	<tr>
+		<th class='bottom'>ID</th>
+		<th class='bottom'>Position</th>
+		<th class='bottom'>WT</th>
+		<th class='bottom'>Mut</th>
+		<th class='bottom'>Type</th>
+		<th class='bottom'>Disease</th>
+		<th class='bottom'>MIM</th>
+	</tr>
+	[%-FOREACH variant IN variants%]
+	<tr>
+		<td class='narrow'>[%variant.variant_id%]</td>
+		<td class='narrow'><a href="[%gbrowse.link%][%id%];h_feat=[%variant.variant_id%]@yellow;h_region=[%id%]:[%variant.uniprot_res_num%]..[%variant.uniprot_res_num+1%]@red">[%variant.uniprot_res_num%]</a></td>
+		<td class='narrow'>[%variant.aa_original%]</td>
+		<td class='narrow'>[%variant.aa_variation%]</td>
+		<td class='narrow'>[%variant.type%]</td>
+		<td class='narrow'>[%variant.disease_name%]</td>
+		<td class='narrow'>[%variant.mim%]</td>
+	</tr>
+	[%-END%]
+</table>
+[%END-%]
+
+[%- IF num_dbsnp%]
+<table class='general_list_table'>
+	<caption>[%num_dbsnp%] from dbSNPs</caption>
+	<tr>
+		<th class='bottom'>ID</th>
+		<th class='bottom'>Position</th>
+		<th class='bottom'>WT</th>
+		<th class='bottom'>Allele</th>
+		<th class='bottom'>Type</th>
+	</tr>
+[%FOREACH snp IN snps%]
+	<tr>
+		<td class='narrow'><a href="[%c.uri_for('/snp')%]/[%snp.rs_id%]">[%snp.rs_id%]</a></td>
+		<td class='narrow'><a href="[%gbrowse.link%][%id%];h_feat=[%snp.rs_id%]@yellow;h_region=[%id%]:[%snp.uniprot_res_num%]..[%snp.uniprot_res_num+1%]@red">[%snp.uniprot_res_num%]</a></td>
+		<td class='narrow'>[%snp.uniprot_res%]</td>
+		<td class='narrow'>[%snp.allele%]</td>
+		<td class='narrow'>[%snp.type%]</td>
+	</tr>
+[%END%]
+</table>
+[%END%]

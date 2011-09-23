@@ -1,0 +1,4 @@
+[% meta.title = 'Input Error' %]
+<p class='error'>
+	[%msg%]
+</p>

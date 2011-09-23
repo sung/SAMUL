@@ -1,0 +1,34 @@
+[%- # Set the page title.  META can 'go back' and set values in templates -%]
+[%- # that have been processed 'before' this template (here it's for      -%]
+[%- # root/lib/site/html and root/lib/site/header).  Note that META on    -%]
+[%- # simple strings (e.g., no variable interpolation).   				 -%] 
+[% meta.title = 'Jmol for ' _ id -%]
+
+[% INCLUDE jmol_init.tt2 -%]
+
+<body id='jmol_pannel'>
+[% # table of contents -%]
+[% INCLUDE jmol_menu.tt2 -%]
+
+[% # Reload -%]
+[% INCLUDE jmol_reload.tt2 -%]
+
+[% # SCOP -%]
+[% INCLUDE jmol_scop.tt2 -%]
+
+[% # SURFACE -%]
+[% INCLUDE jmol_surface.tt2 -%]
+
+[% # INTERFACE -%]
+[% INCLUDE jmol_interface.tt2 -%]
+
+[% # Ligands-%]
+[% INCLUDE jmol_ligand.tt2 -%]
+
+[% # SNP-%]
+[% INCLUDE jmol_snp.tt2 -%]
+
+[% # INTERFACE -%]
+[% INCLUDE jmol_ft.tt2 -%]
+
+</body>

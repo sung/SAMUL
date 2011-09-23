@@ -1,0 +1,6 @@
+
+    [%-#load google feeds control (float right) -%]
+    [%-SET div_tag="pdb_news"-%] [%-# this tag is used in samul.css%]
+    [%-# root/lib/js/google_feeds.tt2%]
+    [% PROCESS google_feeds.tt2 dom="$div_tag" title="PDB News" stacked="false" horizontal="true" is_pdb="1" numResults="10"-%]
+    <div id="[%div_tag%]">Loading...</div>

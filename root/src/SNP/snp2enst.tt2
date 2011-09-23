@@ -1,0 +1,20 @@
+<table class='general_list_table'>
+				<tr>
+					<th class='bottom'>ENST</th>
+					<th class='bottom'>Strand</th>
+					<th class='bottom'>Start</th>
+					<th class='bottom'>End</th>
+					<th class='bottom'>Allele</th>
+					<th class='bottom'>type</th>
+				</tr>
+				[%-FOREACH snp2enst IN snp2ensts%]
+				<tr>
+					<td class='wide'>[%snp2enst.enst%]</td>
+					<td class='wide'>[%snp2enst.strand%]</td>
+					<td class='wide'>[%snp2enst.start%]</td>
+					<td class='wide'>[%snp2enst.end%]</td>
+					<td class='wide'>[%snp2enst.allele%]</td>
+					<td class='wide'>[%snp2enst.type%]</td>
+				</tr>
+				[%-END%]
+			</table><!-- end of snp2enst -->

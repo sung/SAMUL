@@ -1,0 +1,41 @@
+/*
+ * Ext JS Library 2.3.0
+ * Copyright(c) 2006-2009, Ext JS, LLC.
+ * licensing@extjs.com
+ * 
+ * http://extjs.com/license
+ */
+
+/*
+ USAGE:
+ initialize $tabs from the caller side
+ e.g
+	$tabs[0]={
+		id=>'uni_seq',	#<div id?
+		title=>'Names and Origins',	#tab title
+	};
+
+	# prepare tabs js
+	$c->stash->{tab}={
+		position=>'uniprot_tabs',	#<div id?
+		width=>850,
+	};
+	$c->stash->{tabs}=\@tabs;	#arrayref of hash
+
+*/
+
+Ext.onReady(function(){
+    // basic tabs 1, built from existing content
+    var tabs = new Ext.TabPanel({
+        renderTo: '[%tab.position%]',
+        width:[%tab.width%],
+        activeTab: 0,
+        frame:true,
+        defaults:{autoHeight: true},
+        items:[
+					[%FOREACH t IN tabs%]
+            {contentEl:'[%t.id%]', title: '[%t.title%]'},
+					[%END%]
+        ]
+    });
+});

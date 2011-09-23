@@ -1,0 +1,24 @@
+<div id="wrapper">
+			[%PROCESS site/popup enabled="0" url_link="/static/warning.html"-%]
+
+			<div id="header">
+			[%PROCESS site/header -%]
+			</div><!-- end of header -->
+
+
+			<div id="menu">
+			[%PROCESS site/menu %]
+			</div><!-- end of menu --> 
+
+			<div id="indicator">
+			[%PROCESS site/indicator -%]
+			</div><!-- end of indicator -->
+			
+			<div id="content">
+			[% content %]
+			</div><!-- end of content -->
+
+			<div id="footer">
+			[% PROCESS site/footer -%]
+			</div><!-- end of footer -->
+	</div><!-- end of wrapper -->

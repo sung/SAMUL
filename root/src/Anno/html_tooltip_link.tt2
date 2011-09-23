@@ -1,0 +1,5 @@
+	<!-- html tooltip for external link -->
+	<div class="[%pdb_id%]_ext_link html_tooltip_small">
+		<p>Click to browse this PDB information within <a title="link to PDB page of SAMUL" href="[%samul_link%]">SAMUL</a></p>
+		<p>Or follow this link to <a class="external" title="link to [%type%]" href="[%ext_link%]" >[%type%]</a></p>
+	</div>

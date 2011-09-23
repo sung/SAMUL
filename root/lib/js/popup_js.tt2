@@ -1,0 +1,5 @@
+<script type="text/javascript">
+			$('#popup').ready(function() { 
+				Boxy.load("[%c.uri_for(url)%]", {title:"Warning!", modal:true});
+			});
+		</script>

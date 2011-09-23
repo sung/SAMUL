@@ -1,0 +1,16 @@
+		[%-#google map API%]
+		[%-SET dom1="st_view"%]
+		[%-SET dom2="plain_map"%]
+		[%-SET dept="Department of Biochemistry, 80 Tennis court road, Cambridge, CB2 1GA, UK"%]
+		[%-SET address_html="<a href='$link.dept'>Department of Biochemistry</a><br>80 Tennis court road<br>Cambridge<br>CB2 1GA<br>UK"%]
+		[%-SET lati="52.19931" %]	
+		[%-SET long="0.12287" %]	
+		[% #PROCESS google_plain_map_api.tt2 lat="$lati" lon="$long" dom="$dom2" address="$dept" zoom="1" type_control="1"-%]	
+		[% #PROCESS google_street_map_api.tt2 lat="$lati" lon="$long" dom="$dom1" address="$dept"-%]	
+		[% PROCESS google_map_api.tt2 lat="$lati" lon="$long" address="$dept" zoom="1" type_control="1"-%]	
+		<div id="about_samul_map" class="samul_panel">
+			<h2 class="main_title">Where we are</h2>
+			<p class="desc hidden">Department of Biochemistry, 80 Tennis court road, Cambridge, CB2 1GA, UK</p>
+			<div id="[%dom2%]" style="width:500px; height:400px; margin:auto;"></div>
+			<div id="[%dom1%]" style="width:500px; height:300px; margin:auto;"></div>
+		</div>

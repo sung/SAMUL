@@ -1,0 +1,31 @@
+		<!-- table for meta annotation -->
+		<table class='general_list_table'>
+			<tr>
+				<th rowspan=3 class='bottom'>Source</th>	
+				<th rowspan=3 class='left bottom'>Annotation</th>	
+				<th colspan=4 class='left bottom'>Number</th>
+
+			</tr>
+			<tr> 
+				<th colspan=2 class='left bottom dotted'>PDB</th>
+				<th colspan=2 class='left bottom dotted'>UNIPROT</th>
+			</tr>
+			<tr>
+				<th class='left bottom'>Residues</th>
+				<th class='bottom'>ID</th>
+
+				<th class='left bottom'>Residues</th>
+				<th class='bottom'>ID</th>
+			</tr>
+			[%-FOREACH m IN metaannos%]
+				<tr>
+					<td class='wide'>[%m.source%]</td>
+					[%-# <a class is a trigger for tooltips%]
+					<td class='wide'><a class="[%m.anno%]" href="[%c.uri_for('/annotation')%]/[%m.anno%]">[%m.anno%]</a></td>
+					<td class='wide'>[%m.res_cnt_pdb%]</td>
+					<td class='wide'>[%m.id_cnt_pdb%]</td>
+					<td class='wide'>[%m.res_cnt_uniprot%]</td>
+					<td class='wide'>[%m.id_cnt_uniprot%]</td>
+				</tr>
+			[%-END%]
+		</table><!-- meta annotation table end -->

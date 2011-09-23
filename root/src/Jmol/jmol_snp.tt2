@@ -1,0 +1,40 @@
+[% # VARIANTS-%]
+<div>
+		<b><a name="snp">V. Variations</a></b>
+</div>
+
+[% # dbSNP-%]
+<div id="bullet">
+	<font color="#9999FF" face="Arial, Helvetica, sans-serif" size="2">
+		dbSNP<br>
+	</font>
+		<script language="javascript" type="text/javascript"> 
+		[% FOREACH dbsnp IN dbsnps-%]
+			[% region=dbsnp.get_column('region')-%]
+
+        	[% checked=BLOCK -%]define [%dbsnp.ext_id%] [%region%]; select [%dbsnp.ext_id%]; spacefill; color cpk; select [%dbsnp.ext_id%] and *.ca; set labelOffset 10 10; set fontSize 13; color label white; label [% dbsnp.ext_id-%];[% END -%]
+        	[% unchecked=BLOCK -%]select [%dbsnp.ext_id%]; label off; spacefill off; wireframe;[%END-%]
+
+           	jmolCheckbox("[%checked%]", "[%unchecked%]", "[%dbsnp.ext_id%]: [%region%] ([% dbsnp.des-%])", 0, "[%id%]");
+			jmolBr();
+		[% END -%]
+		</script>
+
+[% # SwissVariants-%]
+	<font color="#9999FF" face="Arial, Helvetica, sans-serif" size="2">
+		SwissVariants<br>
+	</font>
+		<script language="javascript" type="text/javascript"> 
+		[% FOREACH sv IN svs-%]
+			[% region=sv.get_column('region')-%]
+
+        	[% checked=BLOCK -%]define [%sv.ext_id%] [%region%]; select [%sv.ext_id%]; spacefill; color cpk; select [%sv.ext_id%] and *.ca; set labelOffset 10 10; set fontSize 13; color label white; label [% sv.ext_id%];[% END -%]
+        	[% unchecked=BLOCK -%]select [%sv.ext_id%]; label off; spacefill off; wireframe;[%END-%]
+
+           	jmolCheckbox("[%checked%]", "[%unchecked%]", "[%sv.ext_id%]: [%region%] ([% sv.des%])", 0, "[%id%]");
+			jmolBr();
+		[% END -%]
+		</script>
+</div>
+
+<hr>

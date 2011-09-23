@@ -1,0 +1,4 @@
+<script language="javascript" type="text/javascript">
+	[%-# use unsiged applet by default%]
+	jmolInitialize("[%c.uri_for('/static/Jmol')%]", true);
+</script>

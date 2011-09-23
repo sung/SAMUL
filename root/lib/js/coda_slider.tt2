@@ -1,0 +1,12 @@
+	<script type="text/javascript">
+		$().ready(function() {
+			$('#[%slider_id%]').codaSlider({
+				[%-UNLESS dynamicArrows%]
+				dynamicArrows: false,
+				[%-END%]
+				[%-UNLESS dynamicTabs%]
+				dynamicTabs: false,
+				[%-END%]
+			});
+		});
+	</script>

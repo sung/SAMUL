@@ -1,0 +1,38 @@
+<table class='general_list_table'>
+	<tr>
+		[%-IF onto%] [%# template called by 'snp_level_type.tt2%]
+		<th class='bottom'>SNP</th>
+		[%-END%]
+		<th title="Click to see this PDB info in detail" class='bottom'>PDB</th>
+		<th title="Click to see this PDB chain info in detail" class='bottom'>Chain</th>
+		<th title="Click to see this residues using Jmol" class='bottom'>Residue</th>
+		<th class='bottom'>Allele</th>
+		[%-UNLESS onto%]
+		<th class='bottom'>Description</th>
+		[%-END%]
+	</tr>
+	[%-FOREACH snp2pdb IN snp2pdbs%]
+	[% pdb=snp2pdb.get_column('pdb')-%]
+	[% chain=snp2pdb.get_column('chain')-%]
+	[% res_num=snp2pdb.get_column('res_num')-%]
+	[%-IF snp2pdb.des.match(':')%]
+		[% allele=snp2pdb.des.split(': ').0%]
+		[% snp_type=snp2pdb.des.split(': ').1%]
+	[%-ELSE%]
+		[% allele=''%]
+		[% snp_type=snp2pdb.des%]
+	[%-END%]
+	<tr>
+		[%-IF onto%] [%# template called by 'snp_level_type.tt2%]
+		<td class='wide'><a href="[%c.uri_for('/snp')%]/[%snp2pdb.ext_id%]">[%snp2pdb.ext_id%]</td>
+		[%-END%]
+		<td class='wide'><a href="[%c.uri_for('/pdb/')%][%pdb%]">[%pdb%]</a></td>
+		<td class='wide'><a href='[%c.uri_for('/pdb/')%][%pdb%]/[%chain%]'>[%chain%]</a></td>
+		<td class='wide'><a title="Click to browse [%res_num%]:[%chain%] of [%pdb%] in Jmol" href='[%c.uri_for('/pdb')%]/[%pdb%]/jmol?hl=[%res_num%]:[%chain%]&label=[%snp2pdb.ext_id%]([%allele%])'>[%res_num%]</a></td>
+		<td class='wide'>[%allele%]</td>
+		[%-UNLESS onto %]
+		<td class='wide'>[%snp_type%]</td>
+		[%-END%]
+	</tr>
+	[%END-%]
+</table>

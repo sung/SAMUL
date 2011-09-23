@@ -1,0 +1,19 @@
+[%- # X-reference%]
+<table class='general_list_table'>
+[%-FOREACH xref IN xrefs%]
+	[% db=xref.get_column('db')-%]
+	[% entries=xref.get_column('entries')-%]
+<tr>
+	<th class='right'>[%db%]</th>
+	<td class='left'>
+	[%-IF db=='PDB'-%]
+		[%- FOREACH entry IN entries.split(', ') -%]
+			<a href="[%c.uri_for('/pdb/')%][%entry%]">[%entry%]</a> 
+		[%- END -%]
+	[%-ELSE-%]
+		[%entries%]  
+	[%- END-%]
+	</td>
+</tr>
+[%END%]
+</table>

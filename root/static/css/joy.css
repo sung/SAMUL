@@ -1,0 +1,28 @@
+/* Environments */
+.helix {
+  color: red;
+}
+.beta_sheet {
+  color: blue;
+}
+.coil {
+  color: maroon;
+}
+.positive_phi {
+  color: black;
+  font-style: italic;
+}
+
+.surface {
+  text-transform: lowercase;
+}
+.buried {
+  text-transform: uppercase;
+}
+
+.hbond_nh{
+	font-weight: bold;
+}
+.hbond_co{
+	text-decoration: underline;
+}

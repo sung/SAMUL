@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+		<meta name="description" content="SAMUL: Systematic Annotation of  Macromolecules" /> 
+		<meta name="keywords" content="samul, faceview, pdb, uniprot, snp, variation, esst" />
+		<meta name="author" content="Sungsam Gong">
+		<title>Meta SNP</title>
+		<link rel="alternate" type="application/rss+xml" title="SAMUL news" href="http://samul.bio.cc/rss" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/samul.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/joy.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/pager.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/menu.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/boxy.css" />
+		<link rel="stylesheet" type="text/css" href="http://samul.bio.cc/static/css/coda-slider-2.0.css" />
+
+		<style type="text/css">
+		.message {
+			color: #66AA66;
+		}
+
+		.error {
+			color: #CC4444;
+		}
+
+		</style>
+		
+		<!--
+		<script src="http://www.google.com/jsapi?key=ABQIAAAA_I-9L91b9XCb1E6TMosr0BSyfqj2BxeuSVCxV8Ty6XoRprUmIBSu58FcRRfm69HfDV_uCuNC94ykTg" type="text/javascript"></script>
+		<script language="Javascript" type="text/javascript">
+			google.load("jquery", "1.4.2");
+			google.load("jqueryui", "1.7.2");
+		</script>
+		-->
+
+		<script type="text/javascript" src="/static/js/samul.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.boxy.js"></script>
+		<script type="text/javascript" src="/static/js/tools.tooltip-1.1.3.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.coda-slider-2.0.js"></script>
+
+
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<img src="/static/images/garland_logo.png" alt="the TLB group logo" /> 
+				<p class="dept">
+					Crystallography and Bioinformatics<br/>
+					Department of Biochemistry<br/>
+					University of Cambridge<br/>
+				</p>
+				<p class="title">SAMUL</p>
+			</div><!-- end of header -->
+
+
+			<div id="menu">
+				<ul id="nav" class="dropdown dropdown-horizontal">
+				<li><a href=http://samul.bio.cc/>Home</a></li>
+				<li><a href="#">Browse</a>
+					<ul>
+						<li><a href="http://samul.bio.cc/annotation">Annotations</a></li>
+						<li class="dir"><a href="http://samul.bio.cc/snp">SNPs</a>
+							<ul>
+								<li class="dir"><a href="#">By chromosome</a>
+									<ul>
+										<!-- moved to by level-ensg <li><a href="http://samul.bio.cc/snp/chr/all">All</a></li>-%] -->
+										<li><a href="http://samul.bio.cc/snp/chr/1">1</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/2">2</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/3">3</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/4">4</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/5">5</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/6">6</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/7">7</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/8">8</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/9">9</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/10">10</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/11">11</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/12">12</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/13">13</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/14">14</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/15">15</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/16">16</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/17">17</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/18">18</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/19">19</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/20">20</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/21">21</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/22">22</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/X">X</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/Y">Y</a></li>
+										<li><a href="http://samul.bio.cc/snp/chr/MT">MT</a></li>
+									</ul>
+								</li><!-- browse snp by chromosome -->
+								<li class="dir"><a href="#">By Level</a>
+									<ul>
+										<li><a href="http://samul.bio.cc/snp/to/ensg">SNP2ENSG</a></li>
+										<li><a href="http://samul.bio.cc/snp/to/enst">SNP2ENST</a></li>
+										<li><a href="http://samul.bio.cc/snp/to/ensp">SNP2ENSP</a></li>
+										<li><a href="http://samul.bio.cc/snp/to/uniprot">SNP2UNIPROT</a></li>
+										<li><a href="http://samul.bio.cc/snp/to/pdb">SNP2PDB</a></li>
+									</ul>
+								</li><!-- browse snp by level-->
+							</ul><!-- browose snp -->
+						</li><!-- browse snp -->
+						<li><a href="http://samul.bio.cc/pdb">PDB</a></li>
+						<li><a href="http://samul.bio.cc/uniprot">UNIPROT</a></li>
+					</ul><!-- browse -->
+				</li><!-- browse -->
+				<li><a href="http://samul.bio.cc/search">Search</a>
+					<ul>
+						<li class="dir"><a href="#">By ID</a>
+							<ul>
+								<li><a href="#" class="search_pdb">PDB</a></li>
+								<li><a href="#" class="search_uniprot">UNIPROT</a></li>
+								<li><a href="#" class="search_snp">SNP</a></li>
+							</ul>
+						</li>
+						<li><a href="#" class="search_gene">By gene name</a></li>
+						<li><a href="#" class="search_keyword">By keywords</a></li>
+						<li><a href="#" class="search_smiles">By ligand (SMILES)</a></li>
+					</ul>
+				</li><!-- end of Search -->
+				<li><a href="http://samul.bio.cc/static/references.html" class='boxy' title='References'>References</a></li>
+				<li><a href="http://samul.bio.cc/about">About</a></li>
+				<li><a href="#" class="contact_us">Contacts</a></li>
+			</ul>
+
+			</div><!-- end of menu --> 
+
+			<div id="indicator">
+				<p class="navi">Search by Google</p>
+			</div><!-- end of indicator -->
+			
+			<div id="content">
+
+				<div id="cse" style="width: 100%;">Loading</div>
+				<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+				<script type="text/javascript">
+					google.load('search', '1', {language : 'en'});
+					google.setOnLoadCallback(function(){
+						var customSearchControl = new google.search.CustomSearchControl('016251604127889350075:f3yf3vqy3zq');
+						customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+						customSearchControl.draw('cse');
+					}, true);
+				</script>
+				<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+				<style type="text/css">
+					.gsc-control-cse {
+							font-family: Arial, sans-serif;
+							border-color: #FFFFFF;
+						    background-color: #FFFFFF;
+					   	}
+						input.gsc-input {
+							border-color: #BCCDF0;
+						}
+						input.gsc-search-button {
+							border-color: #666666;
+							background-color: #CECECE;
+						}
+						.gsc-tabHeader.gsc-tabhInactive {
+						border-color: #E9E9E9;
+						background-color: #E9E9E9;
+						}
+						.gsc-tabHeader.gsc-tabhActive {
+						border-top-color: #FF9900;
+						border-left-color: #E9E9E9;
+						border-right-color: #E9E9E9;
+						background-color: #FFFFFF;
+						}
+						.gsc-tabsArea {
+						border-color: #E9E9E9;
+						}
+						.gsc-webResult.gsc-result {
+						border-color: #FFFFFF;
+						background-color: #FFFFFF;
+						}
+						.gsc-webResult.gsc-result:hover {
+						border-color: #FFFFFF;
+						background-color: #FFFFFF;
+						}
+						.gs-webResult.gs-result a.gs-title:link,
+						.gs-webResult.gs-result a.gs-title:link b {
+						color: #0000CC;
+						}
+						.gs-webResult.gs-result a.gs-title:visited,
+						.gs-webResult.gs-result a.gs-title:visited b {
+						color: #0000CC;
+						}
+						.gs-webResult.gs-result a.gs-title:hover,
+						.gs-webResult.gs-result a.gs-title:hover b {
+						color: #0000CC;
+					}
+					.gs-webResult.gs-result a.gs-title:active,
+					.gs-webResult.gs-result a.gs-title:active b {
+					color: #0000CC;
+					}
+					.gsc-cursor-page {
+					color: #0000CC;
+					}
+					a.gsc-trailing-more-results:link {
+					color: #0000CC;
+					}
+					.gs-webResult.gs-result .gs-snippet {
+					color: #000000;
+					}
+					.gs-webResult.gs-result .gs-visibleUrl {
+					color: #008000;
+					}
+					.gs-webResult.gs-result .gs-visibleUrl-short {
+					color: #008000;
+					}
+					.gsc-cursor-box {
+					border-color: #FFFFFF;
+					}
+					.gsc-results .gsc-cursor-page {
+					border-color: #E9E9E9;
+					background-color: #FFFFFF;
+					}
+					.gsc-results .gsc-cursor-page.gsc-cursor-current-page {
+					border-color: #FF9900;
+					background-color: #FFFFFF;
+					}
+					.gs-promotion.gs-result {
+					border-color: #336699;
+					background-color: #FFFFFF;
+					}
+					.gs-promotion.gs-result a.gs-title:link {
+					color: #0000CC;
+					}
+					.gs-promotion.gs-result a.gs-title:visited {
+					color: #0000CC;
+					}
+					.gs-promotion.gs-result a.gs-title:hover {
+					color: #0000CC;
+					}
+					.gs-promotion.gs-result a.gs-title:active {
+					color: #0000CC;
+					}
+					.gs-promotion.gs-result .gs-snippet {
+					color: #000000;
+					}
+					.gs-promotion.gs-result .gs-visibleUrl,
+					.gs-promotion.gs-result .gs-visibleUrl-short {
+					color: #008000;
+					}
+			</style>
+
+		<!-- rss from google gadget creator-->
+		<script src="http://www.gmodules.com/ig/ifr?url=http://samul.bio.cc/rss&amp;synd=open&amp;w=320&amp;h=200&amp;title=test&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>	
+		<!-- google analytics -->
+		<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+			try {
+				var pageTracker = _gat._getTracker("UA-7994267-3");
+				pageTracker._trackPageview();
+			} catch(err) {}
+		</script>
+	</body>
+</html>

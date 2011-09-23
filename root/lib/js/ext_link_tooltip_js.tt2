@@ -1,0 +1,8 @@
+
+	<script type="text/javascript">
+		$(document).ready(function() { 
+		[%- FOREACH l IN list_this %]
+			$(".[%l%]").tooltip({tip:'.[%l%]_ext_link', effect: 'fade', fadeOutSpeed: 100}); 
+		[%-END%]
+		});
+	</script>

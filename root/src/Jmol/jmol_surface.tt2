@@ -1,0 +1,27 @@
+[% # SURFACE-%]
+<div>
+		<b><a name="surface">II. Surface/Core</a></b>
+		<br>
+</div>
+
+<div id="bullet">
+		<script language="javascript" type="text/javascript"> 
+		[%-FOREACH crust IN crusts%]
+			[%-#crust.solv_acc-%] 
+			[%-#region=crust.get_column('region').replace(',', ', ')%]
+			[%-region=crust.get_column('region')%]
+			[%-IF crust.solv_acc == 'T'%]
+				[%-acc='Accessible'%]
+				[%-color='blue'%]
+			[%-ELSE%]
+				[%-acc='Inaccessible'%]
+				[%-color='red'%]
+			[%-END%]
+				[%-checked=BLOCK%]define [%acc%] [%region%]; select [%acc%]; color [%color%];[% END%]
+       	[%-unchecked=BLOCK%]select [%acc%]; color cpk;[%END%]
+				jmolCheckbox("[%checked%]", "[%unchecked%]", "[%acc%] ([%color%])", 0, "[%id%]");
+				jmolBr();
+		[%-END%]
+		</script>
+</div>
+<hr>
