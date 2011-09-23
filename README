@@ -1,0 +1,54 @@
+This is a repository of web application named SAMUL (http://samul.org) developed using Perl Catalyst web framework (http://www.catalystframework.org/).
+--
+Run script/samul_web_server.pl to test the application.
+--
+# Stub generation
+$catalyst.pl Samul::Web
+mv Samul-Web Samul
+cd Samul
+
+# Controller
+./script/samul_web_create.pl controller Search
+./script/samul_web_create.pl controller PDB
+./script/samul_web_create.pl controller UNIPROT
+./script/samul_web_create.pl controller Suggest
+./script/samul_web_create.pl controller SNP
+./script/samul_web_create.pl controller Show
+./script/samul_web_create.pl controller Message
+./script/samul_web_create.pl controller Annotation 
+./script/samul_web_create.pl controller CGIBin # symbolic link at root/cgi-bin to /BiO/Serve/cgi-bin does not work
+./script/samul_web_create.pl controller API::REST DBIC::API::REST Samul::Schema::Loader::GLORIA
+./script/samul_web_create.pl controller API::RPC
+[ssgong@malory Samul]$ ./script/samul_web_create.pl controller Pager
+
+# View
+./script/samul_web_create.pl view TT TTSite
+
+# Model
+./script/samul_web_create.pl model GLORIA DBIC::Schema Samul::Schema::Loader::GLORIA
+./script/samul_web_create.pl model FACEVIEW DBIC::Schema Samul::Schema::Loader::FACEVIEW
+./script/samul_web_create.pl model UNIPROT DBIC::Schema Samul::Schema::Loader::UNIPROT
+./script/samul_web_create.pl model PDBWS WebService::CRUST http://www.rcsb.org/pdb/rest/describeMol
+
+# GLORIA
+[ssgong@malory Samul-Web]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::GLORIA", { debug => 1 }, [ "dbi:mysql:database=GLORIA;host=rhombic","sung", "snrnsk" ])'
+
+# UNIPROT
+[ssgong@malory Samul-Web]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::UNIPROT", {debug => 1 }, [ "dbi:mysql:database=UNIPROT;host=rhombic","sung", "snrnsk" ])'
+
+# FACEVIEW
+[ssgong@malory Samul-Web]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::FACEVIEW",{debug => 1 }, [ "dbi:mysql:database=FACEVIEW;host=rhombic","sung", "snrnsk" ])'
+
+# SAMUL
+[ssgong@malory Samul]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::SAMUL", { debug => 1 }, [ "dbi:mysql:database=SAMUL;host=spunky","sung", "snrnsk" ])'
+
+# Plugin
+# Catalyst::Plugin::Email
+# Catalyst::Plugin::AutoCRUD
+
+# Dependency
+XML::Feed
+
+--
+Last modfied by Sung Gong <sung@bio.cc>
+23/Sep/2011
