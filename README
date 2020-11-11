@@ -31,16 +31,16 @@ cd Samul
 ./script/samul_web_create.pl model PDBWS WebService::CRUST http://www.rcsb.org/pdb/rest/describeMol
 
 # GLORIA
-[ssgong@malory Samul-Web]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::GLORIA", { debug => 1 }, [ "dbi:mysql:database=GLORIA;host=rhombic","sung", "snrnsk" ])'
+[ssgong@malory Samul-Web]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::GLORIA", { debug => 1 }, [ "dbi:mysql:database=GLORIA;host=rhombic","sung", "xxx" ])'
 
 # UNIPROT
-[ssgong@malory Samul-Web]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::UNIPROT", {debug => 1 }, [ "dbi:mysql:database=UNIPROT;host=rhombic","sung", "snrnsk" ])'
+[ssgong@malory Samul-Web]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::UNIPROT", {debug => 1 }, [ "dbi:mysql:database=UNIPROT;host=rhombic","sung", "xxx" ])'
 
 # FACEVIEW
-[ssgong@malory Samul-Web]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::FACEVIEW",{debug => 1 }, [ "dbi:mysql:database=FACEVIEW;host=rhombic","sung", "snrnsk" ])'
+[ssgong@malory Samul-Web]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::FACEVIEW",{debug => 1 }, [ "dbi:mysql:database=FACEVIEW;host=rhombic","sung", "xxx" ])'
 
 # SAMUL
-[ssgong@malory Samul]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::SAMUL", { debug => 1 }, [ "dbi:mysql:database=SAMUL;host=spunky","sung", "snrnsk" ])'
+[ssgong@malory Samul]$ perl -MDBIx::Class::Schema::Loader=make_schema_at,dump_to_dir:./lib -e 'make_schema_at("Samul::Schema::Loader::SAMUL", { debug => 1 }, [ "dbi:mysql:database=SAMUL;host=spunky","sung", "xxx" ])'
 
 # Plugin
 # Catalyst::Plugin::Email
